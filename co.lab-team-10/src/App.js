@@ -47,7 +47,7 @@ function App() {
             <Navigate replace to="/" />
           )
         } />
-        {/* <Route path="/feed" element={<Feed setAuth={setAuth}/>}/> */}
+        <Route path="/feed" element={<Feed />}/>
         {/* <Route path="/feed" element={
       <>
           isAuth && (
@@ -61,13 +61,13 @@ function App() {
       </>
 
         }/> */}
-        <Route path="/feed" element={
+        {/* <Route path="/feed" element={
           isAuth ? (
             <Feed/>
           ) : (
             <Navigate replace to="/" />
           )
-        } />
+        } /> */}
 
         {/* CHANGE PATH TO /itemdetail/:post_id */}
         <Route path="/itemdetail" element={<ItemDetail />} />
