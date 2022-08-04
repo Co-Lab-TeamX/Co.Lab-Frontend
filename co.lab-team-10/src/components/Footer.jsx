@@ -15,15 +15,3 @@ export default function Footer() {
         </footer>
     )
 }
-
-// Footer
-// div (‘text-container’)
-// h4 text
-// h4 text
-// /div  (‘text-container’)
-// div (‘social- icon container’)
-// social button #1
-// social button #2
-// social button #3
-// /div (‘social- icon container’)
-// /footer
