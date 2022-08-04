@@ -4,3 +4,15 @@
 @import './itemdetail.scss';
 @import './login.scss';
 @import './register.scss';
+@import './navigation.scss';
+@import './itemCategories.scss';
+@import './footer.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
