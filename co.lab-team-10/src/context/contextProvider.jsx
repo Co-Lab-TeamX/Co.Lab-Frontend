@@ -35,6 +35,8 @@ const ContextProvider = (props) => {
     setUser,
     isAuth,
     setIsAuth,
+    posts, 
+    setPosts
   };
 
   return (

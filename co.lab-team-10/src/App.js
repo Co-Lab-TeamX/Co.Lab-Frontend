@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register"
 import Feed from "./pages/feed/Feed"
 import ItemDetail from "./pages/itemdetail/Itemdetail"
+import ZoFeed from "./pages/zoFeed/ZoFeed";
 
 function App() {
   const { isAuth, setIsAuth } = useContext(AppContext);
@@ -47,7 +48,7 @@ function App() {
             <Navigate replace to="/" />
           )
         } />
-        <Route path="/feed" element={<Feed />} />
+        <Route path="/feed" element={<ZoFeed />} />
 
         {/* <Route path="/feed" element={
           isAuth ? (
