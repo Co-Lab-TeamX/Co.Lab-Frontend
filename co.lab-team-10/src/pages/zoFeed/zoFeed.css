@@ -1,0 +1,15 @@
+.zo {
+    color: red
+}
+
+.item-feed-name {
+    margin-top: 150px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.browse-feed {
+    display: flex;
+    justify-content: space-evenly;
+}

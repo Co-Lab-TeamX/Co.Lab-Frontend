@@ -83,7 +83,6 @@ const Navbar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex" },
@@ -93,6 +92,7 @@ const Navbar = () => {
               color: "#455a64",
               textDecoration: "none",
             }}
+            onClick={(e) => navigate("/")}
           >
             Free
             <Typography className="up">Up</Typography>
