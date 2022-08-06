@@ -1,0 +1,61 @@
+.container {
+    background-color: white;
+    box-shadow: 0px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: fixed;
+    width: 100%;
+}
+
+.up {
+    font-size: 40px !important;
+    color: #17af42;
+}
+
+.pin {
+    margin-top: 10px !important;
+    color: #17af42;
+    font-size: 40px !important;
+}
+
+.logo-and-name {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 40px !important;
+}
+
+.pages {
+    color: black;
+    display: flex;
+    justify-content: end;
+}
+
+.nav-link {
+    font-family: 'poppins' !important;
+}
+
+.hamburger-menu {
+    color: black;
+}
+
+.logo-name {
+    font-size: 25px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.login-btn {
+    color: white;
+    background-color: #107a2e !important;
+    margin: 0 !important;
+    height: 30px;
+    width: 70px;
+    margin-top: 3px !important;
+    margin-left: 6px !important;
+}
+
+@media only screen and (max-width: 900px) {
+    .pages {
+        display: none;
+    }
+  }
