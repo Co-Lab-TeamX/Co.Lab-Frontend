@@ -1,0 +1,51 @@
+.body-holder {
+    margin-bottom: 100px;
+}
+
+.main-image {
+    height: 650px;
+    width: 650px;
+}
+
+
+.first-image {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.intro-text {
+    color: #455a64;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.intro-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+    margin-top: 20px;
+}
+
+.step-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.each-step {
+    width: 150px;
+}
+
+.browse-items-btn {
+    background-color: #107a2e !important;
+}
+
+.how-it-works {
+    color: #107a2e;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}

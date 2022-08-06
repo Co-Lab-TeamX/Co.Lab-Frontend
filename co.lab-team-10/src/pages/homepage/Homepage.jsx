@@ -1,22 +1,14 @@
-import AppContext from "../../context/appContext";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react"
+import Footer from "../../components/footer/Footer";
+import HomepageBody from "../../components/homepageBody/HomepageBody";
+import Navbar from "../../components/navbar/Navbar";
+import "./homepage.css";
 
 function Homepage() {
-  const { user, setIsAuth, setUser, isAuth } = useContext(AppContext);
-  const navigate = useNavigate();
-
-  const handleLogOut = (e) => {
-    setUser({});
-    setIsAuth(false);
-    window.localStorage.clear();
-    navigate("/login");
-  };
-
   return (
     <>
-      <div className="homepage">Homepage</div>
-      <button onClick={handleLogOut}>Log-out</button>
+      <Navbar />
+      <HomepageBody/>
+      <Footer />
     </>
   );
 }

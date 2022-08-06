@@ -1,0 +1,53 @@
+.footer {
+  padding: 20px;
+  height: 150px;
+  width: auto;
+  background-color: #455a64;
+}
+
+.footer-pin {
+  color: white;
+  font-size: 30px !important;
+  margin: 0px !important;
+}
+
+.footer-logo {
+  font-size: 20px;
+}
+
+.footer-logo-img {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-follow-us {
+  color: white;
+  font-size: 20px;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: end;
+  /* border: red solid; */
+}
+
+.footer-social-icon1 {
+  margin-top: -5px !important;
+  margin-left: 10px;
+  font-size: 30px !important;
+  color: white;
+}
+
+.footer-social-icon2 {
+  margin-top: -9px !important;
+  margin-left: 10px;
+  font-size: 40px !important;
+  color: white;
+}
+
+.footer-social-icon3 {
+  margin-top: -5px !important;
+  margin-left: 9px;
+  font-size: 32px !important;
+  color: white;
+} 

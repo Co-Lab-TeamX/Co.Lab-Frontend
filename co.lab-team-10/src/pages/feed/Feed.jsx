@@ -7,9 +7,8 @@ import Navigation from '../../components/Navigation.jsx';
 import AppContext from "../../context/appContext.jsx";
 import ItemCard from './ItemCard.jsx';
 
-function Feed({ setIsAuth }) {
+function Feed() {
   const { setPosts, isAuth } = useContext(AppContext);
-
   return (
     <div className='feed'>
       <Navigation />

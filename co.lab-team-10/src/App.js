@@ -38,8 +38,8 @@ function App() {
   return (
     <div >
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="register" element={<Register />} />
+        <Route path="/" element={<Homepage/>} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={
           !isAuth ? (
             <Login />
@@ -47,23 +47,11 @@ function App() {
             <Navigate replace to="/" />
           )
         } />
-        <Route path="/feed" element={<Feed />}/>
-        {/* <Route path="/feed" element={
-      <>
-          isAuth && (
-            <Feed />
-          )
-          
-         !isAuth &&(
-          <Login/>
-         )
-          
-      </>
+        <Route path="/feed" element={<Feed />} />
 
-        }/> */}
         {/* <Route path="/feed" element={
           isAuth ? (
-            <Feed/>
+            <Feed setAuth={setAuth} />
           ) : (
             <Navigate replace to="/" />
           )

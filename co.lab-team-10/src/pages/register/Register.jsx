@@ -46,7 +46,7 @@ function Register() {
       >
         {"Copyright © "}
         <Link color="inherit" href="https://mui.com/">
-          Trip by Trip
+          Free Up
         </Link>{" "}
         {new Date().getFullYear()}
         {"."}
