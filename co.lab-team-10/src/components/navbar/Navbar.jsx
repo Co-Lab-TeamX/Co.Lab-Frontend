@@ -1,7 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 const pages = ["About", "Help", "Signin", "Signout"];
@@ -122,6 +121,11 @@ const Navbar = () => {
             </Button>
           </Box>
         </Toolbar>
+      </div>
+      <div className="header">
+        <div className="progress-container">
+          <div className="progress-bar" id="myBar"></div>
+        </div>
       </div>
     </AppBar>
   );

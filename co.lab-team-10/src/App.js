@@ -7,6 +7,7 @@ import Register from "./pages/register/Register"
 import Feed from "./pages/feed/Feed"
 import ItemDetail from "./pages/itemdetail/Itemdetail"
 import ZoFeed from "./pages/zoFeed/ZoFeed";
+import NewLogin from "./pages/login/NewLogin";
 
 function App() {
   const { isAuth, setIsAuth } = useContext(AppContext);
@@ -43,7 +44,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={
           !isAuth ? (
-            <Login />
+            <NewLogin />
           ) : (
             <Navigate replace to="/" />
           )

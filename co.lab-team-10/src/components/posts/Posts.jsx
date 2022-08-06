@@ -8,11 +8,6 @@ import { CardActionArea } from '@mui/material';
 
 function Posts({ post }) {
   return (
-    // <div className="card">
-    //   {/* <img src={post.image} /> */}
-    //   <div>{post.title}</div>
-    //   <div>{post.username}</div>
-    // </div>
     <div className="card-container">
     <Card sx={{ maxWidth: 345 }}>
         <div className="item-div">
@@ -25,7 +20,7 @@ function Posts({ post }) {
           alt="post_image"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             {post.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
