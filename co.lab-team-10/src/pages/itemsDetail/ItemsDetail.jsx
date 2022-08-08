@@ -10,6 +10,13 @@ function ItemsDetail() {
   const { post_id } = useParams();
   const [singlePost, setSinglePost] = useState({});
 
+  //   useEffect(() => {
+  //     if (!post_id) return;
+  //     fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+  //       .then((response) => response.json())
+  //       .then((data) => setSinglePost(data.data));
+  //   }, [post_id]);
+
   useEffect(() => {
     if (!post_id) return;
     fetch(`http://localhost:4000/posts/${post_id}`)
@@ -45,9 +52,12 @@ function ItemsDetail() {
         </Breadcrumbs>
       </div>
       <div>
-        {singlePost.title}
-        {singlePost.description}
-        {singlePost.title}
+        <div className="item-image-and-right-side">
+          <img className="item-image" src={singlePost.image} />
+          <div>
+            {singlePost.title}
+          </div>
+        </div>
       </div>
     </div>
   );
