@@ -6,17 +6,19 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/appContext";
 import "./navbar.css";
 
 const pages = ["About", "Help", "Signin", "Signout"];
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user } = useContext(AppContext);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -119,6 +121,37 @@ const Navbar = () => {
                 Log in
               </MenuItem>
             </Button>
+            
+            {/* {user ? (
+              <Button variant="contained" className="login-btn" size="small">
+              <MenuItem
+                className="nav-link"
+                onClick={(e) => navigate("/login")}
+              >
+                loGGED IN
+              </MenuItem>
+            </Button>
+            ) : (
+              <Button variant="contained" className="login-btn" size="small">
+              <MenuItem
+                className="nav-link"
+                onClick={(e) => navigate("/login")}
+              >
+                NOT LOGGED IN
+              </MenuItem>
+            </Button>
+            )} */}
+            {/* {user && (
+            <Button variant="contained" className="login-btn" size="small">
+              <MenuItem
+                className="nav-link"
+                onClick={(e) => navigate("/login")}
+              >
+                Log out
+              </MenuItem>
+            </Button>
+            )} */}
+            {/*  */}
           </Box>
         </Toolbar>
       </div>

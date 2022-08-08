@@ -1,0 +1,20 @@
+.open-modal-btn {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 40px;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: center;
+}
+
+.post-logo-and-name {
+    display: flex !important;
+    justify-content: center !important;
+    font-size: 40px !important;
+}
+
+.post-btn {
+    background-color: #02a7a7 !important;
+}

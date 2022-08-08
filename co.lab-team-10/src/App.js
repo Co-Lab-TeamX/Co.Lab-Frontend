@@ -8,6 +8,7 @@ import Feed from "./pages/feed/Feed"
 import ItemDetail from "./pages/itemdetail/Itemdetail"
 import ZoFeed from "./pages/zoFeed/ZoFeed";
 import NewLogin from "./pages/login/NewLogin";
+import ItemsDetail from "./pages/itemsDetail/ItemsDetail";
 
 function App() {
   const { isAuth, setIsAuth } = useContext(AppContext);
@@ -60,7 +61,7 @@ function App() {
         } /> */}
 
         {/* CHANGE PATH TO /itemdetail/:post_id */}
-        <Route path="/itemdetail" element={<ItemDetail />} />
+        <Route path="/details/:post_id" element={<ItemsDetail />} />
       </Routes>
     </div>
   );
