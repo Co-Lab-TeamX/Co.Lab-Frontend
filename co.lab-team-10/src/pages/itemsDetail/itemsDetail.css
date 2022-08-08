@@ -11,7 +11,13 @@
     color: #02a7a7
 }
 
-.create-post-btn {
-    width: 300px;
-    background-color: #02a7a7;
+
+.item-image {
+    width: 670px;
+    height: 400px;
+}
+
+.item-image-and-right-side {
+    display: flex;
+
 }

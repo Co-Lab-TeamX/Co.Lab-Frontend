@@ -18,3 +18,10 @@
 .post-btn {
     background-color: #02a7a7 !important;
 }
+
+.create-post-btn {
+    width: 200px;
+    background-color: #02a7a7 !important;
+    font-size: 17px !important;
+    color: white  !important;
+} 
