@@ -35,15 +35,15 @@ function Footer() {
         </div>
       </div>
       <div className="footer-socials">
-      <div className="footer-social-icon1">
-        <ImFacebook2 />
-      </div>
-      <div className="footer-social-icon2">
-        <AiFillInstagram />
-      </div>
-      <div className="footer-social-icon3">
-        <FaTiktok />
-      </div>
+        <div className="footer-social-icon1">
+          <ImFacebook2 />
+        </div>
+        <div className="footer-social-icon2">
+          <AiFillInstagram />
+        </div>
+        <div className="footer-social-icon3">
+          <FaTiktok />
+        </div>
       </div>
     </div>
   );

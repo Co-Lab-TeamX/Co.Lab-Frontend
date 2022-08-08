@@ -1,3 +1,4 @@
+import { Container, Grid } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import React, { useContext, useEffect, useState } from "react";
 import CreatePost from "../../components/createPost/CreatePost";
@@ -42,14 +43,26 @@ function ZoFeed() {
           <Pagination count={1} variant="outlined" shape="rounded" />
         )}
       </div>
-      <>
+      {/*       
+      Will wait for where in the design we will add to the page
+       */}
+      {/* <>
         <CreatePost />
-      </>
-      <div className="browse-feed">
-        {posts.map((p) => (
-          <Posts key={p.id} post={p} />
+      </> */}
+      {/* <div className="browse-feed">
+        {posts.map((post) => (
+          <Posts key={post.id} post={post} />
         ))}
+      </div> */}
+
+      <div className="feed">
+        <Grid container spacing={4} className='post-container'>
+          {posts.map((post) => (
+            <Posts key={post.id} post={post} />
+          ))}
+        </Grid>
       </div>
+
       <div className="pagination-bottom">
         {postsLength > 12 ? (
           <Pagination count={2} variant="outlined" shape="rounded" />
