@@ -17,7 +17,7 @@ function App() {
     let localToken = window.localStorage.getItem("token");
     try {
       // const res = await fetch(`https://colab-free-up.herokuapp.com/is-verify`, {
-       const res = await fetch(`http://localhost:4000/is-verify`, {
+      const res = await fetch(`http://localhost:4000/is-verify`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localToken}`,
@@ -42,7 +42,7 @@ function App() {
   return (
     <div >
       <Routes>
-        <Route path="/" element={<Homepage/>} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={
           !isAuth ? (

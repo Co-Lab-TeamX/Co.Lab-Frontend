@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, createTheme, Grid } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import React, { useContext, useEffect, useState } from "react";
 import CreatePost from "../../components/createPost/CreatePost";
@@ -6,7 +6,6 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
-import "./zoFeed.css";
 
 function ZoFeed() {
   const { setPosts, posts, setUser } = useContext(AppContext);
@@ -38,9 +37,9 @@ function ZoFeed() {
       <div className="item-feed-name">Item Feed</div>
       <div className="pagination">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" />
+          <Pagination count={2} shape="rounded" color="primary" />
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" />
+          <Pagination count={1} variant="outlined" shape="rounded" color="primary" />
         )}
       </div>
       {/*       
@@ -56,7 +55,7 @@ function ZoFeed() {
       </div> */}
 
       <div className="feed">
-        <Grid container spacing={4} className='post-container'>
+        <Grid container className='post-container'>
           {posts.map((post) => (
             <Posts key={post.id} post={post} />
           ))}
@@ -65,9 +64,9 @@ function ZoFeed() {
 
       <div className="pagination-bottom">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" />
+          <Pagination count={2} variant="outlined" shape="rounded" color='primary' />
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" />
+          <Pagination count={1} variant="outlined" shape="rounded" color='primary' />
         )}
       </div>
       <Footer />
