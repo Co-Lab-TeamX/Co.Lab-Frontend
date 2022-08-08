@@ -10,6 +10,8 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import Navbar from "../../components/navbar/Navbar"
+import "./register.css"
 
 function Register() {
   const navigate = useNavigate();
@@ -57,6 +59,8 @@ function Register() {
   const theme = createTheme();
 
   return (
+    <>
+    <Navbar />
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -69,7 +73,7 @@ function Register() {
           }}
         >
           <Avatar
-            sx={{ m: 1, bgcolor: "secondary.main" }}
+            sx={{ m: 1, bgcolor: "#17af42" }}
             className="avatarPic"
           >
           </Avatar>
@@ -118,6 +122,7 @@ function Register() {
             </Grid>
             <NavLink to="/login">
               <Button
+                className="sign-in-btn"
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -129,7 +134,7 @@ function Register() {
             </NavLink>
 
             <Grid container className="signIn">
-              <Grid item>
+              <Grid item className="already-have-an-account">
                 <NavLink to="/login" variant="body2">
                   Already have an account? Sign in
                 </NavLink>
@@ -137,9 +142,10 @@ function Register() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 3, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </>
   )
 }
 

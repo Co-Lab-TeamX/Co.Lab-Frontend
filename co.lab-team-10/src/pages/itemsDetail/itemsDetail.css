@@ -1,0 +1,17 @@
+.breadcrumb-detail {
+    margin-top: 130px;
+    margin-left: 50px;
+}
+
+.breadcrumb-link {
+    cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+    color: #02a7a7
+}
+
+.create-post-btn {
+    width: 300px;
+    background-color: #02a7a7;
+}

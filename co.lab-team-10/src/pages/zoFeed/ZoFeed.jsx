@@ -1,31 +1,35 @@
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import CreatePost from "../../components/createPost/CreatePost";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
-import { useState } from "react";
 import "./zoFeed.css";
 
 function ZoFeed() {
-  const { setPosts, posts } = useContext(AppContext);
+  const { setPosts, posts, setUser } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:4000/feed")
+    fetch("http://localhost:4000/posts")
       .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      });
+      .then((data) => setPosts(data.data));
     setPostsLength(posts.length);
   }, []);
+
+  // useEffect(() => {
+  //   fetch("https://colab-free-up.herokuapp.com/posts")
+  //     .then((response) => response.json())
+  //     .then((data) => setPosts(data.data));
+  //   setPostsLength(posts.length);
+  // }, []);
 
   console.log(posts);
 
   useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, [])
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <>
@@ -38,6 +42,9 @@ function ZoFeed() {
           <Pagination count={1} variant="outlined" shape="rounded" />
         )}
       </div>
+      <>
+        <CreatePost />
+      </>
       <div className="browse-feed">
         {posts.map((p) => (
           <Posts key={p.id} post={p} />
