@@ -6,7 +6,6 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
-import "./zoFeed.css";
 
 function ZoFeed() {
   const { setPosts, posts, setUser } = useContext(AppContext);
@@ -38,17 +37,17 @@ function ZoFeed() {
       <div className="item-feed-name">Item Feed</div>
       <div className="pagination">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" />
+          <Pagination count={2} variant="outlined" shape="rounded" color="primary"/>
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" />
+          <Pagination count={1} variant="outlined" shape="rounded" color="primary"/>
         )}
       </div>
       {/*       
       Will wait for where in the design we will add to the page
        */}
-      {/* <>
+      <>
         <CreatePost />
-      </> */}
+      </>
       {/* <div className="browse-feed">
         {posts.map((post) => (
           <Posts key={post.id} post={post} />
@@ -65,9 +64,9 @@ function ZoFeed() {
 
       <div className="pagination-bottom">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" />
+          <Pagination count={2} variant="outlined" shape="rounded" color='primary'/>
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" />
+          <Pagination count={1} variant="outlined" shape="rounded" color='primary'/>
         )}
       </div>
       <Footer />
