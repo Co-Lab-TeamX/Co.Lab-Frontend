@@ -5,12 +5,12 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
+import { MdLocationOn } from "react-icons/md";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar"
 import "./register.css"
 
 function Register() {
@@ -60,10 +60,10 @@ function Register() {
 
   return (
     <>
-    <Navbar />
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        
         <Box
           sx={{
             marginTop: 8,
@@ -72,14 +72,31 @@ function Register() {
             alignItems: "center",
           }}
         >
-          <Avatar
-            sx={{ m: 1, bgcolor: "#17af42" }}
-            className="avatarPic"
-          >
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+          <div className="sign-in-logo-and-name">
+                <Typography className="pin">
+                  <MdLocationOn />
+                </Typography>
+                <Typography
+                  className="logo-and-name"
+                  variant="h5"
+                  noWrap
+                  component="a"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "flex" },
+                    flexGrow: 1,
+                    fontFamily: "poppins",
+                    fontWeight: 700,
+                    color: "#455a64",
+                    textDecoration: "none",
+                  }}
+                  onClick={(e) => navigate("/")}
+                >
+                  Free
+                  <Typography className="up">Up</Typography>
+                </Typography>
+              </div>
+         
           <Box
             component="form"
             noValidate
@@ -88,12 +105,14 @@ function Register() {
           >
             <Grid container spacing={2}>
               <Grid item xs={12} onChange={(e) => setUsername(e.target.value)}>
+              <Typography className="register-sign-up-text" component="h1" variant="h5">
+            Sign up
+          </Typography>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
                   required
                   fullWidth
-                  id="firstName"
                   label="User Name"
                   autoFocus
                 />
@@ -120,24 +139,22 @@ function Register() {
                 />
               </Grid>
             </Grid>
-            <NavLink to="/login">
               <Button
                 className="sign-in-btn"
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2}}
                 onClick={handleSignup}
               >
                 Sign Up
               </Button>
-            </NavLink>
 
             <Grid container className="signIn">
               <Grid item className="already-have-an-account">
-                <NavLink to="/login" variant="body2">
-                  Already have an account? Sign in
-                </NavLink>
+                <div className="link-to-sign-in-page" onClick={(e) => navigate('/login')}>
+                  Already a member? Sign in
+                </div>
               </Grid>
             </Grid>
           </Box>
