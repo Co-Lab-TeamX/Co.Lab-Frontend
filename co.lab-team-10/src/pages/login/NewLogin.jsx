@@ -12,8 +12,10 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
+import loginPicture from "../../images/signup-pic-freeUp.png";
+import { MdLocationOn } from "react-icons/md";
+import "./newLogin.css";
 
 function NewLogin() {
   const { setUser, setIsAuth, isAuth } = useContext(AppContext);
@@ -73,18 +75,17 @@ function NewLogin() {
   const theme = createTheme();
   return (
     <>
-    <Navbar />
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: "100vh" }}>
           <CssBaseline />
           <Grid
+            className="log-in-picture"
             item
-            xs={false}
+            xs={0}
             sm={4}
             md={7}
             sx={{
-              backgroundImage:
-                "url(https://i.pinimg.com/236x/88/45/35/8845352059b3f6df722fb0d6a5320f26--blank-cards-build-your-own.jpg)",
+              backgroundImage: `url(${loginPicture})`,
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"
@@ -112,16 +113,42 @@ function NewLogin() {
                 alignItems: "center",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "#17af42" }}></Avatar>
-              <Typography component="h1" variant="h5">
-                Sign in
-              </Typography>
+              <div className="sign-in-logo-and-name">
+                <Typography className="pin">
+                  <MdLocationOn />
+                </Typography>
+                <Typography
+                  className="logo-and-name"
+                  variant="h5"
+                  noWrap
+                  component="a"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "flex" },
+                    flexGrow: 1,
+                    fontFamily: "poppins",
+                    fontWeight: 700,
+                    color: "#455a64",
+                    textDecoration: "none",
+                  }}
+                  onClick={(e) => navigate("/")}
+                >
+                  Free
+                  <Typography className="up">Up</Typography>
+                </Typography>
+              </div>
+
               <Box
                 component="form"
                 noValidate
                 onSubmit={handleLogin}
                 sx={{ mt: 1 }}
               >
+                <div className="sign-in-text">
+                  {/* <Typography className="sign-in-text" component="h1" variant="h5"> */}
+                  Sign in
+                  {/* </Typography> */}
+                </div>
                 <TextField
                   margin="normal"
                   required
@@ -149,20 +176,23 @@ function NewLogin() {
                   label="Remember me"
                 />
                 <Button
-                className="sign-in-btn"
+                  className="sign-in-btn"
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, bgcolor: "#02A7A7" }}
                   onClick={handleLogin}
                 >
                   Sign In
                 </Button>
                 <Grid container className="signIn">
                   <Grid item className="already-have-an-account">
-                    <NavLink to="/register">
-                      {"Don't have an account? Sign Up"}
-                    </NavLink>
+                    <div
+                      className="link-to-signup-page"
+                      onClick={(e) => navigate("/register")}
+                    >
+                      {"Not a member? Sign Up"}
+                    </div>
                   </Grid>
                 </Grid>
                 <Copyright sx={{ mt: 3 }} />
