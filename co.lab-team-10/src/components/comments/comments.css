@@ -1,0 +1,28 @@
+.single-comment {
+  margin-top: 20px;
+  display: flex;
+  width: 700px;
+}
+
+.comment-profile-pic {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.comment-info {
+  margin-left: 10px;
+}
+
+.comment-time-posted {
+  color: #444444;
+}
+
+.comment-username {
+  font-size: 20px;
+}
+
+
+
