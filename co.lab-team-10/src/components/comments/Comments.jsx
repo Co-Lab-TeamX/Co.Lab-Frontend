@@ -11,7 +11,7 @@ function Comments({ comment }) {
       </div>
       <div className="comment-info">
         <div className="comment-username">{comment.username}</div>
-        <div className="comment-comment-body">{comment.comment_body}</div>
+        <div className="comment-body">{comment.comment_body}</div>
         <div className="comment-time-posted">
           {DateTime.fromISO(comment.time_posted).toRelative()}
         </div>
