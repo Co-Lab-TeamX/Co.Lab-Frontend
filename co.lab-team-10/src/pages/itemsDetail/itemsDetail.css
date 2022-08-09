@@ -1,23 +1,196 @@
 .breadcrumb-detail {
-    margin-top: 130px;
-    margin-left: 50px;
+  margin-top: 130px;
+  margin-left: 50px;
 }
 
 .breadcrumb-link {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .breadcrumb-link:hover {
-    color: #02a7a7
+  color: #02a7a7;
 }
 
-
 .item-image {
-    width: 670px;
-    height: 400px;
+  width: 670px;
+  height: 400px;
+  margin-right: 50px;
+  border-radius: 5px;
 }
 
 .item-image-and-right-side {
-    display: flex;
-
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }
+
+.post-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.item-details {
+  margin-top: 130px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.item-details-specs {
+  display: flex;
+}
+
+.weight-icon {
+  font-size: 17px;
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.calender-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.condition-icon {
+  font-size: 18px;
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.description-text {
+  width: 600px;
+}
+
+.bottom-portion {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.postProfileImg {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.poster-info {
+  display: flex;
+  margin-top: 10px;
+}
+
+.message-poster-btn {
+  color: white;
+  background-color: #02a7a7 !important;
+  margin: 0 !important;
+  height: 40px;
+  width: 170px;
+  margin-top: 20px !important;
+}
+
+.message-poster-text {
+  font-size: 15px !important;
+  font-family: "poppins" !important;
+}
+
+.description {
+  margin-right: 110px;
+}
+
+.posted-by,
+.description-heading {
+  font-size: 30px;
+}
+
+.recent-comments-text {
+  font-size: 25px;
+  margin-top: 40px;
+}
+
+.comment-section {
+  margin-left: 510px;
+}
+
+.details-comment {
+  margin-left: 510px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.view-more-comments-btn {
+  color: black !important;
+  background-color: white !important;
+  margin: 0 !important;
+  height: 40px;
+  width: 170px;
+  margin-top: 20px !important;
+  border: #02a7a7 solid 1px !important;
+  font-family: "poppins" !important;
+}
+
+.view-more-comments-btn:hover {
+  background-color: #02a7a7 !important;
+  color: white !important;
+}
+
+.view-more-comments-btn-container {
+  display: flex;
+  justify-content: end;
+  margin-right: 500px !important;
+  margin-bottom: 50px;
+}
+
+.post-comment {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+#input-with-sx {
+    width: 400px;
+} 
+
+.add-comment-btn {
+    color: white;
+    background-color: #02a7a7 !important;
+    margin: 0 !important;
+    height: 40px;
+    width: 170px;
+    margin-top: 20px !important;
+    margin-left: 30px !important;
+    font-size: 16px !important;
+}
+
+/* @media only screen and (max-width: 768px) {
+  .comment-section {
+    margin-left: 20px;
+    display: flex !important;
+    justify-content: start !important;
+  }
+
+  .details-comment {
+    margin-left: 20px;
+    display: flex !important;
+    justify-content: center !important;
+  }
+} */
+/* 
+@media only screen and (width > 375) {
+    .comment-section {
+        margin-left: 20px;
+        color: red
+    }
+    
+    .details-comment {
+        margin-left: 20px;
+    }
+
+    .view-more-comments-btn-container {
+        display: flex;
+        justify-content: end;
+        margin-right: 50px !important;
+        margin-bottom: 50px;
+    }
+} */
