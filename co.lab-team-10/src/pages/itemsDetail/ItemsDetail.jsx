@@ -53,8 +53,9 @@ function ItemsDetail() {
     })
 
     const parsed = await result.json()
-    parsed.username = user.username
-    parsed.profile_pic = user.profile_pic
+    parsed.data.username = user.username
+    parsed.data.profile_pic = user.profile_pic
+    console.log(parsed)
     setComments([parsed.data, ...comments])
     setNewComment('')
   }
@@ -81,7 +82,6 @@ function ItemsDetail() {
 
   const navigate = useNavigate();
 
-  // console.log(comments[0].comment_body);
   return (
     <div>
       <Navbar />
@@ -171,15 +171,6 @@ function ItemsDetail() {
           comments.map((comment) => (
             <Comments key={comment.id} comment={comment} />
           ))}
-      </div>
-      <div className="view-more-comments-btn-container">
-        <Button
-          variant="contained"
-          className="view-more-comments-btn"
-          size="small"
-        >
-          View Comments
-        </Button>
       </div>
       <div className="post-comment">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>

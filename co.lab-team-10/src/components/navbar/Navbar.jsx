@@ -98,7 +98,6 @@ const Navbar = () => {
             Free
             <Typography className="up">Up</Typography>
           </Typography>
-
           <Box
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             className="pages"
