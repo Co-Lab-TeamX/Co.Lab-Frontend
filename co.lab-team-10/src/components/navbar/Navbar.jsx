@@ -10,13 +10,12 @@ import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import AppContext from "../../context/appContext";
 import "./navbar.css";
 
 const pages = ["About", "Help", "Signin", "Signout"];
 
 const Navbar = () => {
-  const { user } = useContext(AppContext);
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -106,21 +105,52 @@ const Navbar = () => {
               About
             </MenuItem>
             <MenuItem className="nav-link">Help</MenuItem>
-            <MenuItem
+            {!loggedIn && <MenuItem
               className="nav-link"
               onClick={(e) => navigate("/register")}
             >
               Sign up
-            </MenuItem>
-            <Button variant="contained" className="login-btn" size="small">
-              <MenuItem
-                className="nav-link"
-                onClick={(e) => navigate("/login")}
-              >
-                Log in
-              </MenuItem>
-            </Button>
+            </MenuItem>}
             
+            <Button variant="contained" className="login-btn" size="small">
+              {!loggedIn ? (
+                <MenuItem
+                  className="nav-link"
+                  onClick={(e) => navigate("/login")}
+                >
+                  Log in
+                </MenuItem>
+              ) : (
+                <MenuItem
+                  className="nav-link-sign-out-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.localStorage.removeItem("token");
+                    window.localStorage.removeItem("user");
+                    window.localStorage.removeItem("isLoggedIn");
+                    navigate("/login");
+                  }}
+                >
+                  Log Out
+                </MenuItem>
+              )}
+            </Button>
+            {/* {loggedIn && <Button variant="contained" className="login-btn" size="small">
+              <MenuItem
+                className="nav-link-sign-out"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.localStorage.removeItem("token");
+                  window.localStorage.removeItem("user");
+                  window.localStorage.removeItem("isLoggedIn");
+                  navigate("/");
+                  navigate("/login");
+                }}
+              >
+                Sign Out
+              </MenuItem>
+            </Button>} */}
+
             {/* {user ? (
               <Button variant="contained" className="login-btn" size="small">
               <MenuItem

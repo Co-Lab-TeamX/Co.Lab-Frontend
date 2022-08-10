@@ -24,8 +24,8 @@ const style = {
 };
 
 function CreatePost() {
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
   const { user, setPosts, posts } = useContext(AppContext);
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -56,7 +56,6 @@ function CreatePost() {
     });
 
     const parsed = await result.json();
-    console.log(parsed)
     setPosts([parsed.data, ...posts]);
 
     setTitle("");
@@ -69,16 +68,13 @@ function CreatePost() {
 
   return (
     <>
-      {user && (
+      {loggedIn && (
         <div className="open-modal-btn">
           <Button variant="contained" className="create-post-btn" size="small">
-              <div
-                className="nav-link"
-                onClick={handleOpen}
-              >
-                Add Listing
-              </div>
-              </Button>
+            <div className="nav-link" onClick={handleOpen}>
+              Add Listing
+            </div>
+          </Button>
           <Modal
             open={open}
             onClose={handleClose}
@@ -117,7 +113,7 @@ function CreatePost() {
                         }}
                       >
                         <Typography className="pin">
-                        <MdLocationOn />
+                          <MdLocationOn />
                         </Typography>
                         Free
                         <Typography className="up">Up</Typography>
@@ -192,7 +188,7 @@ function CreatePost() {
           </Modal>
         </div>
       )}{" "}
-      {!user && (
+      {!loggedIn && (
         <div className="open-modal-btn">
           <div className="modal-title">
             <Button onClick={handleOpen} className="modal-title">

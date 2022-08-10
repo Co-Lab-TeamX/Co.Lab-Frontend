@@ -18,7 +18,7 @@ import { MdLocationOn } from "react-icons/md";
 import "./newLogin.css";
 
 function NewLogin() {
-  const { setUser, setIsAuth, isAuth } = useContext(AppContext);
+  const { setUser, setIsAuth } = useContext(AppContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,9 +45,11 @@ function NewLogin() {
 
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem("user", JSON.stringify(data.user));
+      window.localStorage.setItem("isLoggedIn", true)
+
       setIsAuth(true);
       setUser(data.user);
-      navigate("/");
+      navigate("/feed");
     }
     loginUser();
     setEmail("");
@@ -145,9 +147,7 @@ function NewLogin() {
                 sx={{ mt: 1 }}
               >
                 <div className="sign-in-text">
-                  {/* <Typography className="sign-in-text" component="h1" variant="h5"> */}
                   Sign in
-                  {/* </Typography> */}
                 </div>
                 <TextField
                   margin="normal"
