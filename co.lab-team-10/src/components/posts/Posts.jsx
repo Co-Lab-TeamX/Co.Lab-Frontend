@@ -12,14 +12,14 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import checkIcon from '../../images/CircleWavyCheck.svg'
 import warningIcon from '../../images/CircleWavyWarning.svg'
+import { DateTime } from "luxon";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function Posts({ post }) {
   const { user, setUser } = useContext(AppContext);
-
   const navigate = useNavigate();
 
   return (
-
     <Grid item xs='12' md='4' className="item-card-grid-container">
       {/* sx={{ maxWidth: 345 }} */}
       {/* onClick={(e) => console.log(post)} */}
@@ -37,14 +37,14 @@ function Posts({ post }) {
             <CardContent>
               <div className="card-content-1">
                 <h3>{post.title}</h3>
-                <h4>location</h4>
+                <h4>{post.location} NY</h4>
               </div>
               <div className="card-content-2">
                 <div className="pick-up-container">
                   <img src={warningIcon} alt="warning-icon" />
                   <h3>Immediate Pickup</h3>
                 </div>
-                <h4>posted</h4>
+                <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
               </div>
               <Typography gutterBottom variant="h6" component="div">
                 {/* {post.title} */}

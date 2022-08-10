@@ -8,6 +8,8 @@ import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
+  const loggedIn = window.localStorage.getItem("isLoggedIn")
+  const userLoggedInInfo = window.localStorage.getItem("user")
   const { setPosts, posts, setUser } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
 
@@ -24,9 +26,7 @@ function ZoFeed() {
   //     .then((data) => setPosts(data.data));
   //   setPostsLength(posts.length);
   // }, []);
-
-  console.log(posts);
-
+                  
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);

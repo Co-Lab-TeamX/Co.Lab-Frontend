@@ -10,7 +10,6 @@
 .header {
   position: fixed;
   top: 0;
-  /* z-index: 1; */
   width: 100%;
   margin-top: 70px !important;
 }
@@ -75,7 +74,7 @@
   background-color: #02a7a7 !important;
   margin: 0 !important;
   height: 30px;
-  width: 70px;
+  width: 80px;
   margin-top: 10px !important;
   margin-left: 6px !important;
 }
