@@ -13,7 +13,8 @@ import { useNavigate } from "react-router-dom";
 import checkIcon from '../../images/CircleWavyCheck.svg'
 import warningIcon from '../../images/CircleWavyWarning.svg'
 import { DateTime } from "luxon";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+// is this component going to be used?> throwing an error
+// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function Posts({ post }) {
   const { user, setUser } = useContext(AppContext);
