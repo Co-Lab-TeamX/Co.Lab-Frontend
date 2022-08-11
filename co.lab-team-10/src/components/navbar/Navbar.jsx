@@ -10,11 +10,13 @@ import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/appContext";
 import "./navbar.css";
 
 const pages = ["About", "Help", "Signin", "Signout"];
 
 const Navbar = () => {
+  const { user, setUser, setIsAuth } = useContext(AppContext);
   const loggedIn = window.localStorage.getItem("isLoggedIn");
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -128,6 +130,7 @@ const Navbar = () => {
                     window.localStorage.removeItem("token");
                     window.localStorage.removeItem("user");
                     window.localStorage.removeItem("isLoggedIn");
+                    setIsAuth(false);
                     navigate("/login");
                   }}
                 >
@@ -135,52 +138,6 @@ const Navbar = () => {
                 </MenuItem>
               )}
             </Button>
-            {/* {loggedIn && <Button variant="contained" className="login-btn" size="small">
-              <MenuItem
-                className="nav-link-sign-out"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.localStorage.removeItem("token");
-                  window.localStorage.removeItem("user");
-                  window.localStorage.removeItem("isLoggedIn");
-                  navigate("/");
-                  navigate("/login");
-                }}
-              >
-                Sign Out
-              </MenuItem>
-            </Button>} */}
-
-            {/* {user ? (
-              <Button variant="contained" className="login-btn" size="small">
-              <MenuItem
-                className="nav-link"
-                onClick={(e) => navigate("/login")}
-              >
-                loGGED IN
-              </MenuItem>
-            </Button>
-            ) : (
-              <Button variant="contained" className="login-btn" size="small">
-              <MenuItem
-                className="nav-link"
-                onClick={(e) => navigate("/login")}
-              >
-                NOT LOGGED IN
-              </MenuItem>
-            </Button>
-            )} */}
-            {/* {user && (
-            <Button variant="contained" className="login-btn" size="small">
-              <MenuItem
-                className="nav-link"
-                onClick={(e) => navigate("/login")}
-              >
-                Log out
-              </MenuItem>
-            </Button>
-            )} */}
-            {/*  */}
           </Box>
         </Toolbar>
       </div>
