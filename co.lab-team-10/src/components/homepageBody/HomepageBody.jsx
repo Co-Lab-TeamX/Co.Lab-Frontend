@@ -11,102 +11,130 @@ import pic from "../../images/homepagePic.png";
 import instructionsImg1 from "../../images/instructions-img1.png";
 import instructionsImg2 from "../../images/instructions-img2.png";
 import instructionsImg3 from "../../images/instructions-img3.png";
+import avatar1 from "../../images/avatar-1.png";
+import avatar2 from "../../images/avatar-2.png";
 import "./homepageBody.css";
+import { Grid, Rating } from "@mui/material";
 
 function HomepageBody() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
   const navigate = useNavigate();
 
   return (
+    // container
     <div className="body-holder">
-      <div className="first-image">
-        <img src={pic} alt="Logo" className="main-image" />
-      </div>
-      <div className="intro-text">Find the perfect item today!</div>
-      <div className="intro-btn">
-        <Button variant="contained" className="browse-items-btn" size="small">
-          <MenuItem className="nav-link" onClick={(e) => navigate("/feed")}>
-            Browse Items
-          </MenuItem>
-        </Button>
-      </div>
+      <Grid container className="body-holder-container">
+        <Grid container xs='12' className="header-grid">
 
-      <div className="how-it-works">How it works</div>
-      <div class="grid-container">
-        <div class="grid-item">
-          <img className="instructions-image" src={instructionsImg1} />
-          <div className="instructions-sub-headers">Search for an item</div>
-          <div className="instructions-text">
-            This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
-            iusto sapiente ullam atque saepe maiores porro?
-          </div>
-        </div>
-        <div class="grid-item">
-          <img className="instructions-image" src={instructionsImg2} />
-          <div className="instructions-sub-headers">Message poster</div>
-          <div className="instructions-text">
-            This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
-            iusto sapiente ullam atque saepe maiores porro?
-          </div>
-        </div>
-        <div class="grid-item">
-          <img className="instructions-image" src={instructionsImg3} />
-          <div className="instructions-sub-headers">Pick up item</div>
-          <div className="instructions-text">
-            This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
-            iusto sapiente ullam atque saepe maiores porro?
-          </div>
-        </div>
-      </div>
+          {/* order={{ xs: 3, sm: 2 }} */}
+          <Grid item className="intro-text" xs='12' order={{ xs: 1, md: 2 }}>Find the perfect item today!</Grid>
+          {/* image section */}
+          <Grid item xs='12' order={{ xs: 2, md: 1 }}>
+            <img src={pic} alt="Logo" className="main-image" />
+          </Grid>
+          {/* end image section */}
 
-      <div className="review-text">Reviews</div>
+          {/* Call to action section*/}
+          {/* needs to be reordered on tablet */}
+          {/* <div className="intro-text">Find the perfect item today!</div> */}
+          <Grid item xs='12' className="browse-items-btn-container" order={{ xs: 3 }}>
+            <Button variant="contained" className="browse-items-btn" size="small">
+              <MenuItem className="nav-link" onClick={(e) => navigate("/feed")}>
+                Browse Items
+              </MenuItem>
+            </Button>
+          </Grid>
+        </Grid>
+        {/* End call to action section*/}
 
-      <div className="review-cards">
-        <div class="review-grid-items">
-          <Card sx={{ minWidth: 275 }} className="review-card">
+        {/* How it works section */}
+        <Grid item xs='12' className="how-it-works-text">How it works</Grid>
+        <Grid container className="instructions-grid">
+          <Grid item xs='12' md='4' className="instructions-grid-item">
+            <img className="instructions-image-1" src={instructionsImg1} />
+            <div className="instructions-sub-headers">Search for an item</div>
+            <div className="instructions-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum.
+            </div>
+          </Grid>
+          <Grid item xs='12' md='4' className="instructions-grid-item">
+            <img className="instructions-image-2" src={instructionsImg2} />
+            <div className="instructions-sub-headers">Message poster</div>
+            <div className="instructions-text">
+              Nunc vulputate libero et
+              consectetur adipiscing elit
+            </div>
+          </Grid>
+          <Grid item xs='12' md='4' className="instructions-grid-item">
+            <img className="instructions-image-3" src={instructionsImg3} />
+            <div className="instructions-sub-headers">Pick up item</div>
+            <div className="instructions-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </Grid>
+        </Grid>
+        {/* End of how it works section */}
+
+        {/* Review Section */}
+        <Grid item xs='12' className="review-text">Reviews</Grid>
+
+        {/* Review Card #1 */}
+        <Grid xs='12' md='6 'item className="review-card-container review-card-1">
+          <Card className="review-card">
             <CardContent>
-              <img
-                className="review-card-img"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
-              />
-              <Typography sx={{ fontSize: 20 }} color="#133240" gutterBottom>
+              <div className="review-avatar-and-rating">
+                <img
+                  className="review-card-img"
+                  src={avatar1}
+                />
+                <Rating name="read-only" value={5} readOnly />
+              </div>
+              <div className="review-username">
                 Sarah Miles
-              </Typography>
-              <Typography variant="body2" className="review-card-review">
+              </div>
+              <div className="review-description">
                 This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
                 iusto sapiente ullam atque saepe maiores porro?
-              </Typography>
+              </div>
             </CardContent>
           </Card>
-        </div>
-        <div class="review-grid-items">
-          <Card sx={{ minWidth: 275 }} className="review-card">
+        </Grid>
+
+        {/* Review Card #2 */}
+        <Grid item xs='12' md='6' className="review-card-container review-card-2">
+          <Card className="review-card">
             <CardContent>
-              <img
-                className="review-card-img"
-                src="https://i.guim.co.uk/img/media/e909d8da276dcaa25baca97b134d6d63e8664e75/0_36_6025_3615/master/6025.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=58d66e814e05e26b8cb93b44c48117b1"
-              />
-              <Typography sx={{ fontSize: 20 }} color="#133240" gutterBottom>
-                Sarah Miles
-              </Typography>
-              <Typography variant="body2" className="review-card-review">
+              <div className="review-avatar-and-rating">
+                <img
+                  className="review-card-img"
+                  src={avatar2}
+                />
+                <Rating name="read-only" value={5} readOnly />
+              </div>
+              <div className="review-username">
+                Floyd Smith
+              </div>
+              <div className="review-description">
                 This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
                 iusto sapiente ullam atque saepe maiores porro?
-              </Typography>
+              </div>
             </CardContent>
           </Card>
-        </div>
-      </div>
-      <div className="intro-btn">
-        <Button
-          variant="contained"
-          className="home-signup-btn"
-          size="small"
-          onClick={(e) => navigate("/register")}
-        >
-          Sign up
-        </Button>
-      </div>
+        </Grid>
+        {/* End Review Section */}
+
+        {/* Call to action #2 */}
+        <Grid item xs='12' className="home-signup-btn-container">
+          <Button
+            variant="contained"
+            className="home-signup-btn"
+            onClick={(e) => navigate("/register")}
+          >
+            Sign up
+          </Button>
+        </Grid>
+        {/* End of call to action #2 */}
+      </Grid>
     </div>
   );
 }
