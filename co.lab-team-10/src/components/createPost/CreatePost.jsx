@@ -9,6 +9,8 @@ import { MdLocationOn } from "react-icons/md";
 import AppContext from "../../context/appContext.jsx";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
+import ImageUploading from "react-images-uploading";
+import { BiImageAdd } from "react-icons/bi";
 import "./createPost.css";
 
 const style = {
@@ -29,9 +31,17 @@ function CreatePost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [uploadedImage, setUploadedImage] = useState("");
+  const [images, setImages] = useState([]);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const maxNumber = 69;
+  const onChange = (imageList, addUpdateIndex) => {
+    setImages(imageList);
+    setImage(imageList[0].data_url);
+  };
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -68,6 +78,52 @@ function CreatePost() {
 
   return (
     <>
+    <ImageUploading
+                        value={images}
+                        onChange={onChange}
+                        maxNumber={maxNumber}
+                        dataURLKey="data_url"
+                      >
+                        {({
+                          imageList,
+                          onImageUpload,
+                          onImageRemove,
+                          isDragging,
+                          dragProps,
+                        }) => (
+                          <div className="upload__image-wrapper d-flex">
+                            <button
+                              style={isDragging ? { color: "red" } : null}
+                              onClick={onImageUpload}
+                              {...dragProps}
+                              // className="me-1 btn mt-2 upload-button"
+                            >
+                              <BiImageAdd
+                                htmlColor="whitesmoke"
+                                className="shareIcon"
+                              />
+                              Upload
+                            </button>
+                            &nbsp;
+                            {imageList.map((image, index) => (
+                              <div
+                                key={index}
+                                className="image-item d-flex mt-2"
+                              >
+                                <p className="mx-1 mt-2">{image.file.name}</p>
+                                <div className="image-item__btn-wrapper">
+                                  <button
+                                    className="mx-1 btn btn-danger"
+                                    onClick={() => onImageRemove(index)}
+                                  >
+                                    Remove
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </ImageUploading>
       {loggedIn && (
         <div className="open-modal-btn">
           <Button variant="contained" className="create-post-btn" size="small">

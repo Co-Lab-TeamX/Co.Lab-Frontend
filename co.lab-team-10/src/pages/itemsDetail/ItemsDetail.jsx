@@ -1,29 +1,25 @@
+import { Container, Grid, Rating } from "@mui/material";
+import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { DateTime } from "luxon";
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FaStarHalfAlt, FaWeightHanging } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer";
-import AppContext from "../../context/appContext";
 import Comments from "../../components/comments/Comments";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import "./itemsDetail.css";
-import { Container, Grid, Rating } from "@mui/material";
+import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
+import AppContext from "../../context/appContext";
 import warningIcon from "../../images/CircleWavyWarning.svg";
 import NewLogin from "../login/NewLogin";
+import "./itemsDetail.css";
 
 function ItemsDetail() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn");
-  const loggedInUserInfo = window.localStorage.getItem("user");
-  const { user, setUser } = useContext(AppContext);
-  // const parsed = JSON.parse(loggedInUserInfo)
-  // setUser(parsed)
+  const { user, setUser, setIsAuth, isAuth } = useContext(AppContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [showComment, setShowComment] = useState(false);
@@ -51,10 +47,7 @@ function ItemsDetail() {
       post_id: post_id,
     };
 
-    if (!newCommentData.user_id) {
-      console.log('NO USER ID PROVIDED')
-      return 
-    }
+    if (newCommentData.comment_body === '') return 
 
     const result = await fetch(
       `http://localhost:4000/posts/${post_id}/comments`,
@@ -97,7 +90,7 @@ function ItemsDetail() {
 
   return (
     <>
-      <div className="item-detail-page-container">
+    <div className="item-detail-page-container">
         <Navbar />
         <div role="presentation" className="breadcrumb-detail">
           <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
@@ -256,7 +249,6 @@ function ItemsDetail() {
         </div>
         <Footer />
       </div>
-      {!loggedIn && <NewLogin />}
     </>
   );
 }
