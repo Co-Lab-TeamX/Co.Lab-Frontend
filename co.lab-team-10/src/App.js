@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppContext from "./context/appContext";
+import CreatePostPage from "./pages/CreatePostPage/CreatePostPage";
 import Homepage from "./pages/homepage/Homepage";
 import ItemsDetail from "./pages/itemsDetail/ItemsDetail";
 import NewLogin from "./pages/login/NewLogin";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/login" element={<NewLogin />} />
         <Route path="/feed" element={<ZoFeed />} />
         <Route path="/details/:post_id" element={isAuth ? <ItemsDetail /> : <NewLogin/>} />
+        <Route path="/createPost" element={<CreatePostPage />} />
       </Routes>
     </div>
   );
