@@ -38,10 +38,8 @@ function HomepageBody() {
           {/* needs to be reordered on tablet */}
           {/* <div className="intro-text">Find the perfect item today!</div> */}
           <Grid item xs='12' className="browse-items-btn-container" order={{ xs: 3 }}>
-            <Button variant="contained" className="browse-items-btn" size="small">
-              <MenuItem className="nav-link" onClick={(e) => navigate("/feed")}>
+            <Button variant="contained" className="browse-items-btn" size="small" onClick={(e) => navigate("/feed")}>
                 Browse Items
-              </MenuItem>
             </Button>
           </Grid>
         </Grid>

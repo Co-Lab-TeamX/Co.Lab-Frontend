@@ -125,9 +125,7 @@ function ItemsDetail() {
                   <h2>Description</h2>
                   {/* <p>{singlePost.description}</p> */}
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Officiis illum deleniti provident minima reiciendis quidem
-                    omnis optio distinctio quaerat accusantium?
+                    {singlePost.description}
                   </p>
                 </div>
               </Grid>

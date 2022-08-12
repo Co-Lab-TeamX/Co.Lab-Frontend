@@ -78,52 +78,7 @@ function CreatePost() {
 
   return (
     <>
-    <ImageUploading
-                        value={images}
-                        onChange={onChange}
-                        maxNumber={maxNumber}
-                        dataURLKey="data_url"
-                      >
-                        {({
-                          imageList,
-                          onImageUpload,
-                          onImageRemove,
-                          isDragging,
-                          dragProps,
-                        }) => (
-                          <div className="upload__image-wrapper d-flex">
-                            <button
-                              style={isDragging ? { color: "red" } : null}
-                              onClick={onImageUpload}
-                              {...dragProps}
-                              // className="me-1 btn mt-2 upload-button"
-                            >
-                              <BiImageAdd
-                                htmlColor="whitesmoke"
-                                className="shareIcon"
-                              />
-                              Upload
-                            </button>
-                            &nbsp;
-                            {imageList.map((image, index) => (
-                              <div
-                                key={index}
-                                className="image-item d-flex mt-2"
-                              >
-                                <p className="mx-1 mt-2">{image.file.name}</p>
-                                <div className="image-item__btn-wrapper">
-                                  <button
-                                    className="mx-1 btn btn-danger"
-                                    onClick={() => onImageRemove(index)}
-                                  >
-                                    Remove
-                                  </button>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </ImageUploading>
+
       {loggedIn && (
         <div className="open-modal-btn">
           <Button variant="contained" className="create-post-btn" size="small">
@@ -228,6 +183,46 @@ function CreatePost() {
                       />
                     </Grid>
                   </Grid>
+                  {/* <ImageUploading
+        value={images}
+        onChange={onChange}
+        maxNumber={maxNumber}
+        dataURLKey="data_url"
+      >
+        {({
+          imageList,
+          onImageUpload,
+          onImageRemove,
+          isDragging,
+          dragProps,
+        }) => (
+          <div className="upload__image-wrapper d-flex">
+            <button
+              style={isDragging ? { color: "red" } : null}
+              onClick={onImageUpload}
+              {...dragProps}
+              // className="me-1 btn mt-2 upload-button"
+            >
+              <BiImageAdd htmlColor="whitesmoke" className="shareIcon" />
+              Upload
+            </button>
+            &nbsp;
+            {imageList.map((image, index) => (
+              <div key={index} className="image-item d-flex mt-2">
+                <p className="mx-1 mt-2">{image.file.name}</p>
+                <div className="image-item__btn-wrapper">
+                  <button
+                    className="mx-1 btn btn-danger"
+                    onClick={() => onImageRemove(index)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </ImageUploading> */}
                   <Button
                     className="post-btn"
                     type="submit"
