@@ -15,7 +15,7 @@ import AppContext from "../../context/appContext";
 import "./register.css"
 
 function Register() {
-  const { setUser } = useContext(AppContext);
+  const { setUser, setIsAuth } = useContext(AppContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,7 +66,7 @@ function Register() {
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem("user", JSON.stringify(data.user));
       window.localStorage.setItem("isLoggedIn", true)
-
+      setIsAuth(true)
       setUser(data.user);
       navigate("/feed");
     }
