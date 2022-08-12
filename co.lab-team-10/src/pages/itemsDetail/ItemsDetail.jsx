@@ -156,11 +156,11 @@ function ItemsDetail() {
                       </div>
                       <div className="item-stat-container middle-stat">
                         <FaWeightHanging className="stat-icon" />
-                        <h4>50Lbs</h4>
+                        <h4>{singlePost.weight} Lbs</h4>
                       </div>
                       <div className="item-stat-container">
                         <FaStarHalfAlt className="stat-icon" />
-                        <h4>Slightly Used</h4>
+                        <h4>{singlePost.condition}</h4>
                       </div>
                     </div>
                   </div>

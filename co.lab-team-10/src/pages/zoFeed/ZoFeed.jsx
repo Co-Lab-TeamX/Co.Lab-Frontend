@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import React, { useContext, useEffect, useState } from "react";
 import CreatePost from "../../components/createPost/CreatePost";
@@ -10,7 +10,7 @@ import AppContext from "../../context/appContext.jsx";
 function ZoFeed() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
   const userLoggedInInfo = window.localStorage.getItem("user")
-  const { setPosts, posts, setUser } = useContext(AppContext);
+  const { setPosts, posts, setUser} = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
 
   useEffect(() => {

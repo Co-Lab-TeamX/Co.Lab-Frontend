@@ -66,6 +66,7 @@
     .card-content-2 {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         .pick-up-container {
             display: flex;
@@ -88,9 +89,16 @@
             font-size: 14px;
             font-weight: 400;
             letter-spacing: 0.02em;
-        }
+        }        
+    }
+
+    .delete-btn {
+        display: flex;
+        justify-content: end;
+        margin-top: -25px;
     }
 }
+
 
 // Tablet
 @media screen and (min-width: 1024px) {
