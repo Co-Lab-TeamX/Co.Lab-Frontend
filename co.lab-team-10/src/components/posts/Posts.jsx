@@ -1,31 +1,42 @@
-import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { CardActionArea, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea, Grid } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import { MdLocationOn } from "react-icons/md";
-import AppContext from "../../context/appContext.jsx";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import checkIcon from '../../images/CircleWavyCheck.svg'
-import warningIcon from '../../images/CircleWavyWarning.svg'
+import Typography from "@mui/material/Typography";
 import { DateTime } from "luxon";
-// is this component going to be used?> throwing an error
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/appContext.jsx";
+import warningIcon from "../../images/CircleWavyWarning.svg";
 
 function Posts({ post }) {
-  const { user, setUser } = useContext(AppContext);
+  const { user, setUser, setPosts, posts } = useContext(AppContext);
   const navigate = useNavigate();
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await fetch(`http://localhost:4000/posts/${post.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const filtered = posts.filter((p) => p.id != post.id);
+      setPosts(filtered);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <Grid item xs='12' md='4' className="item-card-grid-container">
+    <Grid item xs="12" md="4" className="item-card-grid-container">
       {/* sx={{ maxWidth: 345 }} */}
       {/* onClick={(e) => console.log(post)} */}
       <Card className="item-card">
-        <div onClick={(e) => navigate(`/details/${post.id}`)} >
+        <div onClick={(e) => navigate(`/details/${post.id}`)}>
           <CardActionArea>
             <CardMedia
               className="post-images"
@@ -47,26 +58,29 @@ function Posts({ post }) {
                 </div>
                 <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
               </div>
+
               <Typography gutterBottom variant="h6" component="div">
                 {/* {post.title} */}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {/* {post.location} */}
-                {/* {post.user_id === user.id && (
-              <IconButton aria-label="delete">
-                <MdLocationOn
-                  className="delete-comment"
-                  type="submit"
-                  // onClick={handleDelete}
-                />
-              </IconButton>
-            )} */}
               </Typography>
             </CardContent>
           </CardActionArea>
         </div>
+        <div className="delete-btn">
+          {post.user_id === user.id && (
+            <IconButton aria-label="delete">
+              <DeleteIcon
+                className="delete-icon"
+                type="submit"
+                onClick={handleDelete}
+              />
+            </IconButton>
+          )}
+        </div>
       </Card>
-    </Grid >
+    </Grid>
   );
 }
 
