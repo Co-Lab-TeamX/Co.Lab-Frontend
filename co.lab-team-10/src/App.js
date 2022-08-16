@@ -7,6 +7,7 @@ import ItemsDetail from "./pages/itemsDetail/ItemsDetail";
 import NewLogin from "./pages/login/NewLogin";
 import Register from "./pages/register/Register";
 import ZoFeed from "./pages/zoFeed/ZoFeed";
+import Chats from "./pages/chats/Chats"
 
 function App() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
@@ -39,6 +40,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<NewLogin />} />
         <Route path="/feed" element={<ZoFeed />} />
+        <Route path="/chats/:sender_id/:receiver_id" element={<Chats />} />
         <Route path="/details/:post_id" element={isAuth ? <ItemsDetail /> : <NewLogin/>} />
         <Route path="/createPost" element={<CreatePostPage />} />
       </Routes>
