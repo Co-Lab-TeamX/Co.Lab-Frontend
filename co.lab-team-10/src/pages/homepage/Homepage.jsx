@@ -1,17 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/footer/Footer";
 import HomepageBody from "../../components/homepageBody/HomepageBody";
 import Navbar from "../../components/navbar/Navbar";
-import AppContext from "../../context/appContext.jsx";
 import "./homepage.css";
 
 function Homepage() {
-  const userLoggedInInfo = window.localStorage.getItem("user")
-  const { user, setUser } = useContext(AppContext);
-  // const parsedUserInfo = JSON.parse(userLoggedInInfo)
-  // setUser(parsedUserInfo)
-  console.log(user)
-
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);

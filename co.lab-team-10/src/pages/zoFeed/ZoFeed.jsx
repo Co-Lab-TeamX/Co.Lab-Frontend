@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import Pagination from "@mui/material/Pagination";
 import Typography from "@mui/material/Typography";
 import React, { useContext, useEffect, useState } from "react";
@@ -14,25 +14,31 @@ import AppContext from "../../context/appContext.jsx";
 function ZoFeed() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
   const { setPosts, posts, setUser } = useContext(AppContext);
+  const { setPosts, posts } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
-  const [filtered, setFiltered] = useState('all')
+  const [filteredPosts, setFilteredPosts] = useState([...posts]);
 
   useEffect(() => {
     fetch("http://localhost:4000/posts")
       .then((response) => response.json())
-      .then((data) => {
-        if (filtered === 'all') setPosts(data.data)
-        // else (setPosts.filter((p) => p.category === filtered))
-      });
+      .then((data) => setPosts(data.data));
     setPostsLength(posts.length);
+    setFilteredPosts([...posts]);
   }, []);
 
+  const filterCategory = (productCategory) => {
+    if (productCategory === 'Reset') {
+      setPosts(filteredPosts);
+      return;
+    }
+    const filteredFeed = filteredPosts.filter((p) => p.category === productCategory);
+    setPosts(filteredFeed);
+  };
 
   const handleFilter = e => {
     setFiltered(e.target)
   }
 
-  // le.log(filtered.outerText.toLowerCase())conso
   // useEffect(() => {
   //   fetch("https://colab-free-up.herokuapp.com/posts")
   //     .then((response) => response.json())
@@ -68,6 +74,20 @@ function ZoFeed() {
           <Pagination count={2} variant="outlined" shape="rounded" color="primary" />
         ) : (
           <Pagination count={1} variant="outlined" shape="rounded" color="primary" />
+        {postsLength > 9 ? (
+          <Pagination
+            count={2}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
+        ) : (
+          <Pagination
+            count={1}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
         )}
       </div>
       {/*       
@@ -88,11 +108,28 @@ function ZoFeed() {
         <Button variant="outlined" onClick={handleFilter}>Outdoors</Button>
         <Button variant="outlined" onClick={handleFilter}>Tech</Button>
         <Button variant="outlined" onClick={handleFilter}>Sports</Button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Reset")}>
+          Reset
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Household")}>
+          Household
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Sporting")}>
+          Sporting
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Tech")}>
+          Tech
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Clothing")}>
+          Clothing
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Gaming")}>
+          Gaming
+        </button>
       </div>
 
-
       <div className="feed">
-        <Grid container spacing={4} className='post-container'>
+        <Grid container spacing={4} className="post-container">
           {posts.map((post) => (
             <Posts key={post.id} post={post} />
           ))}
@@ -104,6 +141,19 @@ function ZoFeed() {
           <Pagination count={2} variant="outlined" shape="rounded" color='primary' />
         ) : (
           <Pagination count={1} variant="outlined" shape="rounded" color='primary' />
+          <Pagination
+            count={2}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
+        ) : (
+          <Pagination
+            count={1}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
         )}
       </div>
       <Footer />

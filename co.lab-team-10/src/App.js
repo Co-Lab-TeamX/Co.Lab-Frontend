@@ -7,14 +7,18 @@ import ItemsDetail from "./pages/itemsDetail/ItemsDetail";
 import NewLogin from "./pages/login/NewLogin";
 import Register from "./pages/register/Register";
 import ZoFeed from "./pages/zoFeed/ZoFeed";
+import Chats from "./pages/chats/Chats"
 
 function App() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
-  const { isAuth, setIsAuth } = useContext(AppContext)
+  const { isAuth, setIsAuth, setUser, user } = useContext(AppContext)
+  console.log(user)
+  
   const checkAuthenticated = async () => {
     let localToken = window.localStorage.getItem("token");
+
     try {
-      const res = await fetch(`http://localhost:9001/is-verify`, {
+      const res = await fetch(`http://localhost:4000/is-verify`, {
         method: "GET",
         headers: {
           token: localToken,
@@ -23,6 +27,9 @@ function App() {
       });
       const response = await res.json();
       response === true ? setIsAuth(true) : setIsAuth(false);
+      const us = window.localStorage.getItem("user");
+      const parsed = JSON.parse(us);
+      setUser(parsed);
     } catch (err) {
       console.error(err.message);
     }
@@ -39,8 +46,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<NewLogin />} />
         <Route path="/feed" element={<ZoFeed />} />
+        <Route path="/chats/:sender_id/:receiver_id" element={<Chats />} />
         <Route path="/details/:post_id" element={isAuth ? <ItemsDetail /> : <NewLogin/>} />
-        <Route path="/createPost" element={<CreatePostPage />} />
+        <Route path="/createPost" element={<CreatePostPage user={user}/>} />
       </Routes>
     </div>
   );

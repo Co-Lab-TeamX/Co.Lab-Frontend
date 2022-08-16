@@ -1,9 +1,9 @@
+import { createTheme, ThemeProvider } from "@mui/material";
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from "react-router-dom";
 import App from './App';
 import ContextProvider from "./context/contextProvider";
 import './style/index.scss';
-import { createTheme, ThemeProvider, } from "@mui/material";
 
 const theme = createTheme({
   breakpoints: {
