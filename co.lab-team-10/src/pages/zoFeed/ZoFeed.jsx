@@ -21,12 +21,13 @@ function ZoFeed() {
       .then((response) => response.json())
       .then((data) => setPosts(data.data));
     setPostsLength(posts.length);
+    setFilteredPosts([...posts]);
   }, []);
 
   const filterCategory = (productCategory) => {
     if (productCategory === 'Reset') {
-      setPosts(filteredPosts)
-      return 
+      setPosts(filteredPosts);
+      return;
     }
     const filteredFeed = filteredPosts.filter((p) => p.category === productCategory);
     setPosts(filteredFeed);
@@ -42,20 +43,6 @@ function ZoFeed() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-
-  // window.onscroll = function () {
-  //   myFunction();
-  // };
-
-  // function myFunction() {
-  //   const winScroll =
-  //     document.body.scrollTop || document.documentElement.scrollTop;
-  //   const height =
-  //     document.documentElement.scrollHeight -
-  //     document.documentElement.clientHeight;
-  //   const scrolled = (winScroll / height) * 100;
-  //   document.getElementById("myBar").style.width = scrolled + "%";
-  // }
 
   const navigate = useNavigate();
 

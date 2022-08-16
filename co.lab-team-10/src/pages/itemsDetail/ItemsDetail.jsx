@@ -15,11 +15,10 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
 import warningIcon from "../../images/CircleWavyWarning.svg";
-import NewLogin from "../login/NewLogin";
 import "./itemsDetail.css";
 
 function ItemsDetail() {
-  const { user, setUser, setIsAuth, isAuth } = useContext(AppContext);
+  const { user } = useContext(AppContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [showComment, setShowComment] = useState(false);
@@ -200,7 +199,7 @@ function ItemsDetail() {
                     >
                       <MenuItem
                         className="message-poster-text"
-                        onClick={(e) => navigate("/")}
+                        onClick={(e) => navigate(`/chats/${singlePost.id}/${user.id}`)}
                       >
                         Message Poster
                       </MenuItem>

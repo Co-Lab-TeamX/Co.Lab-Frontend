@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/footer/Footer";
 import HomepageBody from "../../components/homepageBody/HomepageBody";
 import Navbar from "../../components/navbar/Navbar";
-import AppContext from "../../context/appContext.jsx";
 import "./homepage.css";
 
 function Homepage() {
