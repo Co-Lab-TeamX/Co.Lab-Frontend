@@ -5,11 +5,12 @@
 
 .item-feed-name {
     font-family: "Poppins";
-    margin-top: 100px;
+    margin-top: -40px;
     font-size: 40px;
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    color: #455a64;
 }
 
 .pagination {
@@ -34,6 +35,12 @@
 .item-card-grid-container {
     display: flex;
     justify-content: center;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px !important;
 }
 
 .item-card {
