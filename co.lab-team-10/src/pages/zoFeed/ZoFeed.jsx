@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import Pagination from "@mui/material/Pagination";
 import Typography from "@mui/material/Typography";
 import React, { useContext, useEffect, useState } from "react";
@@ -12,37 +12,50 @@ import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn")
-  const { setPosts, posts, setUser} = useContext(AppContext);
+  const { setPosts, posts } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
-  const [filtered, setFiltered] = useState('all')
+  const [filteredPosts, setFilteredPosts] = useState([...posts]);
 
   useEffect(() => {
     fetch("http://localhost:4000/posts")
       .then((response) => response.json())
-      .then((data) => {
-        if (filtered === 'all') setPosts(data.data)
-        // else (setPosts.filter((p) => p.category === filtered))
-      });
+      .then((data) => setPosts(data.data));
     setPostsLength(posts.length);
   }, []);
 
+  const filterCategory = (productCategory) => {
+    if (productCategory === 'Reset') {
+      setPosts(filteredPosts)
+      return 
+    }
+    const filteredFeed = filteredPosts.filter((p) => p.category === productCategory);
+    setPosts(filteredFeed);
+  };
 
-  const handleFilter = e => {
-    setFiltered(e.target)
-  }
-
-console.log(filtered.outerText.toLowerCase())
   // useEffect(() => {
   //   fetch("https://colab-free-up.herokuapp.com/posts")
   //     .then((response) => response.json())
   //     .then((data) => setPosts(data.data));
   //   setPostsLength(posts.length);
   // }, []);
-                  
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  // window.onscroll = function () {
+  //   myFunction();
+  // };
+
+  // function myFunction() {
+  //   const winScroll =
+  //     document.body.scrollTop || document.documentElement.scrollTop;
+  //   const height =
+  //     document.documentElement.scrollHeight -
+  //     document.documentElement.clientHeight;
+  //   const scrolled = (winScroll / height) * 100;
+  //   document.getElementById("myBar").style.width = scrolled + "%";
+  // }
 
   const navigate = useNavigate();
 
@@ -50,24 +63,34 @@ console.log(filtered.outerText.toLowerCase())
     <>
       <Navbar />
       <div role="presentation" className="breadcrumb-detail">
-          <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
-            <div
-              className="breadcrumb-link"
-              underline="hover"
-              color="inherit"
-              onClick={(e) => navigate("/")}
-            >
-              Home
-            </div>
-            <Typography color="text.primary">Feed</Typography>
-          </Breadcrumbs>
-        </div>
+        <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
+          <div
+            className="breadcrumb-link"
+            underline="hover"
+            color="inherit"
+            onClick={(e) => navigate("/")}
+          >
+            Home
+          </div>
+          <Typography color="text.primary">Feed</Typography>
+        </Breadcrumbs>
+      </div>
       <div className="item-feed-name">Item Feed</div>
       <div className="pagination">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" color="primary"/>
+          <Pagination
+            count={2}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" color="primary"/>
+          <Pagination
+            count={1}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
         )}
       </div>
       {/*       
@@ -83,16 +106,28 @@ console.log(filtered.outerText.toLowerCase())
       </div> */}
 
       <div className="filters">
-      <div className="filer-text">Filter</div>
-      <Button variant="outlined" onClick={handleFilter}>Household</Button>
-      <Button variant="outlined" onClick={handleFilter}>Outdoors</Button>
-      <Button variant="outlined" onClick={handleFilter}>Tech</Button>
-      <Button variant="outlined" onClick={handleFilter}>Sports</Button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Reset")}>
+          Reset
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Household")}>
+          Household
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Sporting")}>
+          Sporting
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Tech")}>
+          Tech
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Clothing")}>
+          Clothing
+        </button>
+        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Gaming")}>
+          Gaming
+        </button>
       </div>
 
-
       <div className="feed">
-        <Grid container spacing={4} className='post-container'>
+        <Grid container spacing={4} className="post-container">
           {posts.map((post) => (
             <Posts key={post.id} post={post} />
           ))}
@@ -101,9 +136,19 @@ console.log(filtered.outerText.toLowerCase())
 
       <div className="pagination-bottom">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" color='primary'/>
+          <Pagination
+            count={2}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" color='primary'/>
+          <Pagination
+            count={1}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+          />
         )}
       </div>
       <Footer />
