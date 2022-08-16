@@ -16,8 +16,12 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#02A7A7',
-      contrastText:"#fff"
+      contrastText: "#fff"
     },
+    warning: {
+      main: '#B33A3A',
+      contrastText: "#fff"
+    }
   },
 });
 
