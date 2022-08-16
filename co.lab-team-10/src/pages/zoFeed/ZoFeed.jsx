@@ -13,7 +13,7 @@ import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
-  const { setPosts, posts, setUser} = useContext(AppContext);
+  const { setPosts, posts, setUser } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filtered, setFiltered] = useState('all')
 
@@ -32,14 +32,14 @@ function ZoFeed() {
     setFiltered(e.target)
   }
 
-console.log(filtered.outerText.toLowerCase())
+  // le.log(filtered.outerText.toLowerCase())conso
   // useEffect(() => {
   //   fetch("https://colab-free-up.herokuapp.com/posts")
   //     .then((response) => response.json())
   //     .then((data) => setPosts(data.data));
   //   setPostsLength(posts.length);
   // }, []);
-                  
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
@@ -50,24 +50,24 @@ console.log(filtered.outerText.toLowerCase())
     <>
       <Navbar />
       <div role="presentation" className="breadcrumb-detail">
-          <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
-            <div
-              className="breadcrumb-link"
-              underline="hover"
-              color="inherit"
-              onClick={(e) => navigate("/")}
-            >
-              Home
-            </div>
-            <Typography color="text.primary">Feed</Typography>
-          </Breadcrumbs>
-        </div>
+        <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
+          <div
+            className="breadcrumb-link"
+            underline="hover"
+            color="inherit"
+            onClick={(e) => navigate("/")}
+          >
+            Home
+          </div>
+          <Typography color="text.primary">Feed</Typography>
+        </Breadcrumbs>
+      </div>
       <div className="item-feed-name">Item Feed</div>
       <div className="pagination">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" color="primary"/>
+          <Pagination count={2} variant="outlined" shape="rounded" color="primary" />
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" color="primary"/>
+          <Pagination count={1} variant="outlined" shape="rounded" color="primary" />
         )}
       </div>
       {/*       
@@ -83,11 +83,11 @@ console.log(filtered.outerText.toLowerCase())
       </div> */}
 
       <div className="filters">
-      <div className="filer-text">Filter</div>
-      <Button variant="outlined" onClick={handleFilter}>Household</Button>
-      <Button variant="outlined" onClick={handleFilter}>Outdoors</Button>
-      <Button variant="outlined" onClick={handleFilter}>Tech</Button>
-      <Button variant="outlined" onClick={handleFilter}>Sports</Button>
+        <div className="filer-text">Filter</div>
+        <Button variant="outlined" onClick={handleFilter}>Household</Button>
+        <Button variant="outlined" onClick={handleFilter}>Outdoors</Button>
+        <Button variant="outlined" onClick={handleFilter}>Tech</Button>
+        <Button variant="outlined" onClick={handleFilter}>Sports</Button>
       </div>
 
 
@@ -101,9 +101,9 @@ console.log(filtered.outerText.toLowerCase())
 
       <div className="pagination-bottom">
         {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" color='primary'/>
+          <Pagination count={2} variant="outlined" shape="rounded" color='primary' />
         ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" color='primary'/>
+          <Pagination count={1} variant="outlined" shape="rounded" color='primary' />
         )}
       </div>
       <Footer />
