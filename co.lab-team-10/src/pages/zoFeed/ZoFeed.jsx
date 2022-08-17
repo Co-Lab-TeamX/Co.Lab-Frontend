@@ -87,10 +87,8 @@ function ZoFeed() {
           />
         )}
       </div>
-      {/*       
-      Will wait for where in the design we will add to the page
-       */}
       <>
+        {/* Tester component */}
         <CreatePost />
       </>
       <div className="filters">

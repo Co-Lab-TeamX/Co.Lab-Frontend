@@ -23,6 +23,7 @@ export default function CreatePostPage() {
   const [weight, setWeight] = useState('');
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [modalOpen, setModalOpen] = useState(false);
+  const [imgURL, setImgURL] = useState('');
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
@@ -68,7 +69,7 @@ export default function CreatePostPage() {
       title,
       description,
       // image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
-      image,
+      image: imgURL,
       location,
       condition,
       category,
@@ -80,7 +81,8 @@ export default function CreatePostPage() {
       quantity
     }
 
-     console.log(newPostData);
+    // remove
+    console.log(newPostData);
 
 
     try {
@@ -92,7 +94,6 @@ export default function CreatePostPage() {
         body: JSON.stringify(newPostData),
       });
       const parsed = await result.json();
-      console.log(parsed)
       setPosts([parsed.data, ...posts]);
 
     } catch (error) {
@@ -138,8 +139,20 @@ export default function CreatePostPage() {
               />
             </Grid>
 
-            {/* Upload Photo */}
+
+            {/* Upload Photo Tester URL only */}
             <Grid item xs='12'>
+              <InputLabel htmlFor="photoURL">Upload Photo URL</InputLabel>
+              <TextField
+                id='photoURL'
+                required onChange={e => setImgURL(e.target.value)}
+                sx={{ width: 1 }}
+              >
+              </TextField>
+            </Grid>
+
+            {/* Upload Photo */}
+            {/* <Grid item xs='12'>
               <InputLabel htmlFor="image">Photo</InputLabel>
               {!image.preview
                 ? (
@@ -178,7 +191,7 @@ export default function CreatePostPage() {
                   </div>
                 )
               }
-            </Grid>
+            </Grid> */}
 
             {/* Condition */}
             <Grid item xs='12'>
@@ -268,39 +281,39 @@ export default function CreatePostPage() {
             </Grid>
 
             {/* Address */}
-              <Grid item xs='12'>
-                <InputLabel htmlFor="address">Item Address</InputLabel>
-                <Grid container spacing={4}>
-                  <Grid item xs='5'>
-                    <InputLabel htmlFor="street-address">Street Address</InputLabel>
-                    <TextField
-                      id='street-address'
-                      required
-                      onChange={e => setStreetAddress(e.target.value)}
-                      sx={{ width: 1 }}
-                    >
-                    </TextField>
-                  </Grid>
-                  <Grid item xs='1'>
-                    <InputLabel htmlFor="state">State</InputLabel>
-                    <TextField
-                      id='state'
-                      required
-                      onChange={e => setState(e.target.value)}
-                    >
-                    </TextField>
-                  </Grid>
-                  <Grid item xs='2'>
-                    <InputLabel htmlFor="zip-code">Zip Code</InputLabel>
-                    <TextField
-                      id='zip-code'
-                      required
-                      onChange={e => setZipCode(e.target.value)}
-                    >
-                    </TextField>
-                  </Grid>
+            <Grid item xs='12'>
+              <InputLabel htmlFor="address">Item Address</InputLabel>
+              <Grid container spacing={4}>
+                <Grid item xs='5'>
+                  <InputLabel htmlFor="street-address">Street Address</InputLabel>
+                  <TextField
+                    id='street-address'
+                    required
+                    onChange={e => setStreetAddress(e.target.value)}
+                    sx={{ width: 1 }}
+                  >
+                  </TextField>
+                </Grid>
+                <Grid item xs='1'>
+                  <InputLabel htmlFor="state">State</InputLabel>
+                  <TextField
+                    id='state'
+                    required
+                    onChange={e => setState(e.target.value)}
+                  >
+                  </TextField>
+                </Grid>
+                <Grid item xs='2'>
+                  <InputLabel htmlFor="zip-code">Zip Code</InputLabel>
+                  <TextField
+                    id='zip-code'
+                    required
+                    onChange={e => setZipCode(e.target.value)}
+                  >
+                  </TextField>
                 </Grid>
               </Grid>
+            </Grid>
 
             {/* Quantity */}
             <Grid item xs='12'>
@@ -315,11 +328,7 @@ export default function CreatePostPage() {
             </Grid>
 
             <Grid item xs='12'>
-              {/* <label htmlFor="weight">Weight (lbs)</label>
-              <input type="number" id='weight' onChange={e => setWeight(e.target.value)} /> */}
-
-
-              <InputLabel htmlFor="weight">Weight (if applicable)</InputLabel>
+              <InputLabel htmlFor="weight">Weight (lbs)</InputLabel>
               <TextField
                 id='weight'
                 onChange={e => setWeight(e.target.value)}
