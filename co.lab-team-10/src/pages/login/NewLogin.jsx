@@ -18,10 +18,11 @@ import { MdLocationOn } from "react-icons/md";
 import "./newLogin.css";
 
 function NewLogin() {
-  const { setUser, setIsAuth } = useContext(AppContext);
+  const { setUser, setIsAuth, user } = useContext(AppContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const handleLogin = (e) => {
     e.preventDefault();
     const loginData = {
@@ -158,6 +159,7 @@ function NewLogin() {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
@@ -169,6 +171,7 @@ function NewLogin() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <FormControlLabel

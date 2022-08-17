@@ -64,7 +64,7 @@ function ZoFeed() {
       </div>
       <div className="item-feed-name">Item Feed</div>
       <div className="pagination">
-        {postsLength > 12 ? (
+        {postsLength > 9 ? (
           <Pagination
             count={2}
             variant="outlined"
