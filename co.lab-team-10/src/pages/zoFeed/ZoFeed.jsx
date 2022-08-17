@@ -12,9 +12,8 @@ import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn")
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
   const { setPosts, posts, setUser } = useContext(AppContext);
-  const { setPosts, posts } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
 
@@ -27,17 +26,19 @@ function ZoFeed() {
   }, []);
 
   const filterCategory = (productCategory) => {
-    if (productCategory === 'Reset') {
+    if (productCategory === "Reset") {
       setPosts(filteredPosts);
       return;
     }
-    const filteredFeed = filteredPosts.filter((p) => p.category === productCategory);
+    const filteredFeed = filteredPosts.filter(
+      (p) => p.category === productCategory
+    );
     setPosts(filteredFeed);
   };
 
-  const handleFilter = e => {
-    setFiltered(e.target)
-  }
+  const handleFilter = (e) => {
+    // setFiltered(e.target);
+  };
 
   // useEffect(() => {
   //   fetch("https://colab-free-up.herokuapp.com/posts")
@@ -70,10 +71,6 @@ function ZoFeed() {
       </div>
       <div className="item-feed-name">Item Feed</div>
       <div className="pagination">
-        {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" color="primary" />
-        ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" color="primary" />
         {postsLength > 9 ? (
           <Pagination
             count={2}
@@ -96,34 +93,47 @@ function ZoFeed() {
       <>
         <CreatePost />
       </>
-      {/* <div className="browse-feed">
-        {posts.map((post) => (
-          <Posts key={post.id} post={post} />
-        ))}
-      </div> */}
-
       <div className="filters">
-        <div className="filer-text">Filter</div>
-        <Button variant="outlined" onClick={handleFilter}>Household</Button>
-        <Button variant="outlined" onClick={handleFilter}>Outdoors</Button>
-        <Button variant="outlined" onClick={handleFilter}>Tech</Button>
-        <Button variant="outlined" onClick={handleFilter}>Sports</Button>
-        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Reset")}>
+        <button
+          variant="outlined"
+          className="sub-filters"
+          onClick={(e) => filterCategory("Reset")}
+        >
           Reset
         </button>
-        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Household")}>
+        <button
+          variant="outlined"
+          className="sub-filters"
+          onClick={(e) => filterCategory("Household")}
+        >
           Household
         </button>
-        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Sporting")}>
+        <button
+          variant="outlined"
+          className="sub-filters"
+          onClick={(e) => filterCategory("Sporting")}
+        >
           Sporting
         </button>
-        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Tech")}>
+        <button
+          variant="outlined"
+          className="sub-filters"
+          onClick={(e) => filterCategory("Tech")}
+        >
           Tech
         </button>
-        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Clothing")}>
+        <button
+          variant="outlined"
+          className="sub-filters"
+          onClick={(e) => filterCategory("Clothing")}
+        >
           Clothing
         </button>
-        <button variant="outlined" className="sub-filters" onClick={(e) => filterCategory("Gaming")}>
+        <button
+          variant="outlined"
+          className="sub-filters"
+          onClick={(e) => filterCategory("Gaming")}
+        >
           Gaming
         </button>
       </div>
@@ -137,10 +147,7 @@ function ZoFeed() {
       </div>
 
       <div className="pagination-bottom">
-        {postsLength > 12 ? (
-          <Pagination count={2} variant="outlined" shape="rounded" color='primary' />
-        ) : (
-          <Pagination count={1} variant="outlined" shape="rounded" color='primary' />
+        {postsLength > 9 ? (
           <Pagination
             count={2}
             variant="outlined"
