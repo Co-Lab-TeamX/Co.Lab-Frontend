@@ -199,7 +199,7 @@ function ItemsDetail() {
                     >
                       <MenuItem
                         className="message-poster-text"
-                        onClick={(e) => navigate(`/chats/${singlePost.id}/${user.id}`)}
+                        onClick={(e) => navigate(`/chats/${singlePost.user_id}/${user.id}`)}
                       >
                         Message Poster
                       </MenuItem>

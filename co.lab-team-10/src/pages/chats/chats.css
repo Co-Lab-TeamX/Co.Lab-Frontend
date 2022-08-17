@@ -32,7 +32,6 @@
   height: 400px;
   width: 700px;
   font-size: 30px;
-  text-align: center;
   border-radius: 15px;
 }
 
@@ -45,7 +44,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50px;
-  border: rgb(46, 45, 45) 2px solid;
+  border: rgb(136, 144, 145) 2px solid;
 }
 
 .left-side-contacts {
@@ -94,16 +93,76 @@
 
 }
 
-.entire-message {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
 .sending-message-section {
   display: flex;
-  justify-content: center !important;
-
+  justify-content: center;
 }
+
+.message-input {
+  width: 100%;
+}
+
+.message-container {
+  font-size: 15px;
+  height: 300px;
+}
+
+.message-content {
+  padding: 5px;
+  border-radius: 15px;
+  color: white;
+}
+
+#you {
+  margin-left: 10px;
+}
+
+#you .message-body {
+  background-color: #455a64 ;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+#you .message-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#you .message-meta {
+  justify-content: flex-start;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#other {
+  justify-content: flex-end !important;
+  margin-right: 10px;
+}
+
+#other .message-body {
+  background-color: #02a7a7;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+#other .message-meta {
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+#other .message-content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message-meta #author {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.message .message-meta {
+  display: flex;
+  font-size: 12px;
+}
+
+
