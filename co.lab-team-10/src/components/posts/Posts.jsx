@@ -10,6 +10,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/appContext.jsx";
 import warningIcon from "../../images/CircleWavyWarning.svg";
+import checkIcon from "../../images/CircleWavyCheck.svg";
 
 function Posts({ post }) {
   const { user, setUser, setPosts, posts } = useContext(AppContext);
@@ -49,12 +50,23 @@ function Posts({ post }) {
             <CardContent>
               <div className="card-content-1">
                 <h3>{post.title}</h3>
-                <h4>{post.location} NY</h4>
+                <h4>{post.location}, NY</h4>
               </div>
               <div className="card-content-2">
                 <div className="pick-up-container">
-                  <img src={warningIcon} alt="warning-icon" />
-                  <h3>Immediate Pickup</h3>
+                  {post.pickup_type === 'drop-off'
+                    ? (
+                      <>
+                        <img src={warningIcon} alt="warning-icon" />
+                        <h3>Immediate Pickup</h3>
+                      </>
+                    )
+                    : (
+                      <>
+                        <img src={checkIcon} alt="check-icon" />
+                        <h3>Schedule Pickup</h3>
+                      </>
+                    )}
                 </div>
                 <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
               </div>

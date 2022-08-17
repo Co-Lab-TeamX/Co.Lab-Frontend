@@ -15,7 +15,7 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
 import warningIcon from "../../images/CircleWavyWarning.svg";
-import "./itemsDetail.css";
+import checkIcon from "../../images/CircleWavyCheck.svg";
 
 function ItemsDetail() {
   const { user } = useContext(AppContext);
@@ -24,7 +24,6 @@ function ItemsDetail() {
   const [showComment, setShowComment] = useState(false);
   const [singlePost, setSinglePost] = useState({});
   const { post_id } = useParams();
-
   useEffect(() => {
     if (!post_id) return;
     fetch(`http://localhost:4000/posts/${post_id}`)
@@ -46,7 +45,7 @@ function ItemsDetail() {
       post_id: post_id,
     };
 
-    if (newCommentData.comment_body === '') return 
+    if (newCommentData.comment_body === '') return
 
     const result = await fetch(
       `http://localhost:4000/posts/${post_id}/comments`,
@@ -89,7 +88,7 @@ function ItemsDetail() {
 
   return (
     <>
-    <div className="item-detail-page-container">
+      <div className="item-detail-page-container">
         <Navbar />
         <div role="presentation" className="breadcrumb-detail">
           <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
@@ -122,7 +121,6 @@ function ItemsDetail() {
                 {/* on phone sizes the display is none, tablet is block */}
                 <div className="tablet-description">
                   <h2>Description</h2>
-                  {/* <p>{singlePost.description}</p> */}
                   <p>
                     {singlePost.description}
                   </p>
@@ -135,8 +133,19 @@ function ItemsDetail() {
                   {/* { singlePost.location }  */}
                   <h4>{singlePost.location} NY</h4>
                   <div className="pick-up-container">
-                    <img src={warningIcon} alt="warning-icon" />
-                    <h3>Immediate Pickup</h3>
+                    {singlePost.pickup_type === 'drop-off'
+                      ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      )
+                      : (
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      )}
                   </div>
                 </Grid>
 
@@ -208,7 +217,7 @@ function ItemsDetail() {
                 </Grid>
               </Grid>
 
-              {/* bottom secttin for tablet */}
+              {/* bottom section for tablet */}
               <Grid item xs="12">
                 <div className="item-post-comment">
                   <Box>
