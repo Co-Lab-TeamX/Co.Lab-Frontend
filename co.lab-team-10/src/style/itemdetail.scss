@@ -250,6 +250,11 @@
     // border: 1px solid blue !important;
 }
 
+.item-image1 {
+    border-radius: 50px !important;
+    border: 5px solid black;
+}
+
 
 // Tablet
 @media screen and (min-width: 1024px) {
@@ -315,3 +320,4 @@
         }
     }
 }
+
