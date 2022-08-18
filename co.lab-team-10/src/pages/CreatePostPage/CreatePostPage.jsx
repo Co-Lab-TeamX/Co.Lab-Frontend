@@ -14,19 +14,13 @@ import {
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React, { useContext, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import ImageUploading from "react-images-uploading";
 import { BiImageAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { Button, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Modal, Radio, RadioGroup, Select, TextareaAutosize, TextField } from '@mui/material'
-import { Box, Container } from '@mui/system';
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar'
 import AppContext from "../../context/appContext";
 
 export default function CreatePostPage() {
-  const navigate = useNavigate();
 
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
   const { user, setPosts, posts } = useContext(AppContext);
@@ -110,7 +104,6 @@ export default function CreatePostPage() {
         body: JSON.stringify(newPostData),
       });
       const parsed = await result.json();
-      // console.log(parsed.data)
       navigate("/feed");
     } catch (err) {
       console.log(err);
@@ -121,9 +114,6 @@ export default function CreatePostPage() {
     <div>
       <Navbar />
       <Button className="back-to-listing">Back to listing</Button>
-
-      <Container>
-        <div className="post-page-header">Post Item</div>
       <Button
         className="back-to-listing"
         onClick={e => navigate('/feed')}
