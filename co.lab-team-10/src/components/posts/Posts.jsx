@@ -31,7 +31,7 @@ function Posts({ post }) {
       console.log(error);
     }
   };
-
+console.log(posts)
   return (
     <Grid item xs="12" md="4" className="item-card-grid-container">
       {/* sx={{ maxWidth: 345 }} */}
@@ -44,7 +44,7 @@ function Posts({ post }) {
               width="300px"
               height="172px"
               component="img"
-              image={post.image}
+              image={!post.upload ? post.image : post.upload}
               alt="post_image"
             />
             <CardContent>

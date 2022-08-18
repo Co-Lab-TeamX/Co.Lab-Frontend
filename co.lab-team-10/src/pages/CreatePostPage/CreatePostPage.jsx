@@ -1,10 +1,29 @@
+import {
+  Button,
+  FormControlLabel,
+  FormLabel,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Radio,
+  RadioGroup,
+  Select,
+  TextareaAutosize,
+  TextField,
+} from "@mui/material";
+import { Box, Container } from "@mui/system";
+import React, { useContext, useState } from "react";
+import Navbar from "../../components/navbar/Navbar";
+import ImageUploading from "react-images-uploading";
+import { BiImageAdd } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 import { Button, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Modal, Radio, RadioGroup, Select, TextareaAutosize, TextField } from '@mui/material'
 import { Box, Container } from '@mui/system';
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar'
 import AppContext from "../../context/appContext";
-
 
 export default function CreatePostPage() {
   const navigate = useNavigate();
@@ -13,81 +32,75 @@ export default function CreatePostPage() {
   const { user, setPosts, posts } = useContext(AppContext);
   const userId = JSON.parse(window.localStorage.getItem("user")).id; //
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('Brooklyn');
-  const [condition, setCondition] = useState('new');
-  const [category, setCategory] = useState('household');
-  const [pickupType, setPickupType] = useState('drop-off');
-  const [streetAddress, setStreetAddress] = useState('');
-  const [state, setState] = useState('NY');
-  const [zipCode, setZipCode] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [weight, setWeight] = useState('');
-  const [image, setImage] = useState({ preview: "", raw: "" });
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("Brooklyn");
+  const [condition, setCondition] = useState("new");
+  const [category, setCategory] = useState("household");
+  const [pickupType, setPickupType] = useState("drop-off");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [state, setState] = useState("NY");
+  const [zipCode, setZipCode] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [weight, setWeight] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [imgURL, setImgURL] = useState('');
+  const [imgURL, setImgURL] = useState("");
+  const [imageSelected, setImageSelected] = useState(null);
+
+  const [images, setImages] = useState([]);
+  const [trialImage, setTrialImage] = useState("");
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
+  const navigate = useNavigate();
+
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 'auto',
-    bgcolor: '#fff',
-    border: '2px solid #000',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "auto",
+    bgcolor: "#fff",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
-
-  function handleImageChange(e) {
-    if (e.target.files.length) {
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0]
-      });
-    }
+  // Image upload
+  const maxNumber = 69;
+  const onChange = (imageList, addUpdateIndex) => {
+    setImages(imageList);
+    setTrialImage(imageList[0].data_url);
+    // setImageSelected(true);
   };
 
-  const handleDeletePhoto = (e) => {
-    setImage({ preview: "", raw: "" });
-  }
-
   const handleSubmit1 = (e) => {
-    e.preventDefault()
-
-    handleOpen()
-
-  }
+    e.preventDefault();
+    handleOpen();
+  };
 
   const handleSubmit2 = async (e) => {
     handleClose();
-
+    if (trialImage === "") setTrialImage("");
 
     const newPostData = {
-      userId,
+      userId: 1,
       title,
       description,
-      // image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80",
-      image: imgURL,
-      location,
-      condition,
-      category,
-      streetAddress,
-      state,
-      zipCode,
+      image:
+        "https://gmedia.playstation.com/is/image/SIEPDC/ps-plus-cloud-storage-dark-icon-01-en-25sep20?$native--t$",
+      upload: trialImage,
+      location: "Brooklyn",
+      condition: "new",
+      category: "Household",
+      streetAddress: "435 Banner Ave",
+      state: "NY",
+      zipCode: "11235",
       pickupType,
-      weight,
-      quantity
-    }
-
-    // remove
+      weight: 34,
+      quantity,
+    };
     console.log(newPostData);
-
-
     try {
       const result = await fetch("http://localhost:4000/posts", {
         method: "POST",
@@ -97,17 +110,20 @@ export default function CreatePostPage() {
         body: JSON.stringify(newPostData),
       });
       const parsed = await result.json();
-      setPosts([parsed.data, ...posts]);
-
-    } catch (error) {
-      console.log(error)
+      // console.log(parsed.data)
+      navigate("/feed");
+    } catch (err) {
+      console.log(err);
     }
-  }
-
+  };
 
   return (
     <div>
       <Navbar />
+      <Button className="back-to-listing">Back to listing</Button>
+
+      <Container>
+        <div className="post-page-header">Post Item</div>
       <Button
         className="back-to-listing"
         onClick={e => navigate('/feed')}
@@ -123,43 +139,97 @@ export default function CreatePostPage() {
         <form onSubmit={handleSubmit1}>
           <Grid container spacing={3}>
             {/* Title */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel htmlFor="title">Item Title</InputLabel>
               <TextField
-                id='title'
-                required onChange={e => setTitle(e.target.value)}
+                id="title"
+                required
+                onChange={(e) => setTitle(e.target.value)}
                 sx={{ width: 1 }}
-              >
-              </TextField>
+              ></TextField>
             </Grid>
 
             {/* Description */}
-            <Grid item xs='12'>
-              <InputLabel htmlFor="description">Item Description - Max 1000 characters</InputLabel>
+            <Grid item xs="12">
+              <InputLabel htmlFor="description">
+                Item Description - Max 1000 characters
+              </InputLabel>
               <TextField
                 multiline
                 aria-label="item-description"
-                id='description'
+                id="description"
                 minRows={3}
                 placeholder="Enter Item Info..."
                 sx={{ width: 1 }}
-                onChange={e => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Grid>
 
-
             {/* Upload Photo Tester URL only */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel htmlFor="photoURL">Upload Photo URL</InputLabel>
               <TextField
-                id='photoURL'
-                required onChange={e => setImgURL(e.target.value)}
+                id="photoURL"
+                required
+                onChange={(e) => setImgURL(e.target.value)}
                 sx={{ width: 1 }}
-              >
-              </TextField>
+              ></TextField>
             </Grid>
 
             {/* Upload Photo */}
+            <Grid item xs="12">
+              <InputLabel htmlFor="image">Photo</InputLabel>
+              <div>
+                <ImageUploading
+                  value={images}
+                  onChange={onChange}
+                  maxNumber={maxNumber}
+                  dataURLKey="data_url"
+                >
+                  {({
+                    imageList,
+                    onImageUpload,
+                    onImageRemove,
+                    isDragging,
+                    dragProps,
+                  }) => (
+                    <div className="upload__image-wrapper">
+                      <Button
+                        variant="raised"
+                        component="span"
+                        className="img-upload-box"
+                        style={isDragging ? { color: "red" } : null}
+                        onClick={onImageUpload}
+                        {...dragProps}
+                      >
+                        <div className="img-upload-box">+</div>
+                      </Button>
+
+                      {imageList.map((image, index) => (
+                        <div key={index}>
+                          <img
+                            className="uploaded-img"
+                            src={image.data_url}
+                            alt=""
+                          />
+                          <p>{image.file.name}</p>
+                          <div>
+                            <button
+                              onClick={() => {
+                                onImageRemove(index);
+                                // setImageSelected(null);
+                              }}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </ImageUploading>
+              </div>
+            </Grid>
             {/* <Grid item xs='12'>
               <InputLabel htmlFor="image">Photo</InputLabel>
               {!image.preview
@@ -202,7 +272,7 @@ export default function CreatePostPage() {
             </Grid> */}
 
             {/* Condition */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel id="condition-label">Condition</InputLabel>
               <Select
                 required
@@ -210,7 +280,7 @@ export default function CreatePostPage() {
                 id="condition"
                 value={condition}
                 label="Condition"
-                onChange={e => setCondition(e.target.value)}
+                onChange={(e) => setCondition(e.target.value)}
                 style={{ width: 300 }}
               >
                 <MenuItem value="new">New</MenuItem>
@@ -222,7 +292,7 @@ export default function CreatePostPage() {
 
             {/* household, sporting, tech, clothing, gaming */}
             {/* Category */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel id="category-label">Category</InputLabel>
               <Select
                 required
@@ -230,7 +300,7 @@ export default function CreatePostPage() {
                 id="category"
                 value={category}
                 label="Category"
-                onChange={e => setCategory(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
                 style={{ width: 300 }}
               >
                 <MenuItem value="household">Household</MenuItem>
@@ -244,7 +314,7 @@ export default function CreatePostPage() {
             {/* video */}
 
             {/* Location */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel id="location-label">Location</InputLabel>
               <Select
                 required
@@ -252,7 +322,7 @@ export default function CreatePostPage() {
                 id="location"
                 value={location}
                 label="Location"
-                onChange={e => setLocation(e.target.value)}
+                onChange={(e) => setLocation(e.target.value)}
                 style={{ width: 300 }}
               >
                 <MenuItem value="Brooklyn">Brooklyn</MenuItem>
@@ -264,92 +334,100 @@ export default function CreatePostPage() {
             </Grid>
 
             {/* Pickup-type */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <FormLabel id="pickup-type-label">Pickup Option</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="pickup-type-label"
                 name="row-radio-buttons-group"
-                onChange={e => setPickupType(e.target.value)}
+                onChange={(e) => setPickupType(e.target.value)}
                 defaultValue="drop-off"
               >
                 <div className="radio-input">
-                  <FormControlLabel value="drop-off" control={<Radio />} label="Drop Off" />
-                  <FormLabel className='radio-description'>Item will be left on the street
-                    for pickup.
+                  <FormControlLabel
+                    value="drop-off"
+                    control={<Radio />}
+                    label="Drop Off"
+                  />
+                  <FormLabel className="radio-description">
+                    Item will be left on the street for pickup.
                   </FormLabel>
                 </div>
                 <div className="radio-input">
-                  <FormControlLabel value="arrange-pickup" control={<Radio />} label="Arrange Pickup" />
-                  <FormLabel className='radio-description'>Item will be available for a scheduled pickup time.
+                  <FormControlLabel
+                    value="arrange-pickup"
+                    control={<Radio />}
+                    label="Arrange Pickup"
+                  />
+                  <FormLabel className="radio-description">
+                    Item will be available for a scheduled pickup time.
                   </FormLabel>
                 </div>
               </RadioGroup>
-
             </Grid>
 
             {/* Address */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel htmlFor="address">Item Address</InputLabel>
               <Grid container spacing={4}>
-                <Grid item xs='5'>
-                  <InputLabel htmlFor="street-address">Street Address</InputLabel>
+                <Grid item xs="5">
+                  <InputLabel htmlFor="street-address">
+                    Street Address
+                  </InputLabel>
                   <TextField
-                    id='street-address'
+                    id="street-address"
                     required
-                    onChange={e => setStreetAddress(e.target.value)}
+                    onChange={(e) => setStreetAddress(e.target.value)}
                     sx={{ width: 1 }}
-                  >
-                  </TextField>
+                  ></TextField>
                 </Grid>
-                <Grid item xs='1'>
+                <Grid item xs="1">
                   <InputLabel htmlFor="state">State</InputLabel>
                   <TextField
-                    id='state'
+                    id="state"
                     required
-                    onChange={e => setState(e.target.value)}
-                  >
-                  </TextField>
+                    onChange={(e) => setState(e.target.value)}
+                  ></TextField>
                 </Grid>
-                <Grid item xs='2'>
+                <Grid item xs="2">
                   <InputLabel htmlFor="zip-code">Zip Code</InputLabel>
                   <TextField
-                    id='zip-code'
+                    id="zip-code"
                     required
-                    onChange={e => setZipCode(e.target.value)}
-                  >
-                  </TextField>
+                    onChange={(e) => setZipCode(e.target.value)}
+                  ></TextField>
                 </Grid>
               </Grid>
             </Grid>
 
             {/* Quantity */}
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel htmlFor="quantity">Quantity</InputLabel>
               <TextField
                 id="quantity"
                 type="number"
                 InputProps={{ inputProps: { min: 1 } }}
-                onChange={e => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(e.target.value)}
                 style={{ width: 150 }}
               />
             </Grid>
 
-            <Grid item xs='12'>
+            <Grid item xs="12">
               <InputLabel htmlFor="weight">Weight (lbs)</InputLabel>
               <TextField
-                id='weight'
-                onChange={e => setWeight(e.target.value)}
+                id="weight"
+                onChange={(e) => setWeight(e.target.value)}
                 style={{ width: 150 }}
-              >
-              </TextField>
+              ></TextField>
             </Grid>
 
             {/* <div className="length-widith-height"></div> */}
 
             {/* Submit Button */}
-            <Grid item xs='12'>
-              <Button variant='contained' type="submit">submit</Button>
+            <Grid item xs="12">
+              <Button variant="contained" type="submit">
+                submit
+              </Button>
             </Grid>
 
             {/* Modal */}
@@ -365,29 +443,31 @@ export default function CreatePostPage() {
                 <h3>Title: {title}</h3>
                 <h3>description: {description}</h3>
                 {/* <h3>{title}</h3> image */}
-                {streetAddress && (<h3>Address: {streetAddress}</h3>)}
+                {streetAddress && <h3>Address: {streetAddress}</h3>}
                 <h3>Pickup Type: {pickupType}</h3>
-                {weight && (<h3>Weight: {weight}</h3>)}
-                {quantity && (<h3>Quantity: {quantity}</h3>)}
+                {weight && <h3>Weight: {weight}</h3>}
+                {quantity && <h3>Quantity: {quantity}</h3>}
 
                 <Button
-                  color='primary'
+                  color="primary"
                   variant="contained"
-                  onClick={e => handleSubmit2(e)}
-                >Submit
+                  onClick={(e) => handleSubmit2(e)}
+                >
+                  Submit
                 </Button>
 
                 <Button
-                  color='error'
+                  color="error"
                   variant="contained"
-                  onClick={e => handleClose()}
-                >Cancel
+                  onClick={(e) => handleClose()}
+                >
+                  Cancel
                 </Button>
               </Box>
             </Modal>
           </Grid>
         </form>
-      </Container >
+      </Container>
     </div>
-  )
+  );
 }
