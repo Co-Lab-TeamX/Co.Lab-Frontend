@@ -13,9 +13,10 @@ import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
-  const { setPosts, posts, setUser } = useContext(AppContext);
+  const { setPosts, posts, setUser, setIsAuth, } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
+
 
   useEffect(() => {
     fetch("http://localhost:4000/posts")
@@ -45,6 +46,17 @@ function ZoFeed() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
+  // Prevent losing user on refresh
+  useEffect(() => {
+    const loggedIn = window.localStorage.getItem("isLoggedIn");
+
+    if (loggedIn) {
+      const user = JSON.parse(window.localStorage.getItem("user"));
+      setIsAuth(true);
+      setUser(user);
+    }
   }, []);
 
   const navigate = useNavigate();

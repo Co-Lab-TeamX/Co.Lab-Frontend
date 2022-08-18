@@ -13,7 +13,7 @@ function App() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
   const { isAuth, setIsAuth, setUser, user } = useContext(AppContext)
   console.log(user)
-  
+
   const checkAuthenticated = async () => {
     let localToken = window.localStorage.getItem("token");
 
@@ -47,8 +47,8 @@ function App() {
         <Route path="/login" element={<NewLogin />} />
         <Route path="/feed" element={<ZoFeed />} />
         <Route path="/chats/:sender_id/:receiver_id" element={<Chats />} />
-        <Route path="/details/:post_id" element={isAuth ? <ItemsDetail /> : <NewLogin/>} />
-        <Route path="/createPost" element={<CreatePostPage user={user}/>} />
+        <Route path="/details/:post_id" element={<ItemsDetail />} />
+        <Route path="/createPost" element={<CreatePostPage user={user} />} />
       </Routes>
     </div>
   );
