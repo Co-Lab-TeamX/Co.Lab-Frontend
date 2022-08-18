@@ -17,11 +17,10 @@ import React, { useContext, useEffect, useState } from "react";
 import ImageUploading from "react-images-uploading";
 import { BiImageAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import Navbar from '../../components/navbar/Navbar'
+import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
 
 export default function CreatePostPage() {
-
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
   const { user, setPosts, posts, setIsAuth, setUser } = useContext(AppContext);
   const userId = JSON.parse(window.localStorage.getItem("user")).id; //
@@ -57,7 +56,7 @@ export default function CreatePostPage() {
       setIsAuth(true);
       setUser(user);
     } else {
-      navigate('/login')
+      navigate("/login");
     }
   }, []);
 
@@ -88,7 +87,6 @@ export default function CreatePostPage() {
   const handleSubmit2 = async (e) => {
     handleClose();
     if (trialImage === "") setTrialImage("");
-
 
     const newPostData = {
       userId,
@@ -123,18 +121,21 @@ export default function CreatePostPage() {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div>
       <Navbar />
       <Button
         className="back-to-listing"
-        onClick={e => navigate('/feed')}
-        sx={{ marginTop: 10, marginLeft: '33px' }}
+        onClick={(e) => navigate("/feed")}
+        sx={{ marginTop: 10, marginLeft: "33px" }}
       >
         &lt; Back to listings
       </Button>
       <Container>
-
         <Box className="post-page-header" sx={{ marginTop: 10 }}>
           Post Item
         </Box>
@@ -165,17 +166,6 @@ export default function CreatePostPage() {
                 sx={{ width: 1 }}
                 onChange={(e) => setDescription(e.target.value)}
               />
-            </Grid>
-
-            {/* Upload Photo Tester URL only */}
-            <Grid item xs="12">
-              <InputLabel htmlFor="photoURL">Upload Photo URL</InputLabel>
-              <TextField
-                id="photoURL"
-                required
-                onChange={(e) => setImgURL(e.target.value)}
-                sx={{ width: 1 }}
-              ></TextField>
             </Grid>
 
             {/* Upload Photo */}
