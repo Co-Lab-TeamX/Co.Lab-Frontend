@@ -3,6 +3,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
 import Pagination from "@mui/material/Pagination";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreatePost from "../../components/createPost/CreatePost";
@@ -87,10 +88,9 @@ function ZoFeed() {
           />
         )}
       </div>
-      <>
-        {/* Tester component */}
-        <CreatePost />
-      </>
+      <Box className="idk" sx={{ width: 1, display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+        <Button variant="contained" onClick={(e) => navigate("/createPost")}>Create Listing</Button>
+      </Box>
       <div className="filters">
         <button
           variant="outlined"
