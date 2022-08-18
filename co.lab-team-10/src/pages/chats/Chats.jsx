@@ -23,21 +23,41 @@ function Chats() {
     const response = await fetch(
       `http://localhost:4000/chats/${sender_id}/${receiver_id}`
     );
+    // const response = await fetch(
+    //   `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+    // );
     const data = await response.json();
     setMessages(data);
   }
+  // async function getChatData() {
+  //   const response = await fetch(
+  //     `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+  //   );
+  //   const data = await response.json();
+  //   setMessages(data);
+  // }
 
   async function getReceiverData() {
     const response = await fetch(`http://localhost:4000/users/${receiver_id}`);
     const data = await response.json();
     setReceiver(data.data[0]);
   }
+  // async function getReceiverData() {
+  //   const response = await fetch(`https://colab-free-up.herokuapp.com/users/${receiver_id}`);
+  //   const data = await response.json();
+  //   setReceiver(data.data[0]);
+  // }
 
   async function getSenderData() {
     const response = await fetch(`http://localhost:4000/users/${sender_id}`);
     const data = await response.json();
     setSender(data.data[0]);
   }
+  // async function getSenderData() {
+  //   const response = await fetch(`https://colab-free-up.herokuapp.com/users/${sender_id}`);
+  //   const data = await response.json();
+  //   setSender(data.data[0]);
+  // }
 
   useEffect(() => {
     if (!receiver_id) return;
@@ -70,6 +90,18 @@ function Chats() {
       const data = await response.json();
       setMessages([...messages, data[0]]);
     }
+    // async function postChat() {
+    //   const response = await fetch(
+    //     `https://colab-free-up.herokuapp.com/${sender_id}/${receiver_id}`,
+    //     {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify({ message_body: newMessage }),
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   setMessages([...messages, data[0]]);
+    // }
 
     postChat();
     socket.emit("chat", newMessage);
