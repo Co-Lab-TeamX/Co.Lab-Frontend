@@ -19,6 +19,7 @@ import { BiImageAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
+import Footer from "../../components/footer/Footer";
 
 export default function CreatePostPage() {
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
@@ -33,7 +34,7 @@ export default function CreatePostPage() {
   const [streetAddress, setStreetAddress] = useState("");
   const [state, setState] = useState("NY");
   const [zipCode, setZipCode] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState("1");
   const [weight, setWeight] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [imgURL, setImgURL] = useState("");
@@ -198,17 +199,23 @@ export default function CreatePostPage() {
                     isDragging,
                     dragProps,
                   }) => (
+
                     <div className="upload__image-wrapper">
-                      <Button
-                        variant="raised"
-                        component="span"
-                        className="img-upload-box"
-                        style={isDragging ? { color: "red" } : null}
-                        onClick={onImageUpload}
-                        {...dragProps}
-                      >
-                        <div className="img-upload-box">+</div>
-                      </Button>
+                      {images.length < 1 && (
+                        <Button
+                          variant="raised"
+                          component="span"
+                          className="img-upload-box"
+                          style={isDragging ? { color: "red" } : null}
+                          onClick={onImageUpload}
+                          {...dragProps}
+                        >
+
+                          <div className="img-upload-box">+</div>
+
+                        </Button>
+                      )}
+
 
                       {imageList.map((image, index) => (
                         <div key={index}>
@@ -217,7 +224,6 @@ export default function CreatePostPage() {
                             src={image.data_url}
                             alt=""
                           />
-                          <p>{image.file.name}</p>
                           <div>
                             <button
                               onClick={() => {
@@ -230,6 +236,8 @@ export default function CreatePostPage() {
                           </div>
                         </div>
                       ))}
+
+
                     </div>
                   )}
                 </ImageUploading>
@@ -375,7 +383,7 @@ export default function CreatePostPage() {
             <Grid item xs="12">
               <InputLabel htmlFor="address">Item Address</InputLabel>
               <Grid container spacing={4}>
-                <Grid item xs="5">
+                <Grid item xs="8">
                   <InputLabel htmlFor="street-address">
                     Street Address
                   </InputLabel>
@@ -386,15 +394,7 @@ export default function CreatePostPage() {
                     sx={{ width: 1 }}
                   ></TextField>
                 </Grid>
-                <Grid item xs="1">
-                  <InputLabel htmlFor="state">State</InputLabel>
-                  <TextField
-                    id="state"
-                    required
-                    onChange={(e) => setState(e.target.value)}
-                  ></TextField>
-                </Grid>
-                <Grid item xs="2">
+                <Grid item xs="4">
                   <InputLabel htmlFor="zip-code">Zip Code</InputLabel>
                   <TextField
                     id="zip-code"
@@ -411,6 +411,8 @@ export default function CreatePostPage() {
               <TextField
                 id="quantity"
                 type="number"
+
+                value={quantity}
                 InputProps={{ inputProps: { min: 1 } }}
                 onChange={(e) => setQuantity(e.target.value)}
                 style={{ width: 150 }}
@@ -429,9 +431,12 @@ export default function CreatePostPage() {
             {/* <div className="length-widith-height"></div> */}
 
             {/* Submit Button */}
-            <Grid item xs="12">
-              <Button variant="contained" type="submit">
-                submit
+            <Grid item xs="12" sx={{ display: 'flex', justifyContent: 'center', marginTop: 5, marginBottom: 7 }}>
+              <Button
+                variant="contained"
+                size='large'
+                type="submit">
+                Post Listing
               </Button>
             </Grid>
 
@@ -473,6 +478,8 @@ export default function CreatePostPage() {
           </Grid>
         </form>
       </Container>
-    </div>
+
+      <Footer />
+    </div >
   );
 }
