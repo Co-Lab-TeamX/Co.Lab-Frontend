@@ -21,9 +21,9 @@ function ItemsDetail() {
   const { user } = useContext(AppContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [showComment, setShowComment] = useState(false);
   const [singlePost, setSinglePost] = useState({});
   const { post_id } = useParams();
+
   useEffect(() => {
     if (!post_id) return;
     fetch(`http://localhost:4000/posts/${post_id}`)
@@ -84,6 +84,10 @@ function ItemsDetail() {
     document.getElementById("myBar").style.width = scrolled + "%";
   }
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   const navigate = useNavigate();
 
   return (
@@ -117,7 +121,7 @@ function ItemsDetail() {
           <Container className="item-detail-main-container">
             <Grid container className="item-detail-container">
               <Grid item xs="12" md="9" className="item-grid grid-1">
-                <img className="item-image" src={singlePost.image} />
+                <img className="item-image" src={singlePost.upload ? singlePost.upload : singlePost.image} />
                 {/* on phone sizes the display is none, tablet is block */}
                 <div className="tablet-description">
                   <h2>Description</h2>

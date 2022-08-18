@@ -25,7 +25,6 @@ export default function CreatePostPage() {
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
   const { user, setPosts, posts } = useContext(AppContext);
   const userId = JSON.parse(window.localStorage.getItem("user")).id; //
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("Brooklyn");
@@ -78,7 +77,7 @@ export default function CreatePostPage() {
     if (trialImage === "") setTrialImage("");
 
     const newPostData = {
-      userId: 1,
+      userId,
       title,
       description,
       image:
@@ -94,7 +93,6 @@ export default function CreatePostPage() {
       weight: 34,
       quantity,
     };
-    console.log(newPostData);
     try {
       const result = await fetch("http://localhost:4000/posts", {
         method: "POST",

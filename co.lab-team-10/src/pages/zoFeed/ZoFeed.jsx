@@ -13,7 +13,6 @@ import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn");
   const { setPosts, posts, setUser } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
@@ -35,10 +34,6 @@ function ZoFeed() {
       (p) => p.category === productCategory
     );
     setPosts(filteredFeed);
-  };
-
-  const handleFilter = (e) => {
-    // setFiltered(e.target);
   };
 
   // useEffect(() => {
