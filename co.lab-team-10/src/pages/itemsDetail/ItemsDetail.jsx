@@ -18,12 +18,27 @@ import warningIcon from "../../images/CircleWavyWarning.svg";
 import checkIcon from "../../images/CircleWavyCheck.svg";
 
 function ItemsDetail() {
-  const { user } = useContext(AppContext);
+  const { user, setIsAuth, setUser } = useContext(AppContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [showComment, setShowComment] = useState(false);
   const [singlePost, setSinglePost] = useState({});
   const { post_id } = useParams();
+  const navigate = useNavigate();
+
+  // Prevent losing user on refresh
+  useEffect(() => {
+    const loggedIn = window.localStorage.getItem("isLoggedIn");
+
+    if (loggedIn) {
+      const user = JSON.parse(window.localStorage.getItem("user"));
+      setIsAuth(true);
+      setUser(user);
+    }else{
+      navigate('/login')
+    }
+  }, []);
+
   useEffect(() => {
     if (!post_id) return;
     fetch(`http://localhost:4000/posts/${post_id}`)
@@ -83,8 +98,6 @@ function ItemsDetail() {
     const scrolled = (winScroll / height) * 100;
     document.getElementById("myBar").style.width = scrolled + "%";
   }
-
-  const navigate = useNavigate();
 
   return (
     <>
