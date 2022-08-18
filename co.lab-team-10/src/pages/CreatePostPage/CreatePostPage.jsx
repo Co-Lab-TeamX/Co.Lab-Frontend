@@ -113,7 +113,6 @@ export default function CreatePostPage() {
   return (
     <div>
       <Navbar />
-      <Button className="back-to-listing">Back to listing</Button>
       <Button
         className="back-to-listing"
         onClick={e => navigate('/feed')}
