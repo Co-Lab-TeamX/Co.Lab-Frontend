@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ImageUploading from "react-images-uploading";
 import { BiImageAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ import AppContext from "../../context/appContext";
 export default function CreatePostPage() {
 
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
-  const { user, setPosts, posts } = useContext(AppContext);
+  const { user, setPosts, posts, setIsAuth, setUser } = useContext(AppContext);
   const userId = JSON.parse(window.localStorage.getItem("user")).id; //
 
   const [title, setTitle] = useState("");
@@ -48,6 +48,19 @@ export default function CreatePostPage() {
   const handleClose = () => setModalOpen(false);
 
   const navigate = useNavigate();
+
+  // Prevent losing user on refresh
+  useEffect(() => {
+    const loggedIn = window.localStorage.getItem("isLoggedIn");
+
+    if (loggedIn) {
+      const user = JSON.parse(window.localStorage.getItem("user"));
+      setIsAuth(true);
+      setUser(user);
+    } else {
+      navigate('/login')
+    }
+  }, []);
 
   const style = {
     position: "absolute",
@@ -77,6 +90,7 @@ export default function CreatePostPage() {
     handleClose();
     if (trialImage === "") setTrialImage("");
 
+
     const newPostData = {
       userId: 1,
       title,
@@ -94,7 +108,7 @@ export default function CreatePostPage() {
       weight: 34,
       quantity,
     };
-    console.log(newPostData);
+   
     try {
       const result = await fetch("http://localhost:4000/posts", {
         method: "POST",
