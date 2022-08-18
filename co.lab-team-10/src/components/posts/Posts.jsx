@@ -31,7 +31,7 @@ function Posts({ post }) {
       console.log(error);
     }
   };
-console.log(posts)
+
   return (
     <Grid item xs="12" md="4" className="item-card-grid-container">
       {/* sx={{ maxWidth: 345 }} */}
