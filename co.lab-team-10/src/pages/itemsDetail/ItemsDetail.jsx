@@ -51,6 +51,18 @@ function ItemsDetail() {
       .then((response) => response.json())
       .then((data) => setComments(data.data));
   }, []);
+  // useEffect(() => {
+  //   if (!post_id) return;
+  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setSinglePost(data.data));
+  // }, [post_id]);
+
+  // useEffect(() => {
+  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
+  //     .then((response) => response.json())
+  //     .then((data) => setComments(data.data));
+  // }, []);
 
   const addComment = async (e) => {
     e.preventDefault();
