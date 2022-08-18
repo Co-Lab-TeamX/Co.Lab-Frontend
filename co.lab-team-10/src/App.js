@@ -31,7 +31,7 @@ function App() {
       const parsed = JSON.parse(us);
       setUser(parsed);
     } catch (err) {
-      console.error(err.message);
+      console.log(err)
     }
   };
 
