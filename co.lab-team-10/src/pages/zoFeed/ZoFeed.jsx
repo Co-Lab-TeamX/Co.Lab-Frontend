@@ -48,7 +48,6 @@ function ZoFeed() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
-  // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
 
@@ -147,7 +146,7 @@ function ZoFeed() {
       <div className="feed">
         <Grid container spacing={4} className="post-container">
           {posts.map((post) => (
-            <Posts key={post.id} post={post} />
+            <Posts key={post.id} post={post}/>
           ))}
         </Grid>
       </div>
