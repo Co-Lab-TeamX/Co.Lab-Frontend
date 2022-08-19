@@ -146,7 +146,7 @@ function ItemsDetail() {
           <Container className="item-detail-main-container">
             <Grid container className="item-detail-container">
               <Grid item xs="12" md="9" className="item-grid grid-1">
-                <img className="item-image" src={singlePost.upload ? singlePost.upload : singlePost.image} />
+                <img className="item-image1" src={singlePost.upload ? singlePost.upload : singlePost.image} />
                 {/* on phone sizes the display is none, tablet is block */}
                 <div className="tablet-description">
                   <h2>Description</h2>
@@ -257,6 +257,7 @@ function ItemsDetail() {
                       label="Comment..."
                       variant="standard"
                       htmlFor="comment-input"
+                      value={newComment}
                     />
                   </Box>
                   <Button

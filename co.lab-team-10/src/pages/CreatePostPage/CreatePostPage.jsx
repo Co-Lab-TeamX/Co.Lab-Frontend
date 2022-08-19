@@ -96,14 +96,14 @@ export default function CreatePostPage() {
       image:
         "https://gmedia.playstation.com/is/image/SIEPDC/ps-plus-cloud-storage-dark-icon-01-en-25sep20?$native--t$",
       upload: trialImage,
-      location: "Brooklyn",
-      condition: "new",
-      category: "Household",
-      streetAddress: "435 Banner Ave",
-      state: "NY",
-      zipCode: "11235",
+      location,
+      condition,
+      category,
+      streetAddress,
+      state,
+      zipCode,
       pickupType,
-      weight: 34,
+      weight,
       quantity,
     };
 

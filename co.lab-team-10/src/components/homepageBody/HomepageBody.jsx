@@ -1,20 +1,16 @@
+import { Grid, Rating } from "@mui/material";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import avatar1 from "../../images/avatar-1.png";
+import avatar2 from "../../images/avatar-2.png";
 import pic from "../../images/homepagePic.png";
 import instructionsImg1 from "../../images/instructions-img1.png";
 import instructionsImg2 from "../../images/instructions-img2.png";
 import instructionsImg3 from "../../images/instructions-img3.png";
-import avatar1 from "../../images/avatar-1.png";
-import avatar2 from "../../images/avatar-2.png";
 import "./homepageBody.css";
-import { Grid, Rating } from "@mui/material";
 
 function HomepageBody() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
