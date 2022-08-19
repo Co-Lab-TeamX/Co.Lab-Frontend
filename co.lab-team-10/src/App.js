@@ -12,7 +12,6 @@ import Chats from "./pages/chats/Chats"
 function App() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
   const { isAuth, setIsAuth, setUser, user } = useContext(AppContext)
-  console.log(user)
 
   const checkAuthenticated = async () => {
     let localToken = window.localStorage.getItem("token");

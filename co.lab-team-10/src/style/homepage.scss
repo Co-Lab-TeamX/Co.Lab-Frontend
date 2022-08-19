@@ -1,5 +1,5 @@
 .body-holder {
-    margin-top: 100px; //adjust when revisitng navbar
+    margin-top: 100px;
     margin-bottom: 100px;
     display: flex !important;
     flex-direction: column;
@@ -36,12 +36,12 @@
 
 .browse-items-btn {
     height: 56px;
-    width: 318px;
+    width: 250px;
     border-radius: 6px;
+    font-size: 20px !important;
 }
 
 .header-grid {
-    // border: 1px dotted darkgreen;
     margin-bottom: 40px;
 }
 
@@ -52,16 +52,14 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: center;
-    color: $primary;
+    color: #455a63;
     margin-bottom: 40px !important;
 }
 
 .instructions-grid {
-    // border: 1px solid pink;
     margin-bottom: 30px;
 
     .instructions-grid-item {
-        // border: 1px solid blue;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -89,7 +87,7 @@
     }
 
     .instructions-sub-headers {
-        color: $black;
+        color: $primary;
         font-family: "Manrope";
         font-size: 22px;
         font-weight: 600;
@@ -99,7 +97,7 @@
     }
 
     .instructions-text {
-        color: $black;
+        color: #455a63;
         font-family: "Manrope";
         font-size: 18px;
         font-weight: 600;
@@ -110,14 +108,15 @@
 }
 
 .review-text {
-    color: $primary;
+    color: #455a63;
     font-family: 'Poppins';
     font-size: 26px;
     font-weight: 700;
     line-height: 39px;
     letter-spacing: 0em;
     text-align: center;
-    margin-bottom: 40px !important;
+    margin-bottom: 60px !important;
+    margin-top: 50px !important;
 }
 
 .review-card-container {
@@ -128,6 +127,7 @@
 .review-card-1,
 .review-card-2 {
     margin-bottom: 40px !important;
+    margin-top: 40px !important;
 }
 
 .review-card {
@@ -168,18 +168,19 @@
 }
 
 .home-signup-btn-container {
+    margin-top: 40px !important;
     display: flex;
     justify-content: center;
 }
 
 .home-signup-btn {
     height: 56px;
-    width: 321px;
+    width: 250px;
     border-radius: 6px;
 
     // todo change from important
     font-family: 'Poppins'!important; 
-    font-size: 22px!important;
+    font-size: 20px!important;
     font-weight: 500!important;
     line-height: 33px!important;
 }
