@@ -33,7 +33,7 @@ export default function CreatePostPage() {
   const [streetAddress, setStreetAddress] = useState("");
   const [state, setState] = useState("NY");
   const [zipCode, setZipCode] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState("1");
   const [weight, setWeight] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [imgURL, setImgURL] = useState("");
@@ -95,14 +95,14 @@ export default function CreatePostPage() {
       image:
         "https://gmedia.playstation.com/is/image/SIEPDC/ps-plus-cloud-storage-dark-icon-01-en-25sep20?$native--t$",
       upload: trialImage,
-      location: "Brooklyn",
-      condition: "new",
-      category: "Household",
-      streetAddress: "435 Banner Ave",
-      state: "NY",
-      zipCode: "11235",
+      location,
+      condition,
+      category,
+      streetAddress,
+      state,
+      zipCode,
       pickupType,
-      weight: 34,
+      weight,
       quantity,
     };
 

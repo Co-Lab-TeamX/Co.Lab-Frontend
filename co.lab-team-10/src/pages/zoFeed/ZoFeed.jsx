@@ -78,6 +78,10 @@ function ZoFeed() {
         </Breadcrumbs>
       </div>
       <div className="item-feed-name">Item Feed</div>
+      
+      <Box className="idk" sx={{ width: 1, display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
+        <Button variant="contained" onClick={(e) => navigate("/createPost")}>Create Listing</Button>
+      </Box>
       <div className="pagination">
         {postsLength > 9 ? (
           <Pagination
@@ -95,9 +99,6 @@ function ZoFeed() {
           />
         )}
       </div>
-      <Box className="idk" sx={{ width: 1, display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
-        <Button variant="contained" onClick={(e) => navigate("/createPost")}>Create Listing</Button>
-      </Box>
       <div className="filters">
         <button
           variant="outlined"
