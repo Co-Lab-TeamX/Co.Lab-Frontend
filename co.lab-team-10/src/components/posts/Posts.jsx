@@ -14,6 +14,7 @@ import checkIcon from "../../images/CircleWavyCheck.svg";
 
 function Posts({ post }) {
   const { user, setUser, setPosts, posts } = useContext(AppContext);
+
   const navigate = useNavigate();
 
   const handleDelete = async (e) => {
@@ -49,8 +50,6 @@ function Posts({ post }) {
 
   return (
     <Grid item xs="12" md="4" className="item-card-grid-container">
-      {/* sx={{ maxWidth: 345 }} */}
-      {/* onClick={(e) => console.log(post)} */}
       <Card className="item-card">
         <div onClick={(e) => navigate(`/details/${post.id}`)}>
           <CardActionArea>

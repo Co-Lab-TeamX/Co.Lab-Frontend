@@ -31,6 +31,11 @@
   font-family: 'poppins' !important;
 }
 
+.sub-filters:hover {
+  color: white;
+  background-color: $primary;
+ font-size: 15px;
+}
 
 .pagination {
   display: flex;
@@ -68,6 +73,7 @@
   min-height: 272px;
   margin-bottom: 54px;
   padding-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 
   .card-content-1 {
     display: flex;

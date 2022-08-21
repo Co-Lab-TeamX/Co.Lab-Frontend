@@ -18,13 +18,13 @@ function ZoFeed() {
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
 
 
-  useEffect(() => {
-    fetch("http://localhost:4000/posts")
-      .then((response) => response.json())
-      .then((data) => setPosts(data.data));
-    setPostsLength(posts.length);
-    setFilteredPosts([...posts]);
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:4000/posts")
+  //     .then((response) => response.json())
+  //     .then((data) => setPosts(data.data));
+  //   setPostsLength(posts.length);
+  //   setFilteredPosts([...posts]);
+  // }, []);
 
   const filterCategory = (productCategory) => {
     if (productCategory === "Reset") {
@@ -37,18 +37,17 @@ function ZoFeed() {
     setPosts(filteredFeed);
   };
 
-  // useEffect(() => {
-  //   fetch("https://colab-free-up.herokuapp.com/posts")
-  //     .then((response) => response.json())
-  //     .then((data) => setPosts(data.data));
-  //   setPostsLength(posts.length);
-  // }, []);
+  useEffect(() => {
+    fetch("https://colab-free-up.herokuapp.com/posts")
+      .then((response) => response.json())
+      .then((data) => setPosts(data.data));
+    setPostsLength(posts.length);
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
-  // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
 
@@ -147,7 +146,7 @@ function ZoFeed() {
       <div className="feed">
         <Grid container spacing={4} className="post-container">
           {posts.map((post) => (
-            <Posts key={post.id} post={post} />
+            <Posts key={post.id} post={post}/>
           ))}
         </Grid>
       </div>
