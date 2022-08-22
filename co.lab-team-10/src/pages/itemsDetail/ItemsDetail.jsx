@@ -91,12 +91,12 @@ function ItemsDetail() {
     setNewComment("");
   };
 
-  //   useEffect(() => {
-  //     if (!post_id) return;
-  //     fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
-  //       .then((response) => response.json())
-  //       .then((data) => setSinglePost(data.data));
-  //   }, [post_id]);
+    // useEffect(() => {
+    //   if (!post_id) return;
+    //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+    //     .then((response) => response.json())
+    //     .then((data) => setSinglePost(data.data));
+    // }, [post_id]);
   window.onscroll = function () {
     myFunction();
   };
