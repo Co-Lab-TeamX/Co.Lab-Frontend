@@ -81,7 +81,7 @@ function Chats() {
 
     async function postChat() {
       const response = await fetch(
-        `http://localhost:4000/chats/${sender_id}/${receiver_id}`,
+        `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -75,7 +75,7 @@ function ItemsDetail() {
     if (newCommentData.comment_body === '') return
 
     const result = await fetch(
-      `http://localhost:4000/posts/${post_id}/comments`,
+      `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
       {
         method: "POST",
         headers: {
