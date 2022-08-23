@@ -29,20 +29,20 @@ function Register() {
       email: email,
     };
 
-    const result = await fetch("https://colab-free-up.herokuapp.com/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    });
-    // const result = await fetch("http://localhost:4000/register", {
+    // const result = await fetch("https://colab-free-up.herokuapp.com/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
     //   },
     //   body: JSON.stringify(userInfo),
     // });
+    const result = await fetch("http://localhost:4000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
     const parsed = await result.json();
     // navigate("/login", { replace: true });
     handleLogin(e)
@@ -57,32 +57,8 @@ function Register() {
       password,
     };
 
-    async function loginUser() {
-      const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
-      const data = await res.json();
-      if (!data.token) {
-        return;
-      }
-
-      window.localStorage.setItem("token", data.token);
-      window.localStorage.setItem("user", JSON.stringify(data.user));
-      window.localStorage.setItem("isLoggedIn", true)
-      setIsAuth(true)
-      setUser(data.user);
-      navigate("/feed");
-    }
-    loginUser();
-    setEmail("");
-    setPassword("");
-  };
   //   async function loginUser() {
-  //     const res = await fetch(`http://localhost:4000/login`, {
+  //     const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -105,6 +81,30 @@ function Register() {
   //   setEmail("");
   //   setPassword("");
   // };
+    async function loginUser() {
+      const res = await fetch(`http://localhost:4000/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+      const data = await res.json();
+      if (!data.token) {
+        return;
+      }
+
+      window.localStorage.setItem("token", data.token);
+      window.localStorage.setItem("user", JSON.stringify(data.user));
+      window.localStorage.setItem("isLoggedIn", true)
+      setIsAuth(true)
+      setUser(data.user);
+      navigate("/feed");
+    }
+    loginUser();
+    setEmail("");
+    setPassword("");
+  };
 
   function Copyright(props) {
     return (
