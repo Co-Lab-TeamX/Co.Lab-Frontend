@@ -39,30 +39,30 @@ function ItemsDetail() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (!post_id) return;
-  //   fetch(`http://localhost:4000/posts/${post_id}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setSinglePost(data.data));
-  // }, [post_id]);
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:4000/posts/${post_id}/comments`)
-  //     .then((response) => response.json())
-  //     .then((data) => setComments(data.data));
-  // }, []);
   useEffect(() => {
     if (!post_id) return;
-    fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+    fetch(`http://localhost:4000/posts/${post_id}`)
       .then((response) => response.json())
       .then((data) => setSinglePost(data.data));
   }, [post_id]);
 
   useEffect(() => {
-    fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
+    fetch(`http://localhost:4000/posts/${post_id}/comments`)
       .then((response) => response.json())
       .then((data) => setComments(data.data));
   }, []);
+  // useEffect(() => {
+  //   if (!post_id) return;
+  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setSinglePost(data.data));
+  // }, [post_id]);
+
+  // useEffect(() => {
+  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
+  //     .then((response) => response.json())
+  //     .then((data) => setComments(data.data));
+  // }, []);
 
   const addComment = async (e) => {
     e.preventDefault();
@@ -75,7 +75,7 @@ function ItemsDetail() {
     if (newCommentData.comment_body === '') return
 
     const result = await fetch(
-      `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
+      `http://localhost:4000/posts/${post_id}/comments`,
       {
         method: "POST",
         headers: {
@@ -84,6 +84,16 @@ function ItemsDetail() {
         body: JSON.stringify(newCommentData),
       }
     );
+    // const result = await fetch(
+    //   `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(newCommentData),
+    //   }
+    // );
     const parsed = await result.json();
     parsed.data.username = user.username;
     parsed.data.profile_pic = user.profile_pic;

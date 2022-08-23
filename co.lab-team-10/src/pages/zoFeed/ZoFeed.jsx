@@ -16,33 +16,21 @@ function ZoFeed() {
   const { setPosts, posts, setUser, setIsAuth, } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
+  const [firstFilterToggle, setFirstFilterToggle] = useState(true);
 
+  useEffect(() => {
+    fetch("http://localhost:4000/posts")
+      .then((response) => response.json())
+      .then((data) => setPosts(data.data))
+    setPostsLength(posts.length);
+  }, []);
 
   // useEffect(() => {
-  //   fetch("http://localhost:4000/posts")
+  //   fetch("https://colab-free-up.herokuapp.com/posts")
   //     .then((response) => response.json())
   //     .then((data) => setPosts(data.data));
   //   setPostsLength(posts.length);
-  //   setFilteredPosts([...posts]);
   // }, []);
-
-  const filterCategory = (productCategory) => {
-    if (productCategory === "Reset") {
-      setPosts(filteredPosts);
-      return;
-    }
-    const filteredFeed = filteredPosts.filter(
-      (p) => p.category === productCategory
-    );
-    setPosts(filteredFeed);
-  };
-
-  useEffect(() => {
-    fetch("https://colab-free-up.herokuapp.com/posts")
-      .then((response) => response.json())
-      .then((data) => setPosts(data.data));
-    setPostsLength(posts.length);
-  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -59,6 +47,29 @@ function ZoFeed() {
   }, []);
 
   const navigate = useNavigate();
+
+  const filterCategory = (productCategory) => {
+    // Page will now use the filteredPost array while keeping the original posts unchanged
+    setFirstFilterToggle(false);
+    console.log(productCategory)
+    if (productCategory === "Reset") {
+      // will make a fetch call incase the db is updated
+      fetch("http://localhost:4000/posts")
+        .then((response) => response.json())
+        .then((data) => setPosts(data.data))
+      setPostsLength(posts.length);
+      setFilteredPosts([...posts]);
+      // fetch("https://colab-free-up.herokuapp.com/posts")
+      //   .then((response) => response.json())
+      //   .then((data) => setPosts(data.data))
+      // setPostsLength(posts.length);
+      // setFilteredPosts([...posts]);
+    } else {
+      const filteredFeed = posts.filter(post => post.category === productCategory);
+      setPostsLength(filteredPosts.length);
+      setFilteredPosts(filteredFeed);
+    }
+  };
 
   return (
     <>
@@ -77,7 +88,7 @@ function ZoFeed() {
         </Breadcrumbs>
       </div>
       <div className="item-feed-name">Item Feed</div>
-      
+
       <Box className="idk" sx={{ width: 1, display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
         <Button variant="contained" onClick={(e) => navigate("/createPost")}>Create Listing</Button>
       </Box>
@@ -143,13 +154,25 @@ function ZoFeed() {
         </button>
       </div>
 
+      {/* FEED */}
       <div className="feed">
         <Grid container spacing={4} className="post-container">
-          {posts.map((post) => (
-            <Posts key={post.id} post={post}/>
-          ))}
+          {/* If no filter button is pressed use the global filter array else use the filtered array */}
+          {firstFilterToggle
+            ? (
+              posts.map((post) => (
+                <Posts key={post.id} post={post} />
+              ))
+            )
+            : (
+              filteredPosts.map((post) => (
+                <Posts key={post.id} post={post} />
+              ))
+            )
+          }
         </Grid>
       </div>
+      {/* END FEED */}
 
       <div className="pagination-bottom">
         {postsLength > 9 ? (

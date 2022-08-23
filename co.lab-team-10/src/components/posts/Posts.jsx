@@ -17,25 +17,10 @@ function Posts({ post }) {
 
   const navigate = useNavigate();
 
-  // const handleDelete = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await fetch(`http://localhost:4000/posts/${post.id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const filtered = posts.filter((p) => p.id != post.id);
-  //     setPosts(filtered);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`https://colab-free-up.herokuapp.com/posts/${post.id}`, {
+      await fetch(`http://localhost:4000/posts/${post.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -47,6 +32,21 @@ function Posts({ post }) {
       console.log(error);
     }
   };
+  // const handleDelete = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await fetch(`https://colab-free-up.herokuapp.com/posts/${post.id}`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const filtered = posts.filter((p) => p.id != post.id);
+  //     setPosts(filtered);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Grid item xs="12" md="4" className="item-card-grid-container">
