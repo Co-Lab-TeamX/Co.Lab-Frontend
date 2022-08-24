@@ -1,322 +1,318 @@
 .item-detail-main-container {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
 
 .breadcrumb-detail {
-    margin-top: 90px;
-    margin-left: 50px;
-    margin-bottom: 68px;
+  margin-top: 90px;
+  margin-left: 50px;
+  margin-bottom: 68px;
 }
 
 .breadcrumb-link {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .breadcrumb-link:hover {
-    color: #02a7a7;
+  color: #02a7a7;
 }
 
 .item-grid {
-    // width: 387px;
+  // width: 387px;
 
-    img {
-        width: 387px;
-        height: 260px;
-        margin-bottom: 22px;
-    }
+  img {
+    width: 387px;
+    height: 260px;
+    margin-bottom: 22px;
+  }
 }
 
 .item-detail-container {
-    width: 387px !important;
+  width: 387px !important;
 }
 
 .item-detail-basic-info {
-    margin-bottom: 30px !important;
+  margin-bottom: 30px !important;
 
-    h2 {
-        font-family: 'Poppins';
-        font-size: 31px;
-        font-weight: 600;
-        line-height: 46px;
-        margin-bottom: 13px;
+  h2 {
+    font-family: "Poppins";
+    font-size: 31px;
+    font-weight: 600;
+    line-height: 46px;
+    margin-bottom: 13px;
+  }
+
+  h4 {
+    font-family: "Poppins";
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 15px;
+  }
+
+  .pick-up-container {
+    display: flex;
+    align-items: center;
+
+    h3 {
+      color: $darkBlue;
+      font-family: "Manrope";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+      margin-left: 6.3px;
     }
-
-    h4 {
-        font-family: 'Poppins';
-        font-size: 17px;
-        font-weight: 400;
-        line-height: 26px;
-        margin-bottom: 15px;
-    }
-
-    .pick-up-container {
-        display: flex;
-        align-items: center;
-
-        h3 {
-            color: $darkBlue;
-            font-family: 'Manrope';
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
-            letter-spacing: 0.02em;
-            margin-left: 6.3px;
-        }
-    }
+  }
 }
 
 .item-basic-details {
-    margin-bottom: 63px;
+  margin-bottom: 63px;
 
-    h3 {
-        font-family: 'Inter';
-        font-size: 21px;
-        font-weight: 700;
-        line-height: 25px;
-        margin-bottom: 37px;
+  h3 {
+    font-family: "Inter";
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 37px;
+  }
+
+  .item-stat-container {
+    display: flex;
+    align-items: center;
+
+    .stat-icon {
+      width: 28px;
+      height: 28px;
+      margin-right: 23px;
     }
 
-    .item-stat-container {
-        display: flex;
-        align-items: center;
-
-        .stat-icon {
-            width: 28px;
-            height: 28px;
-            margin-right: 23px;
-        }
-
-        h4 {
-            font-family: 'Inter';
-            font-size: 17px;
-            font-weight: 400;
-            line-height: 21px;
-            letter-spacing: 0em;
-            text-align: left;
-        }
+    h4 {
+      font-family: "Inter";
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0em;
+      text-align: left;
     }
+  }
 
-    .middle-stat {
-        margin-top: 22px;
-        margin-bottom: 22px;
-    }
+  .middle-stat {
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
 }
 
 .tablet-description {
-    display: none;
+  display: none;
 }
 
 .item-description {
-    margin-bottom: 27px !important;
+  margin-bottom: 27px !important;
 
-    h2 {
-        font-family: 'Inter';
-        font-size: 31px;
-        font-weight: 700;
-        line-height: 37px;
-        margin-bottom: 33px;
-    }
+  h2 {
+    font-family: "Inter";
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 37px;
+    margin-bottom: 33px;
+  }
 
-    p {
-        font-family: "Inter";
-        font-size: 21px;
-        font-weight: 400;
-        line-height: 25px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
+  p {
+    font-family: "Inter";
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
 
 .item-contact {
-    margin-bottom: 38px !important;
+  margin-bottom: 38px !important;
 
-    h3 {
-        font-family: "Inter";
-        font-size: 21px;
-        font-weight: 700;
-        line-height: 25px;
-        margin-bottom: 25px;
+  h3 {
+    font-family: "Inter";
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 25px;
+  }
+
+  .avatar-container {
+    display: flex;
+    margin-bottom: 38px;
+
+    .poster-profile-pic {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      cursor: pointer;
+      margin-right: 14px;
     }
 
-    .avatar-container {
-        display: flex;
-        margin-bottom: 38px;
+    // username
 
-        .poster-profile-pic {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            cursor: pointer;
-            margin-right: 14px;
-        }
-
-        // username
-        h4 {
-            font-family: Inter;
-            font-size: 22px;
-            font-weight: 400;
-            line-height: 27px;
-            margin-bottom: 13px;
-        }
+    h4 {
+      font-family: Inter;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 27px;
+      margin-bottom: 13px;
     }
+  }
 
-    // place holder for ratings
-    h5 {
-        margin-bottom: 38px;
-    }
+  // place holder for ratings
+  h5 {
+    margin-bottom: 38px;
+  }
 
-    .message-poster-btn-container {
+  .message-poster-btn-container {
+    display: flex;
+    justify-content: center;
+    font-size: 30px !important;
+  }
 
-        display: flex;
-        justify-content: center;
-    }
-
-    .message-poster-btn {
-        width: 389px;
-        height: 48px;
-        border-radius: 5.14px;
-    }
+  .message-poster-btn {
+    width: 389px;
+    height: 48px;
+    border-radius: 5.14px;
+  }
 }
 
 .item-post-comment {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .item-comments {
-    margin-bottom: 100px !important;
+  margin-bottom: 100px !important;
 
-    h3 {
-        font-family: 'Inter';
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 29px;
-        letter-spacing: 0em;
-        text-align: left;
-        margin-bottom: 50px;
-    }
+  h3 {
+    font-family: "Inter";
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 50px;
+  }
 
-    .single-comment {
-        margin-top: 20px;
-        display: flex;
-        width: 100%;
-    }
+  .single-comment {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+  }
 
-    .comment-info {
-        margin-left: 25px;
-    }
+  .comment-info {
+    margin-left: 25px;
+  }
 
-    .comment-profile-pic {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        cursor: pointer;
-        margin-right: 30px;
-    }
+  .comment-profile-pic {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 30px;
+  }
 
-    .comment-username {
-        font-family: 'Inter';
-        font-size: 26px;
-        font-weight: 600;
-        line-height: 31px;
-        margin-bottom: 5px;
-    }
+  .comment-username {
+    font-family: "Inter";
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 31px;
+    margin-bottom: 5px;
+  }
 
-    .comment-body {
-        font-family: 'Inter';
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 24px;
-        margin-bottom: 17px;
-    }
+  .comment-body {
+    font-family: "Inter";
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 17px;
+  }
 
-    .comment-time-posted {
-        color: $grey;
-        font-family: 'Inter';
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 24px;
-    }
+  .comment-time-posted {
+    color: $grey;
+    font-family: "Inter";
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+  }
 }
 
 .grid-1 {
-    // border: 1px solid red !important;
+  // border: 1px solid red !important;
 }
 
 .grid-2 {
-    // border: 1px solid blue !important;
+  // border: 1px solid blue !important;
 }
 
 .item-image1 {
-    border-radius: 15px !important;
+  border-radius: 15px !important;
 }
-
 
 // Tablet
 @media screen and (min-width: 1024px) {
-    .item-detail-container {
-        width: 976px !important;
-        // border: 1px solid red;
+  .item-detail-container {
+    width: 976px !important;
+    // border: 1px solid red;
+  }
+
+  .item-grid {
+    img {
+      width: 690px;
+      height: 390px;
+      margin-bottom: 22px;
+    }
+  }
+
+  .tablet-description {
+    display: block;
+
+    h2 {
+      font-family: "Inter";
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 37px;
+      margin-bottom: 33px;
     }
 
-    .item-grid {
-        img {
-            width: 690px;
-            height: 390px;
-            margin-bottom: 22px;
-        }
+    p {
+      font-family: "Inter";
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 25px;
+      width: 650px;
     }
+  }
 
-    .tablet-description {
-        display: block;
+  .item-description {
+    display: none;
+  }
 
-        h2 {
-            font-family: 'Inter';
-            font-size: 31px;
-            font-weight: 700;
-            line-height: 37px;
-            margin-bottom: 33px;
-        }
+  .item-detail-basic-info {
+    margin-bottom: 67px !important;
+  }
 
-        p {
-            font-family: "Inter";
-            font-size: 21px;
-            font-weight: 400;
-            line-height: 25px;
-            width: 650px;
-        }
-    }
-
-    .item-description {
-        display: none;
-    }
-
-
-    .item-detail-basic-info {
-        margin-bottom: 67px !important;
-    }
-
-    .item-basic-details {
-        margin-bottom: 98px !important;
-    }
+  .item-basic-details {
+    margin-bottom: 98px !important;
+  }
 }
-
 
 // Laptop
 @media screen and (min-width: 1280px) {
+  .item-detail-container {
+    width: 1129px !important;
+  }
 
-    .item-detail-container {
-        width: 1129px !important;
+  .item-grid {
+    img {
+      width: 804px;
+      height: 454px;
     }
-
-    .item-grid {
-        img {
-            width: 804px;
-            height: 454px;
-        }
-    }
+  }
 }
-
