@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
 import Footer from "../../components/footer/Footer";
+import cameraIcon from "../../images/camera-icon.svg"
 
 export default function CreatePostPage() {
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
@@ -61,7 +62,7 @@ export default function CreatePostPage() {
     }
   }, []);
 
-  const style = {
+  const modalStyle = {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -72,6 +73,9 @@ export default function CreatePostPage() {
     boxShadow: 24,
     p: 4,
   };
+
+
+
   // Image upload
   const maxNumber = 69;
   const onChange = (imageList, addUpdateIndex) => {
@@ -157,34 +161,35 @@ export default function CreatePostPage() {
           <Grid container spacing={3}>
             {/* Title */}
             <Grid item xs="12">
-              <InputLabel htmlFor="title">Item Title</InputLabel>
+              <label className="form-label" htmlFor="title">Item Title</label>
               <TextField
                 id="title"
                 required
                 onChange={(e) => setTitle(e.target.value)}
-                sx={{ width: 1 }}
+                sx={{ width: 1, marginTop: 1 }}
+                placeholder="Enter title"
               ></TextField>
             </Grid>
 
             {/* Description */}
             <Grid item xs="12">
-              <InputLabel htmlFor="description">
+              <label className="form-label" htmlFor="description">
                 Item Description - Max 1000 characters
-              </InputLabel>
+              </label>
               <TextField
                 multiline
                 aria-label="item-description"
                 id="description"
                 minRows={3}
                 placeholder="Enter Item Info..."
-                sx={{ width: 1 }}
+                sx={{ width: 1, marginTop: 1 }}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Grid>
 
             {/* Upload Photo */}
             <Grid item xs="12">
-              <InputLabel htmlFor="image">Photo</InputLabel>
+              <label className="form-label" htmlFor="image">Photo</label>
               <div>
                 <ImageUploading
                   value={images}
@@ -200,19 +205,21 @@ export default function CreatePostPage() {
                     dragProps,
                   }) => (
 
-                    <div className="upload__image-wrapper">
+                    <div>
                       {images.length < 1 && (
                         <Button
                           variant="raised"
                           component="span"
-                          className="img-upload-box"
+                          className="img-upload-box-wrapper"
                           style={isDragging ? { color: "red" } : null}
                           onClick={onImageUpload}
                           {...dragProps}
                         >
 
-                          <div className="img-upload-box">+</div>
-
+                          <Box className="upload-img-box">
+                            <img src={cameraIcon} alt="" />
+                            <div className="text">Add a Photo</div>
+                          </Box>
                         </Button>
                       )}
 
@@ -226,6 +233,7 @@ export default function CreatePostPage() {
                           />
                           <div>
                             <button
+                            className="remove-button"
                               onClick={() => {
                                 onImageRemove(index);
                                 // setImageSelected(null);
@@ -236,57 +244,15 @@ export default function CreatePostPage() {
                           </div>
                         </div>
                       ))}
-
-
                     </div>
                   )}
                 </ImageUploading>
               </div>
             </Grid>
-            {/* <Grid item xs='12'>
-              <InputLabel htmlFor="image">Photo</InputLabel>
-              {!image.preview
-                ? (
-                  <>
-                    <input
-                      accept="image/*"
-                      // className={classes.input}
-                      style={{ display: 'none' }}
-                      id="image"
-                      multiple
-                      type="file"
-                      onChange={handleImageChange}
-                    />
-                    <label htmlFor="image">
-                      <Button
-                        variant="raised"
-                        component="span"
-                        className="img-upload-box"
-                        style={{ paddingLeft: 0, paddingRight: 0 }}
-                      >
-                        <div className="img-upload-box">+</div>
-                      </Button>
-                    </label>
-                  </>
-                )
-                : (
-                  <div className='uploaded-image-container'>
-                    <img src={image.preview} alt="dummy" width="820" height="412" />
-                    <Button
-                      color='error'
-                      variant="contained"
-                      onClick={handleDeletePhoto}
-                    >
-                      Delete Photo
-                    </Button>
-                  </div>
-                )
-              }
-            </Grid> */}
 
             {/* Condition */}
-            <Grid item xs="12">
-              <InputLabel id="condition-label">Condition</InputLabel>
+            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
+              <label className="form-label" id="condition-label">Condition</label>
               <Select
                 required
                 labelId="condition-label"
@@ -305,8 +271,8 @@ export default function CreatePostPage() {
 
             {/* household, sporting, tech, clothing, gaming */}
             {/* Category */}
-            <Grid item xs="12">
-              <InputLabel id="category-label">Category</InputLabel>
+            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
+              <label className="form-label" id="category-label">Category</label>
               <Select
                 required
                 labelId="category-label"
@@ -327,8 +293,8 @@ export default function CreatePostPage() {
             {/* video */}
 
             {/* Location */}
-            <Grid item xs="12">
-              <InputLabel id="location-label">Location</InputLabel>
+            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
+              <label className="form-label" id="location-label">Location</label>
               <Select
                 required
                 labelId="location-label"
@@ -346,9 +312,32 @@ export default function CreatePostPage() {
               </Select>
             </Grid>
 
+            {/* Quantity */}
+            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
+              <label className="form-label" htmlFor="quantity">Quantity</label>
+              <TextField
+                id="quantity"
+                type="number"
+
+                value={quantity}
+                InputProps={{ inputProps: { min: 1 } }}
+                onChange={(e) => setQuantity(e.target.value)}
+                style={{ width: 150 }}
+              />
+            </Grid>
+            {/* Weight */}
+            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
+              <label className="form-label" htmlFor="weight">Item Weight (lbs)</label>
+              <TextField
+                id="weight"
+                onChange={(e) => setWeight(e.target.value)}
+                style={{ width: 150 }}
+              ></TextField>
+            </Grid>
+
             {/* Pickup-type */}
             <Grid item xs="12">
-              <FormLabel id="pickup-type-label">Pickup Option</FormLabel>
+              <label className="form-label" id="pickup-type-label">Pickup Option</label>
               <RadioGroup
                 row
                 aria-labelledby="pickup-type-label"
@@ -381,7 +370,7 @@ export default function CreatePostPage() {
 
             {/* Address */}
             <Grid item xs="12">
-              <InputLabel htmlFor="address">Item Address</InputLabel>
+              <label className="form-label" htmlFor="address">Item Address</label>
               <Grid container spacing={4}>
                 <Grid item xs="8">
                   <InputLabel htmlFor="street-address">
@@ -405,29 +394,6 @@ export default function CreatePostPage() {
               </Grid>
             </Grid>
 
-            {/* Quantity */}
-            <Grid item xs="12">
-              <InputLabel htmlFor="quantity">Quantity</InputLabel>
-              <TextField
-                id="quantity"
-                type="number"
-
-                value={quantity}
-                InputProps={{ inputProps: { min: 1 } }}
-                onChange={(e) => setQuantity(e.target.value)}
-                style={{ width: 150 }}
-              />
-            </Grid>
-
-            <Grid item xs="12">
-              <InputLabel htmlFor="weight">Weight (lbs)</InputLabel>
-              <TextField
-                id="weight"
-                onChange={(e) => setWeight(e.target.value)}
-                style={{ width: 150 }}
-              ></TextField>
-            </Grid>
-
             {/* <div className="length-widith-height"></div> */}
 
             {/* Submit Button */}
@@ -447,7 +413,7 @@ export default function CreatePostPage() {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <Box sx={style}>
+              <Box sx={modalStyle}>
                 <h1>Is Your Item's Information correct?</h1>
 
                 <h3>Title: {title}</h3>
