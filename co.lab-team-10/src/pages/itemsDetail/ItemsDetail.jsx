@@ -2,7 +2,6 @@ import { Container, Grid, Rating } from "@mui/material";
 import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { DateTime } from "luxon";
@@ -14,17 +13,34 @@ import Comments from "../../components/comments/Comments";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
-import warningIcon from "../../images/CircleWavyWarning.svg";
 import checkIcon from "../../images/CircleWavyCheck.svg";
+import Modal from "@mui/material/Modal";
+import warningIcon from "../../images/CircleWavyWarning.svg";
 
 function ItemsDetail() {
   const { user, setIsAuth, setUser } = useContext(AppContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [singlePost, setSinglePost] = useState({});
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [userContacts, setUserContacts] = useState([]);
   const { post_id } = useParams();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchUserContacts();
+  }, []);
+
+  const fetchUserContacts = async () => {
+    const result = await fetch(
+      `http://localhost:4000/details/messages/${user.id}`
+    );
+    const parsed = await result.json();
+    setUserContacts(parsed);
+  };
 
   // Prevent losing user on refresh
   useEffect(() => {
@@ -34,8 +50,8 @@ function ItemsDetail() {
       const user = JSON.parse(window.localStorage.getItem("user"));
       setIsAuth(true);
       setUser(user);
-    }else{
-      navigate('/login')
+    } else {
+      navigate("/login");
     }
   }, []);
 
@@ -72,7 +88,7 @@ function ItemsDetail() {
       post_id: post_id,
     };
 
-    if (newCommentData.comment_body === '') return
+    if (newCommentData.comment_body === "") return;
 
     const result = await fetch(
       `http://localhost:4000/posts/${post_id}/comments`,
@@ -101,12 +117,12 @@ function ItemsDetail() {
     setNewComment("");
   };
 
-    // useEffect(() => {
-    //   if (!post_id) return;
-    //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
-    //     .then((response) => response.json())
-    //     .then((data) => setSinglePost(data.data));
-    // }, [post_id]);
+  // useEffect(() => {
+  //   if (!post_id) return;
+  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setSinglePost(data.data));
+  // }, [post_id]);
   window.onscroll = function () {
     myFunction();
   };
@@ -124,6 +140,17 @@ function ItemsDetail() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #02a7a7",
+    boxShadow: 24,
+  };
 
   return (
     <>
@@ -156,13 +183,14 @@ function ItemsDetail() {
           <Container className="item-detail-main-container">
             <Grid container className="item-detail-container">
               <Grid item xs="12" md="9" className="item-grid grid-1">
-                <img className="item-image1" src={singlePost.upload ? singlePost.upload : singlePost.image} />
+                <img
+                  className="item-image1"
+                  src={singlePost.upload ? singlePost.upload : singlePost.image}
+                />
                 {/* on phone sizes the display is none, tablet is block */}
                 <div className="tablet-description">
                   <h2>Description</h2>
-                  <p>
-                    {singlePost.description}
-                  </p>
+                  <p>{singlePost.description}</p>
                 </div>
               </Grid>
 
@@ -172,19 +200,17 @@ function ItemsDetail() {
                   {/* { singlePost.location }  */}
                   <h4>{singlePost.location} NY</h4>
                   <div className="pick-up-container">
-                    {singlePost.pickup_type === 'drop-off'
-                      ? (
-                        <>
-                          <img src={warningIcon} alt="warning-icon" />
-                          <h3>Immediate Pickup</h3>
-                        </>
-                      )
-                      : (
-                        <>
-                          <img src={checkIcon} alt="check-icon" />
-                          <h3>Schedule Pickup</h3>
-                        </>
-                      )}
+                    {singlePost.pickup_type === "drop-off" ? (
+                      <>
+                        <img src={warningIcon} alt="warning-icon" />
+                        <h3>Immediate Pickup</h3>
+                      </>
+                    ) : (
+                      <>
+                        <img src={checkIcon} alt="check-icon" />
+                        <h3>Schedule Pickup</h3>
+                      </>
+                    )}
                   </div>
                 </Grid>
 
@@ -214,15 +240,6 @@ function ItemsDetail() {
                 </Grid>
 
                 {/* on phone sizes the display is block, tablet is none */}
-                <Grid item xs="12" className="item-description">
-                  <h2>Description</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Officiis illum deleniti provident minima reiciendis quidem
-                    omnis optio distinctio quaerat accusantium?
-                  </p>
-                </Grid>
-
                 <Grid item xs="12" className="item-contact">
                   <h3>Posted by</h3>
                   <div className="avatar-container">
@@ -240,18 +257,67 @@ function ItemsDetail() {
                     </div>
                   </div>
                   <div className="message-poster-btn-container">
-                    <Button
-                      variant="contained"
-                      className="message-poster-btn"
-                      size="small"
-                    >
-                      <MenuItem
-                        className="message-poster-text"
-                        onClick={(e) => navigate(`/chats/${singlePost.user_id}/${user.id}`)}
+                    {user.id === singlePost.user_id ? (
+                      <>
+                        <Modal
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                        >
+                          <Box sx={style}>
+                          <div className="holder-view-messages">
+        <div className="grid-item-view-messages">
+          <div className="top-portion-view-messages">
+            <div className="view-messages-text">Messages</div>
+          </div>
+          <div className="horizontal-row"></div>
+          <div className="chat-box">
+            {userContacts.map((contact) => (
+              <>
+                <div
+                  className="each-contact-view-message"
+                  onClick={(e) => navigate(`/chats/${contact.id}/${user.id}`)}
+                >
+                  <img
+                    className="contact-profile-pic-messages"
+                    src={contact.profile_pic}
+                  />
+                  <div className="contact-username-messages">
+                    {contact.username}
+                  </div>
+                </div>
+                <div className="horizontal-row"></div>
+              </>
+            ))}
+            <div className="entire-message"></div>
+          </div>
+        </div>
+      </div>
+                          </Box>
+                        </Modal>
+                        <Button
+                          variant="contained"
+                          className="message-poster-btn"
+                          // onClick={(e) =>
+                          //   navigate(`/details/messages/${user.id}`)
+                          // }
+                          onClick={handleOpen}
+                        >
+                          View Messages
+                        </Button>
+                      </>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        className="message-poster-btn"
+                        onClick={(e) =>
+                          navigate(`/chats/${singlePost.user_id}/${user.id}`)
+                        }
                       >
                         Message Poster
-                      </MenuItem>
-                    </Button>
+                      </Button>
+                    )}
                   </div>
                 </Grid>
               </Grid>
@@ -282,7 +348,14 @@ function ItemsDetail() {
               </Grid>
 
               <Grid item xs="12" className="item-comments">
-                <h3 className="recent-comments-text">Recent Comments</h3>
+                {comments.length === 0 ? (
+                  <h3 className="recent-comments-text">
+                    Be the first to comment!
+                  </h3>
+                ) : (
+                  <h3 className="recent-comments-text">Recent Comments</h3>
+                )}
+                {/* <h3 className="recent-comments-text">Recent Comments</h3> */}
                 <div className="details-comment">
                   {comments &&
                     comments.map((comment) => (
