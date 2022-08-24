@@ -8,6 +8,7 @@ import NewLogin from "./pages/login/NewLogin";
 import Register from "./pages/register/Register";
 import ZoFeed from "./pages/zoFeed/ZoFeed";
 import Chats from "./pages/chats/Chats"
+import ViewMessages from "./pages/viewMessages/ViewMessages";
 
 function App() {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
@@ -54,6 +55,7 @@ function App() {
         <Route path="/feed" element={<ZoFeed />} />
         <Route path="/chats/:sender_id/:receiver_id" element={<Chats />} />
         <Route path="/details/:post_id" element={<ItemsDetail />} />
+        <Route path="/details/messages/:user_id" element={<ViewMessages />} />
         <Route path="/createPost" element={<CreatePostPage user={user} />} />
       </Routes>
     </div>
