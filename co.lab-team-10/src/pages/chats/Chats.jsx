@@ -9,8 +9,8 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import "./chats.css";
 
-// const socket = io.connect("http://localhost:4000");
-const socket = io.connect("https://colab-free-up.herokuapp.com");
+const socket = io.connect("http://localhost:4000");
+// const socket = io.connect("https://colab-free-up.herokuapp.com");
 
 function Chats() {
   const { sender_id, receiver_id } = useParams();
@@ -20,45 +20,45 @@ function Chats() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
-  // async function getChatData() {
-  //   const response = await fetch(
-  //     `http://localhost:4000/chats/${sender_id}/${receiver_id}`
-  //   );
-  //   // const response = await fetch(
-  //   //   `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
-  //   // );
-  //   const data = await response.json();
-  //   setMessages(data);
-  // }
   async function getChatData() {
     const response = await fetch(
-      `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+      `http://localhost:4000/chats/${sender_id}/${receiver_id}`
     );
+    // const response = await fetch(
+    //   `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+    // );
     const data = await response.json();
     setMessages(data);
   }
-
-  // async function getReceiverData() {
-  //   const response = await fetch(`http://localhost:4000/users/${receiver_id}`);
+  // async function getChatData() {
+  //   const response = await fetch(
+  //     `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+  //   );
   //   const data = await response.json();
-  //   setReceiver(data.data[0]);
+  //   setMessages(data);
   // }
+
   async function getReceiverData() {
-    const response = await fetch(`https://colab-free-up.herokuapp.com/users/${receiver_id}`);
+    const response = await fetch(`http://localhost:4000/users/${receiver_id}`);
     const data = await response.json();
     setReceiver(data.data[0]);
   }
-
-  // async function getSenderData() {
-  //   const response = await fetch(`http://localhost:4000/users/${sender_id}`);
+  // async function getReceiverData() {
+  //   const response = await fetch(`https://colab-free-up.herokuapp.com/users/${receiver_id}`);
   //   const data = await response.json();
-  //   setSender(data.data[0]);
+  //   setReceiver(data.data[0]);
   // }
+
   async function getSenderData() {
-    const response = await fetch(`https://colab-free-up.herokuapp.com/users/${sender_id}`);
+    const response = await fetch(`http://localhost:4000/users/${sender_id}`);
     const data = await response.json();
     setSender(data.data[0]);
   }
+  // async function getSenderData() {
+  //   const response = await fetch(`https://colab-free-up.herokuapp.com/users/${sender_id}`);
+  //   const data = await response.json();
+  //   setSender(data.data[0]);
+  // }
 
   useEffect(() => {
     if (!receiver_id) return;
@@ -81,7 +81,7 @@ function Chats() {
 
     async function postChat() {
       const response = await fetch(
-        `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`,
+        `http://localhost:4000/chats/${sender_id}/${receiver_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -93,7 +93,7 @@ function Chats() {
     }
     // async function postChat() {
     //   const response = await fetch(
-    //     `https://colab-free-up.herokuapp.com/${sender_id}/${receiver_id}`,
+    //     `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`,
     //     {
     //       method: "POST",
     //       headers: { "Content-Type": "application/json" },
@@ -108,7 +108,7 @@ function Chats() {
     socket.emit("chat", newMessage);
     setNewMessage("");
   }
-  
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
