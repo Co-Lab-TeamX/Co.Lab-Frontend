@@ -266,34 +266,40 @@ function ItemsDetail() {
                           aria-describedby="modal-modal-description"
                         >
                           <Box sx={style}>
-                          <div className="holder-view-messages">
-        <div className="grid-item-view-messages">
-          <div className="top-portion-view-messages">
-            <div className="view-messages-text">Messages</div>
-          </div>
-          <div className="horizontal-row"></div>
-          <div className="chat-box">
-            {userContacts.map((contact) => (
-              <>
-                <div
-                  className="each-contact-view-message"
-                  onClick={(e) => navigate(`/chats/${contact.id}/${user.id}`)}
-                >
-                  <img
-                    className="contact-profile-pic-messages"
-                    src={contact.profile_pic}
-                  />
-                  <div className="contact-username-messages">
-                    {contact.username}
-                  </div>
-                </div>
-                <div className="horizontal-row"></div>
-              </>
-            ))}
-            <div className="entire-message"></div>
-          </div>
-        </div>
-      </div>
+                            <div className="holder-view-messages">
+                              <div className="grid-item-view-messages">
+                                <div className="top-portion-view-messages">
+                                  <div className="view-messages-text">
+                                    Messages
+                                  </div>
+                                </div>
+                                <div className="horizontal-row"></div>
+                                <div className="chat-box">
+                                  {userContacts.map((contact) => (
+                                    <>
+                                      <div
+                                        className="each-contact-view-message"
+                                        onClick={(e) =>
+                                          navigate(
+                                            `/chats/${contact.id}/${user.id}`
+                                          )
+                                        }
+                                      >
+                                        <img
+                                          className="contact-profile-pic-messages"
+                                          src={contact.profile_pic}
+                                        />
+                                        <div className="contact-username-messages">
+                                          {contact.username}
+                                        </div>
+                                      </div>
+                                      <div className="horizontal-row"></div>
+                                    </>
+                                  ))}
+                                  <div className="entire-message"></div>
+                                </div>
+                              </div>
+                            </div>
                           </Box>
                         </Modal>
                         <Button
@@ -315,7 +321,7 @@ function ItemsDetail() {
                           navigate(`/chats/${singlePost.user_id}/${user.id}`)
                         }
                       >
-                        Message Poster
+                        Message {singlePost.username}
                       </Button>
                     )}
                   </div>
