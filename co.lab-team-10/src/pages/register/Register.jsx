@@ -20,90 +20,129 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isValidUsername, setIsValidUsername] = useState(true);
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+
+  // regex
+  const regexUsername = /^[a-zA-Z\-0-9]{3,}$/;
+  const regexEmail = /[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,3}/;
+  const regexPassword = /^[\d\w\s!@#$%^&* ()_ +\-=\[\]{ };':"\\|,.<>\/?]{6,}$/;
+
+  const validateUsername = () => {
+    const isValidated = regexUsername.test(username);
+    setIsValidUsername(isValidated);
+    return isValidated;
+  }
+
+  const validateEmail = () => {
+    const isValidated = regexEmail.test(email);
+    setIsValidEmail(isValidated);
+    return isValidated;
+  }
+
+  const validatePassword = () => {
+    const isValidated = regexPassword.test(password);
+    setIsValidPassword(isValidated);
+    return isValidated;
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const userInfo = {
-      username: username,
-      password: password,
-      email: email,
-    };
+    if (!validateEmail() || !validateUsername() || !validatePassword()) {
+      console.log("Enter in all fields")
+    } else {
+      const userInfo = {
+        username: username,
+        password: password,
+        email: email,
+      };
 
-    // const result = await fetch("https://colab-free-up.herokuapp.com/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(userInfo),
-    // });
-    const result = await fetch("http://localhost:4000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    });
-    const parsed = await result.json();
-    // navigate("/login", { replace: true });
-    handleLogin(e)
-    navigate("/feed", { replace: true });
+      // const result = await fetch("https://colab-free-up.herokuapp.com/register", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(userInfo),
+      // });
 
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const loginData = {
-      email,
-      password,
-    };
-
-  //   async function loginUser() {
-  //     const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(loginData),
-  //     });
-  //     const data = await res.json();
-  //     if (!data.token) {
-  //       return;
-  //     }
-
-  //     window.localStorage.setItem("token", data.token);
-  //     window.localStorage.setItem("user", JSON.stringify(data.user));
-  //     window.localStorage.setItem("isLoggedIn", true)
-  //     setIsAuth(true)
-  //     setUser(data.user);
-  //     navigate("/feed");
-  //   }
-  //   loginUser();
-  //   setEmail("");
-  //   setPassword("");
-  // };
-    async function loginUser() {
-      const res = await fetch(`http://localhost:4000/login`, {
+      const result = await fetch("http://localhost:4000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginData),
+        body: JSON.stringify(userInfo),
       });
-      const data = await res.json();
-      if (!data.token) {
-        return;
+      const parsed = await result.json();
+
+      if (parsed.message) {
+        setErrorMessage(parsed.message);
       }
 
-      window.localStorage.setItem("token", data.token);
-      window.localStorage.setItem("user", JSON.stringify(data.user));
-      window.localStorage.setItem("isLoggedIn", true)
-      setIsAuth(true)
-      setUser(data.user);
-      navigate("/feed");
-    }
-    loginUser();
-    setEmail("");
-    setPassword("");
+      const handleLogin = (e) => {
+        e.preventDefault();
+        const loginData = {
+          email,
+          password,
+        };
+
+        //   async function loginUser() {
+        //     const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+        //       method: "POST",
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //       },
+        //       body: JSON.stringify(loginData),
+        //     });
+        //     const data = await res.json();
+        //     if (!data.token) {
+        //       return;
+        //     }
+
+        //     window.localStorage.setItem("token", data.token);
+        //     window.localStorage.setItem("user", JSON.stringify(data.user));
+        //     window.localStorage.setItem("isLoggedIn", true)
+        //     setIsAuth(true)
+        //     setUser(data.user);
+        //     navigate("/feed");
+        //   }
+        //   loginUser();
+        //   setEmail("");
+        //   setPassword("");
+        // };
+        async function loginUser() {
+          const res = await fetch(`http://localhost:4000/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+          });
+          const data = await res.json();
+          if (!data.token) {
+            return;
+          }
+
+          window.localStorage.setItem("token", data.token);
+          window.localStorage.setItem("user", JSON.stringify(data.user));
+          window.localStorage.setItem("isLoggedIn", true)
+          setIsAuth(true)
+          setUser(data.user);
+          // navigate("/feed");
+        }
+
+        loginUser();
+        setEmail("");
+        setPassword("");
+      }
+
+      // navigate("/login", { replace: true });
+      handleLogin(e)
+      navigate("/feed", { replace: true });
+
+
+    };
   };
 
   function Copyright(props) {
@@ -181,8 +220,11 @@ function Register() {
                     name="firstName"
                     required
                     fullWidth
-                    label="User Name"
+                    label="Username"
                     autoFocus
+                    onBlur={(e) => validateUsername(e)}
+                    error={!isValidUsername}
+                    helperText={!isValidUsername && "Usernames must be alphanumeric and longer than 3 characters."}
                   />
                 </Grid>
                 <Grid item xs={12} onChange={(e) => setEmail(e.target.value)}>
@@ -193,6 +235,9 @@ function Register() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    onBlur={(e) => validateEmail(e)}
+                    error={!isValidEmail}
+                    helperText={!isValidEmail && "Please enter a valid email."}
                   />
                 </Grid>
                 <Grid item xs={12} onChange={(e) => setPassword(e.target.value)}>
@@ -204,9 +249,19 @@ function Register() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    onBlur={(e) => validatePassword(e)}
+                    error={!isValidPassword}
+                    helperText={!isValidPassword && "Passwords must be longer than 6 characters."}
                   />
                 </Grid>
               </Grid>
+
+              {/* Error Message */}
+              {errorMessage && (
+                <Grid item xs={12} sx={{ marginTop: 1, color: 'red' }}>
+                  {errorMessage}
+                </Grid>
+              )}
               <Button
                 className="sign-in-btn"
                 type="submit"
