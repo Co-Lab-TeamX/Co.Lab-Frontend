@@ -34,7 +34,7 @@
 .sub-filters:hover {
   color: white;
   background-color: $primary;
- font-size: 15px;
+  font-size: 15px;
 }
 
 .pagination {
@@ -51,6 +51,7 @@
 }
 
 .post-container {
+  z-index: -1;
   display: flex;
   justify-content: space-between;
   width: 320px !important;
