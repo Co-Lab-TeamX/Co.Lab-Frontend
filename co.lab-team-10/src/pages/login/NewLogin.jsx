@@ -22,9 +22,15 @@ function NewLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleLogin = (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      setErrorMessage("Please enter login information.")
+      return;
+    }
+
     const loginData = {
       email,
       password,
@@ -39,24 +45,26 @@ function NewLogin() {
         body: JSON.stringify(loginData),
       });
       const data = await res.json();
+
       if (!data.token) {
+        setErrorMessage(data.message);
         setIsAuth(false);
         return;
       }
 
-    // async function loginUser() {
-    //   const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(loginData),
-    //   });
-    //   const data = await res.json();
-    //   if (!data.token) {
-    //     setIsAuth(false);
-    //     return;
-    //   }
+      // async function loginUser() {
+      //   const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(loginData),
+      //   });
+      //   const data = await res.json();
+      //   if (!data.token) {
+      //     setIsAuth(false);
+      //     return;
+      //   }
 
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem("user", JSON.stringify(data.user));
@@ -192,6 +200,14 @@ function NewLogin() {
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
                 />
+
+                {/* Error Message */}
+                {errorMessage && (
+                  <Box sx={{ marginTop: 1, color: 'red' }}>
+                    {errorMessage}
+                  </Box>
+                )}
+
                 <Button
                   className="sign-in-btn"
                   type="submit"
