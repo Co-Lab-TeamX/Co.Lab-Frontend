@@ -5,6 +5,7 @@
   padding-right: 30px;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 .header {
@@ -25,6 +26,7 @@
 }
 
 .progress-bar {
+  z-index: 1;
   height: 5px;
   background: #02a7a7;
   width: 0%;

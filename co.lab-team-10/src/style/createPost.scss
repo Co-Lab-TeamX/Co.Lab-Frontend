@@ -63,16 +63,83 @@
     margin-bottom: 10px;
 }
 
+.post-modal {
+    width: 300px;
+}
+
+.modal-details-box {
+    height: 100px;
+    margin-left: 15px;
+}
+
+.modal-title {
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    justify-content: start;
+}
+
+.modal-pickup-container {
+    display: flex;
+    align-items: center;
+
+    h3 {
+        color: $darkBlue;
+        font-family: "Manrope";
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+        margin-left: 6.3px;
+    }
+}
+
+.modal-image {
+    border-radius: 12px;
+    height: 100px;
+    width: 100px !important;
+}
+
+.modal-button-container {
+    margin-top: 40px;
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+    // border: 1px solid red;
+}
+
 // Tablet
 @media screen and (min-width: 500px) {
     .uploaded-img {
         width: 450px
     }
-}
 
+    .post-modal {
+        width: 400px;
+    }
+
+    .modal-image {
+        height: 150px;
+        width: 150px !important;
+    }
+
+    .modal-details-box {
+        height: 150px;
+    }
+}
 
 @media screen and (min-width: 700px) {
     .uploaded-img {
         width: 600px
+    }
+
+    .post-modal {
+        width: 600px;
+    }
+
+    .modal-image {
+        height: 200px;
+        width: 200px !important;
     }
 }

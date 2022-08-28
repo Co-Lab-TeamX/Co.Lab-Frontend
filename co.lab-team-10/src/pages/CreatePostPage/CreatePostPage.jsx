@@ -1,5 +1,7 @@
 import {
   Button,
+  Card,
+  CardMedia,
   FormControlLabel,
   FormLabel,
   Grid,
@@ -20,7 +22,10 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
 import Footer from "../../components/footer/Footer";
-import cameraIcon from "../../images/camera-icon.svg"
+import cameraIcon from "../../images/camera-icon.svg";
+import warningIcon from "../../images/CircleWavyWarning.svg";
+import checkIcon from "../../images/CircleWavyCheck.svg";
+import locationIcon from "../../images/location-icon.svg";
 
 export default function CreatePostPage() {
   // only getting a user when a new person signs up, using local storage for now until we can solve that problem
@@ -67,9 +72,8 @@ export default function CreatePostPage() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "auto",
     bgcolor: "#fff",
-    border: "2px solid #000",
+    borderRadius: '15px',
     boxShadow: 24,
     p: 4,
   };
@@ -97,8 +101,8 @@ export default function CreatePostPage() {
       userId,
       title,
       description,
-      image:
-        "https://gmedia.playstation.com/is/image/SIEPDC/ps-plus-cloud-storage-dark-icon-01-en-25sep20?$native--t$",
+      // image:
+      //   "https://gmedia.playstation.com/is/image/SIEPDC/ps-plus-cloud-storage-dark-icon-01-en-25sep20?$native--t$",
       upload: trialImage,
       location,
       condition,
@@ -143,6 +147,7 @@ export default function CreatePostPage() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
+
   return (
     <div>
       <Navbar />
@@ -158,7 +163,7 @@ export default function CreatePostPage() {
           Post Item
         </Box>
         <form onSubmit={handleSubmit1}>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} sx={{ zIndex: 0 }}>
             {/* Title */}
             <Grid item xs="12">
               <label className="form-label" htmlFor="title">Item Title</label>
@@ -188,7 +193,8 @@ export default function CreatePostPage() {
             </Grid>
 
             {/* Upload Photo */}
-            <Grid item xs="12">
+            {/* //TODO change z index progress bar is gone.  */}
+            <Grid item xs="12" sx={{ zIndex: 0 }}>
               <label className="form-label" htmlFor="image">Photo</label>
               <div>
                 <ImageUploading
@@ -196,6 +202,7 @@ export default function CreatePostPage() {
                   onChange={onChange}
                   maxNumber={maxNumber}
                   dataURLKey="data_url"
+
                 >
                   {({
                     imageList,
@@ -217,7 +224,7 @@ export default function CreatePostPage() {
                         >
 
                           <Box className="upload-img-box">
-                            <img src={cameraIcon} alt="" />
+                            <img src={cameraIcon} alt="camera-icon" />
                             <div className="text">Add a Photo</div>
                           </Box>
                         </Button>
@@ -233,7 +240,7 @@ export default function CreatePostPage() {
                           />
                           <div>
                             <button
-                            className="remove-button"
+                              className="remove-button"
                               onClick={() => {
                                 onImageRemove(index);
                                 // setImageSelected(null);
@@ -413,18 +420,86 @@ export default function CreatePostPage() {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <Box sx={modalStyle}>
-                <h1>Is Your Item's Information correct?</h1>
+              <Box sx={modalStyle} className='post-modal'>
+
+                {/* {post.pickup_type === 'drop-off'
+                  ? (
+                    <>
+                      <img src={warningIcon} alt="warning-icon" />
+                      <h3>Immediate Pickup</h3>
+                    </>
+                  )
+                  : (
+                    <>
+                      <img src={checkIcon} alt="check-icon" />
+                      <h3>Schedule Pickup</h3>
+                    </>
+                  )} */}
+
+                <Box sx={{ display: "flex" }}>
+                  {images.length >= 1 && (
+                    <CardMedia
+                      className="modal-image"
+                      component="img"
+                      image={images[0].data_url}
+                      alt="Thumbnail"
+                    />
+                  )}
+                  <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} className='modal-details-box'>
+                    <div className="modal-title">{title}</div>
+                    <div className="modal-pickup-container">
+                      {pickupType === 'drop-off'
+                        ? (
+                          <>
+                            <img src={warningIcon} alt="warning-icon" />
+                            <h3>Immediate Pickup</h3>
+                          </>
+                        ) :
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      }
+                    </div>
+                    <div className="modal-pickup-container">
+                      <img src={locationIcon} alt="location-icon" />
+                      <h3>{streetAddress}, {location} NY</h3>
+                    </div>
+
+                  </Box>
+                </Box>
+
+                <Box className='modal-button-container'>
+                  <Button
+                    color="primary"
+                    variant="outlined"
+                    size='large'
+                    onClick={(e) => handleClose()}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    size='large'
+                    onClick={(e) => handleSubmit2(e)}
+                  >
+                    Publish
+                  </Button>
+                </Box>
+
+
+                {/* <h1>Is Your Item's Information correct?</h1>
 
                 <h3>Title: {title}</h3>
                 <h3>description: {description}</h3>
-                {/* <h3>{title}</h3> image */}
+             
                 {streetAddress && <h3>Address: {streetAddress}</h3>}
                 <h3>Pickup Type: {pickupType}</h3>
                 {weight && <h3>Weight: {weight}</h3>}
-                {quantity && <h3>Quantity: {quantity}</h3>}
+                {quantity && <h3>Quantity: {quantity}</h3>} */}
 
-                <Button
+                {/* <Button
                   color="primary"
                   variant="contained"
                   onClick={(e) => handleSubmit2(e)}
@@ -438,7 +513,7 @@ export default function CreatePostPage() {
                   onClick={(e) => handleClose()}
                 >
                   Cancel
-                </Button>
+                </Button> */}
               </Box>
             </Modal>
           </Grid>
