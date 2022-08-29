@@ -39,19 +39,9 @@ function ItemsDetail() {
       `http://localhost:4000/details/${post_id}/${user.id}`
     );
     const parsed = await result.json();
-    console.log(parsed);
-    // setUserContacts(parsed);
-      
-    // for (let contact of userContacts) {
-    //   if (contact.id in contacts) {
-
-    //   } else {
-    //     contacts[]
-    //   }
-    // }
+    setUserContacts(parsed);
   };
 
-// console.log(contacts)
   // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
