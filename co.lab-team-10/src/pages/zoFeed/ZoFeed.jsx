@@ -18,19 +18,19 @@ function ZoFeed() {
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
   const [firstFilterToggle, setFirstFilterToggle] = useState(true);
 
-  useEffect(() => {
-    fetch("http://localhost:4000/posts")
-      .then((response) => response.json())
-      .then((data) => setPosts(data.data))
-    setPostsLength(posts.length);
-  }, []);
-
   // useEffect(() => {
-  //   fetch("https://colab-free-up.herokuapp.com/posts")
+  //   fetch("http://localhost:4000/posts")
   //     .then((response) => response.json())
-  //     .then((data) => setPosts(data.data));
+  //     .then((data) => setPosts(data.data))
   //   setPostsLength(posts.length);
   // }, []);
+
+  useEffect(() => {
+    fetch("https://colab-free-up.herokuapp.com/posts")
+      .then((response) => response.json())
+      .then((data) => setPosts(data.data));
+    setPostsLength(posts.length);
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -54,16 +54,16 @@ function ZoFeed() {
     console.log(productCategory)
     if (productCategory === "Reset") {
       // will make a fetch call incase the db is updated
-      fetch("http://localhost:4000/posts")
-        .then((response) => response.json())
-        .then((data) => setPosts(data.data))
-      setPostsLength(posts.length);
-      setFilteredPosts([...posts]);
-      // fetch("https://colab-free-up.herokuapp.com/posts")
+      // fetch("http://localhost:4000/posts")
       //   .then((response) => response.json())
       //   .then((data) => setPosts(data.data))
       // setPostsLength(posts.length);
       // setFilteredPosts([...posts]);
+      fetch("https://colab-free-up.herokuapp.com/posts")
+        .then((response) => response.json())
+        .then((data) => setPosts(data.data))
+      setPostsLength(posts.length);
+      setFilteredPosts([...posts]);
     } else {
       const filteredFeed = posts.filter(post => post.category === productCategory);
       setPostsLength(filteredPosts.length);

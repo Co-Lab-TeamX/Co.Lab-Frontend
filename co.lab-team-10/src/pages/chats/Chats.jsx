@@ -12,8 +12,8 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import "./chats.css";
 
-const socket = io.connect("http://localhost:4000");
-// const socket = io.connect("https://colab-free-up.herokuapp.com");
+// const socket = io.connect("http://localhost:4000");
+const socket = io.connect("https://colab-free-up.herokuapp.com");
 
 function Chats() {
   const { sender_id, receiver_id, post_id } = useParams();

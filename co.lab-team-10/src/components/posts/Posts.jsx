@@ -20,7 +20,8 @@ function Posts({ post }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:4000/posts/${post.id}`, {
+      // await fetch(`http://localhost:4000/posts/${post.id}`, {
+      await fetch(`https://colab-free-up.herokuapp.com/posts/${post.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
