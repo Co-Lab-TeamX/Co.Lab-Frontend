@@ -53,7 +53,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<NewLogin />} />
         <Route path="/feed" element={<ZoFeed />} />
-        <Route path="/chats/:sender_id/:receiver_id" element={<Chats />} />
+        <Route path="/chats/:post_id/:sender_id/:receiver_id" element={<Chats />} />
         <Route path="/details/:post_id" element={<ItemsDetail />} />
         <Route path="/details/messages/:user_id" element={<ViewMessages />} />
         <Route path="/createPost" element={<CreatePostPage user={user} />} />
