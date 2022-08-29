@@ -40,7 +40,7 @@ function ItemsDetail() {
     );
     const parsed = await result.json();
     console.log(parsed);
-    setUserContacts(parsed);
+    // setUserContacts(parsed);
       
     // for (let contact of userContacts) {
     //   if (contact.id in contacts) {
@@ -51,7 +51,7 @@ function ItemsDetail() {
     // }
   };
 
-console.log(contacts)
+// console.log(contacts)
   // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
