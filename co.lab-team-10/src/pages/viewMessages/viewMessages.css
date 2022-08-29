@@ -3,20 +3,22 @@
   color: #455a64;
 }
 
+.chat-box {
+  height: 460px; 
+  overflow-y: auto;
+}
+
 .holder-view-messages {
-  display: flex;
-  justify-content: center;
   margin-bottom: 2px;
   height: 64vh;
 }
 
 .grid-item-view-messages {
-  background-color: #f5f5f5;
-  border: 1px solid rgba(221, 221, 221, 0.8);
-  height: 422px;
   width: 100%;
-  font-size: 30px;
-  border-radius: 15px;
+}
+
+.lastMessage {
+  font-size: 15px;
 }
 
 .top-portion-view-messages {
@@ -41,8 +43,6 @@
   color: #02a7a7;
 }
 
-
-
 .contact-profile-pic-messages {
   width: 30px;
   height: 30px;
@@ -59,4 +59,80 @@
 .contact-username-messages:hover {
   font-size: 20px;
   color: #02a7a7;
+}
+
+.horizontal-row-messages {
+  margin-top: 10px;
+  width: 100%;
+  height: 5px;
+  background-color: red;
+}
+
+.message-grid-holder:hover {
+  color: #02a7a7;
+}
+
+.message-grid-holder {
+  padding-top: 10px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+
+.message-grid-holder {
+  margin: 0 auto;
+  max-width: 90%;
+  padding-left: 1em;
+  padding-right: 1em;
+  justify-content: center;
+}
+
+.user-profile-pic-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-side-messages-holder {
+  padding-top: 10px;
+  width: 100%;
+}
+
+.contact-profile-pic-messages {
+  height: 70px;
+  width: 70px;
+}
+
+.top-portion-messages {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.top-left-username {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.last-sent-message-body {
+  color: #263238;
+}
+
+.last-sent-message-time {
+  font-size: 12px;
+}
+
+.last-sent-message-holder {
+  display: flex;
+  padding-left: 15px;
+}
+
+.horizontal-divider-messages {
+  margin-top: 20px;
+  height: 2px;
+  margin-left: 15px !important;
+  margin-right: 15px;
+  background-color: #a6a6a6;
 }

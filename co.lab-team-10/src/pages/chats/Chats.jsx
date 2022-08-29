@@ -16,8 +16,7 @@ const socket = io.connect("http://localhost:4000");
 // const socket = io.connect("https://colab-free-up.herokuapp.com");
 
 function Chats() {
-  const { sender_id, receiver_id } = useParams();
-  // receiver_id -> user
+  const { sender_id, receiver_id, post_id } = useParams();
   const [receiver, setReceiver] = useState({});
   const [sender, setSender] = useState({});
   const [messages, setMessages] = useState([]);
@@ -43,17 +42,17 @@ function Chats() {
 
   async function getChatData() {
     const response = await fetch(
-      `http://localhost:4000/chats/${sender_id}/${receiver_id}`
+      `http://localhost:4000/chats/${post_id}/${sender_id}/${receiver_id}`
     );
     // const response = await fetch(
-    //   `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+    //   `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`
     // );
     const data = await response.json();
     setMessages(data);
   }
   // async function getChatData() {
   //   const response = await fetch(
-  //     `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`
+  //     `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`
   //   );
   //   const data = await response.json();
   //   setMessages(data);
@@ -102,7 +101,7 @@ function Chats() {
 
     async function postChat() {
       const response = await fetch(
-        `http://localhost:4000/chats/${sender_id}/${receiver_id}`,
+        `http://localhost:4000/chats/${post_id}/${receiver_id}/${sender_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -114,7 +113,7 @@ function Chats() {
     }
     // async function postChat() {
     //   const response = await fetch(
-    //     `https://colab-free-up.herokuapp.com/chats/${sender_id}/${receiver_id}`,
+    //     `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`,
     //     {
     //       method: "POST",
     //       headers: { "Content-Type": "application/json" },
@@ -170,11 +169,11 @@ function Chats() {
                       <div className="each-message">
                         <div
                           className="message"
-                          id={sender.id === message.sender_id ? "you" : "other"}
+                          id={sender.id !== message.sender_id ? "you" : "other"}
                         >
                           <div
                             id={
-                              sender.id === message.sender_id ? "you" : "other"
+                              sender.id !== message.sender_id ? "you" : "other"
                             }
                           >
                             <div className="message-content">
@@ -189,7 +188,7 @@ function Chats() {
                                 ).toRelative()}
                               </p>
                               <p id="author">
-                                {sender.id !== message.sender_id ? (
+                                {sender.id === message.sender_id ? (
                                   <div>{sender.username}</div>
                                 ) : (
                                   <div>You</div>

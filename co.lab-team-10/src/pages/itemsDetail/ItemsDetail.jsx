@@ -2,6 +2,7 @@ import { Container, Grid, Rating } from "@mui/material";
 import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { DateTime } from "luxon";
@@ -14,7 +15,6 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
 import checkIcon from "../../images/CircleWavyCheck.svg";
-import Modal from "@mui/material/Modal";
 import warningIcon from "../../images/CircleWavyWarning.svg";
 
 function ItemsDetail() {
@@ -27,7 +27,7 @@ function ItemsDetail() {
   const handleClose = () => setOpen(false);
   const [userContacts, setUserContacts] = useState([]);
   const { post_id } = useParams();
-
+  const contacts = {}
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,12 +36,22 @@ function ItemsDetail() {
 
   const fetchUserContacts = async () => {
     const result = await fetch(
-      `http://localhost:4000/details/messages/${user.id}`
+      `http://localhost:4000/details/${post_id}/${user.id}`
     );
     const parsed = await result.json();
+    console.log(parsed);
     setUserContacts(parsed);
+      
+    // for (let contact of userContacts) {
+    //   if (contact.id in contacts) {
+
+    //   } else {
+    //     contacts[]
+    //   }
+    // }
   };
 
+console.log(contacts)
   // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
@@ -148,8 +158,9 @@ function ItemsDetail() {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #02a7a7",
+    border: "2px solid #a6a6a6",
     boxShadow: 24,
+    borderRadius: 2,
   };
 
   return (
@@ -268,35 +279,42 @@ function ItemsDetail() {
                           <Box sx={style}>
                             <div className="holder-view-messages">
                               <div className="grid-item-view-messages">
-                                <div className="top-portion-view-messages">
-                                  <div className="view-messages-text">
-                                    Messages
-                                  </div>
-                                </div>
-                                <div className="horizontal-row"></div>
                                 <div className="chat-box">
                                   {userContacts.map((contact) => (
-                                    <>
-                                      <div
-                                        className="each-contact-view-message"
-                                        onClick={(e) =>
-                                          navigate(
-                                            `/chats/${contact.id}/${user.id}`
-                                          )
-                                        }
-                                      >
+                                    <div
+                                      className="message-grid-holder"
+                                      onClick={(e) =>
+                                        navigate(
+                                          `/chats/${singlePost.id}/${contact.user_id}/${user.id}`
+                                        )
+                                      }
+                                    >
+                                      <div className="user-profile-pic-holder">
                                         <img
-                                          className="contact-profile-pic-messages"
                                           src={contact.profile_pic}
+                                          className="contact-profile-pic-messages"
                                         />
-                                        <div className="contact-username-messages">
-                                          {contact.username}
-                                        </div>
                                       </div>
-                                      <div className="horizontal-row"></div>
-                                    </>
+                                      <div className="right-side-messages-holder">
+                                        <div className="top-portion-messages">
+                                          <div className="top-left-username">
+                                            {contact.username}
+                                          </div>
+                                          <div className="last-sent-message-time">
+                                            {DateTime.fromISO(
+                                              contact.time_posted
+                                            ).toRelative()}
+                                          </div>
+                                        </div>
+                                        <div className="last-sent-message-holder">
+                                          <div className="last-sent-message-body">
+                                            {contact.message_body}
+                                          </div>
+                                        </div>
+                                        <div className="horizontal-divider-messages"></div>
+                                      </div>
+                                    </div>
                                   ))}
-                                  <div className="entire-message"></div>
                                 </div>
                               </div>
                             </div>
@@ -318,7 +336,9 @@ function ItemsDetail() {
                         variant="contained"
                         className="message-poster-btn"
                         onClick={(e) =>
-                          navigate(`/chats/${singlePost.user_id}/${user.id}`)
+                          navigate(
+                            `/chats/${singlePost.id}/${singlePost.user_id}/${user.id}`
+                          )
                         }
                       >
                         Message {singlePost.username}
