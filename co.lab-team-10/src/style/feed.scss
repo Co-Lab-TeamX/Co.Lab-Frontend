@@ -100,6 +100,24 @@
   width: 320px !important;
 }
 
+.radio-filters {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.all-radio-button {
+  color: #455a64 !important;
+}
+
+.scheduled-radio-button {
+  color: #02a7a7 !important;
+}
+
+.immediate-radio-button {
+  color: #ff725e !important; 
+}
+
 .category-container {
   display: flex;
   justify-content: center;
@@ -116,7 +134,7 @@
 .filters {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
   margin-top: -10px;
   align-items: center;
 }
