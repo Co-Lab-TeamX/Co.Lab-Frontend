@@ -103,6 +103,7 @@
         font-weight: 600;
         line-height: 25px;
         text-align: center;
+        width: 275px;
     }
 
 }
@@ -122,6 +123,7 @@
 .review-card-container {
     display: flex;
     justify-content: center;
+    // width: 500px !important;
 }
 
 .review-card-1,
@@ -179,17 +181,18 @@
     border-radius: 6px;
 
     // todo change from important
-    font-family: 'Poppins'!important; 
-    font-size: 20px!important;
-    font-weight: 500!important;
-    line-height: 33px!important;
+    font-family: 'Poppins' !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 33px !important;
 }
 
 
 // Tablet
 @media screen and (min-width: 1024px) {
+
     .body-holder-container {
-        width: 854px !important;
+        width: 1024px !important;
     }
 
     .header-grid {
@@ -228,12 +231,29 @@
         }
     }
 
+    .review-cards-wrapper {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
     .review-text {
         font-size: 36px;
         line-height: 54px;
         margin-bottom: 24px !important;
     }
 
+}
+
+
+@media screen and (min-width: 1300px) {
+    .body-holder-container {
+        width: 1200px !important;
+    }
+
+    .review-cards-wrapper {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
 }
 
 // font-family: Poppins;
