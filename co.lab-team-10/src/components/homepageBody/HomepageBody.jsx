@@ -13,19 +13,20 @@ import instructionsImg3 from "../../images/instructions-img3.png";
 import "./homepageBody.css";
 
 function HomepageBody() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn")
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
   const navigate = useNavigate();
 
   return (
     // container
     <div className="body-holder">
       <Grid container className="body-holder-container">
-        <Grid container xs='12' className="header-grid">
-
+        <Grid container xs="12" className="header-grid">
           {/* order={{ xs: 3, sm: 2 }} */}
-          <Grid item className="intro-text" xs='12' order={{ xs: 1, md: 2 }}>Find the perfect item today!</Grid>
+          <Grid item className="intro-text" xs="12" order={{ xs: 1, md: 2 }}>
+            Find the perfect item today!
+          </Grid>
           {/* image section */}
-          <Grid item xs='12' order={{ xs: 2, md: 1 }}>
+          <Grid item xs="12" order={{ xs: 2, md: 1 }}>
             <img src={pic} alt="Logo" className="main-image" />
           </Grid>
           {/* end image section */}
@@ -33,84 +34,99 @@ function HomepageBody() {
           {/* Call to action section*/}
           {/* needs to be reordered on tablet */}
           {/* <div className="intro-text">Find the perfect item today!</div> */}
-          <Grid item xs='12' className="browse-items-btn-container" order={{ xs: 3 }}>
-            <Button variant="contained" className="browse-items-btn" size="small" onClick={(e) => navigate("/feed")}>
-                Browse Items
+          <Grid
+            item
+            xs="12"
+            className="browse-items-btn-container"
+            order={{ xs: 3 }}
+          >
+            <Button
+              variant="contained"
+              className="browse-items-btn"
+              size="small"
+              onClick={(e) => navigate("/feed")}
+            >
+              Browse Items
             </Button>
           </Grid>
         </Grid>
         {/* End call to action section*/}
 
         {/* How it works section */}
-        <Grid item xs='12' className="how-it-works-text">How it works</Grid>
+        <Grid item xs="12" className="how-it-works-text">
+          How it works
+        </Grid>
         <Grid container className="instructions-grid">
-          <Grid item xs='12' md='4' className="instructions-grid-item">
+          <Grid item xs="12" md="4" className="instructions-grid-item">
             <img className="instructions-image-1" src={instructionsImg1} />
             <div className="instructions-sub-headers">Search for an item</div>
             <div className="instructions-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum.
+              Discover items through a wide range of categories including
+              furniture, toys, art, clothing, and home decor
             </div>
           </Grid>
-          <Grid item xs='12' md='4' className="instructions-grid-item">
+          <Grid item xs="12" md="4" className="instructions-grid-item">
             <img className="instructions-image-2" src={instructionsImg2} />
             <div className="instructions-sub-headers">Message poster</div>
             <div className="instructions-text">
-              Nunc vulputate libero et
-              consectetur adipiscing elit
+              Communicate easily with a poster by sending a message to learn
+              more about the item or schedule a time for pickup
             </div>
           </Grid>
-          <Grid item xs='12' md='4' className="instructions-grid-item">
+          <Grid item xs="12" md="4" className="instructions-grid-item">
             <img className="instructions-image-3" src={instructionsImg3} />
             <div className="instructions-sub-headers">Pick up item</div>
             <div className="instructions-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pick up your free item at your convenience and enjoy!
             </div>
           </Grid>
         </Grid>
         {/* End of how it works section */}
 
         {/* Review Section */}
-        <Grid item xs='12' className="review-text">Reviews</Grid>
+        <Grid item xs="12" className="review-text">
+          Reviews
+        </Grid>
 
         {/* Review Card #1 */}
-        <Grid xs='12' md='6 'item className="review-card-container review-card-1">
+        <Grid
+          xs="12"
+          md="6 "
+          item
+          className="review-card-container review-card-1"
+        >
           <Card className="review-card">
             <CardContent>
               <div className="review-avatar-and-rating">
-                <img
-                  className="review-card-img"
-                  src={avatar1}
-                />
+                <img className="review-card-img" src={avatar1} />
                 <Rating name="read-only" value={5} readOnly />
               </div>
-              <div className="review-username">
-                Sarah Miles
-              </div>
+              <div className="review-username">Sarah Miles</div>
               <div className="review-description">
-                This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
-                iusto sapiente ullam atque saepe maiores porro?
+                I have picked up a few items very quickly and met some
+                incredible people
               </div>
             </CardContent>
           </Card>
         </Grid>
 
         {/* Review Card #2 */}
-        <Grid item xs='12' md='6' className="review-card-container review-card-2">
+        <Grid
+          item
+          xs="12"
+          md="6"
+          className="review-card-container review-card-2"
+        >
           <Card className="review-card">
             <CardContent>
               <div className="review-avatar-and-rating">
-                <img
-                  className="review-card-img"
-                  src={avatar2}
-                />
+                <img className="review-card-img" src={avatar2} />
                 <Rating name="read-only" value={5} readOnly />
               </div>
-              <div className="review-username">
-                Floyd Smith
-              </div>
+              <div className="review-username">Floyd Smith</div>
               <div className="review-description">
-                This is some Lorem ipsum, dolor si animi esse. Ostrum inventore
-                iusto sapiente ullam atque saepe maiores porro?
+                This website makes it easy to get rid your used items. Just log
+                in, take a picture, and your done!.
               </div>
             </CardContent>
           </Card>
@@ -118,7 +134,7 @@ function HomepageBody() {
         {/* End Review Section */}
 
         {/* Call to action #2 */}
-        <Grid item xs='12' className="home-signup-btn-container">
+        <Grid item xs="12" className="home-signup-btn-container">
           <Button
             variant="contained"
             className="home-signup-btn"

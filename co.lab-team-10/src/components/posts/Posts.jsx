@@ -64,7 +64,7 @@ function Posts({ post }) {
             <CardContent>
               <div className="card-content-1">
                 <h3>{post.title}</h3>
-                <h4>{post.location}, NY</h4>
+                <h4>{post.location}</h4>
               </div>
               <div className="card-content-2">
                 <div className="pick-up-container">
