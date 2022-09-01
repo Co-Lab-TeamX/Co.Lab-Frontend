@@ -26,7 +26,7 @@ function HomepageBody() {
             Find the perfect item today!
           </Grid>
           {/* image section */}
-          <Grid item xs="12" order={{ xs: 2, md: 1 }}>
+          <Grid item xs="12" order={{ xs: 2, md: 1 }} sx={{ display: 'flex', justifyContent: 'center' }}>
             <img src={pic} alt="Logo" className="main-image" />
           </Grid>
           {/* end image section */}
@@ -89,48 +89,52 @@ function HomepageBody() {
         </Grid>
 
         {/* Review Card #1 */}
-        <Grid
-          xs="12"
-          md="6 "
-          item
-          className="review-card-container review-card-1"
-        >
-          <Card className="review-card">
-            <CardContent>
-              <div className="review-avatar-and-rating">
-                <img className="review-card-img" src={avatar1} />
-                <Rating name="read-only" value={5} readOnly />
-              </div>
-              <div className="review-username">Sarah Miles</div>
-              <div className="review-description">
-                I have picked up a few items very quickly and met some
-                incredible people
-              </div>
-            </CardContent>
-          </Card>
-        </Grid>
+        {/* <div className="review-cards-wrapper"> */}
+        <Grid container className="review-cards-wrapper">
+          <Grid
+            xs="12"
+            md="6"
+            item
+            className="review-card-container review-card-1"
+          >
+            <Card className="review-card">
+              <CardContent>
+                <div className="review-avatar-and-rating">
+                  <img className="review-card-img" src={avatar1} />
+                  <Rating name="read-only" value={5} readOnly />
+                </div>
+                <div className="review-username">Sarah Miles</div>
+                <div className="review-description">
+                  I have picked up a few items very quickly and met some
+                  incredible people
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Review Card #2 */}
-        <Grid
-          item
-          xs="12"
-          md="6"
-          className="review-card-container review-card-2"
-        >
-          <Card className="review-card">
-            <CardContent>
-              <div className="review-avatar-and-rating">
-                <img className="review-card-img" src={avatar2} />
-                <Rating name="read-only" value={5} readOnly />
-              </div>
-              <div className="review-username">Floyd Smith</div>
-              <div className="review-description">
-                This website makes it easy to get rid your used items. Just log
-                in, take a picture, and your done!.
-              </div>
-            </CardContent>
-          </Card>
+          {/* Review Card #2 */}
+          <Grid
+            item
+            xs="12"
+            md="6"
+            className="review-card-container review-card-2"
+          >
+            <Card className="review-card">
+              <CardContent>
+                <div className="review-avatar-and-rating">
+                  <img className="review-card-img" src={avatar2} />
+                  <Rating name="read-only" value={5} readOnly />
+                </div>
+                <div className="review-username">Floyd Smith</div>
+                <div className="review-description">
+                  This website makes it easy to get rid your used items. Just log
+                  in, take a picture, and your done!.
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
+        {/* </div> */}
         {/* End Review Section */}
 
         {/* Call to action #2 */}
