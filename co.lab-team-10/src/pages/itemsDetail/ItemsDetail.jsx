@@ -1,4 +1,4 @@
-import { Container, Grid, Rating } from "@mui/material";
+import { Container, Grid, Rating, Tooltip } from "@mui/material";
 import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
@@ -200,19 +200,38 @@ function ItemsDetail() {
                   <h2>{singlePost.title}</h2>
                   {/* { singlePost.location }  */}
                   <h4>{singlePost.location} NY</h4>
-                  <div className="pick-up-container">
-                    {singlePost.pickup_type === "drop-off" ? (
-                      <>
-                        <img src={warningIcon} alt="warning-icon" />
-                        <h3>Immediate Pickup</h3>
-                      </>
-                    ) : (
-                      <>
-                        <img src={checkIcon} alt="check-icon" />
-                        <h3>Schedule Pickup</h3>
-                      </>
-                    )}
-                  </div>
+                  <Tooltip
+                    title={singlePost.pickup_type === 'drop-off'
+                      ? 'This item will be left outside the donator\'s residence. Hurry quickly to grab this item, first come first serve!'
+                      : 'This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!'}
+                    arrow
+                    PopperProps={{
+                      sx: {
+                        "& .MuiTooltip-tooltip": {
+                          border: "solid black 1px",
+                          color: "black",
+                          backgroundColor: 'white',
+                          fontSize: '15px',
+                          fontFamily: 'poppins',
+                          padding: '10px'
+                        }
+                      }
+                    }}
+                  >
+                    <div className="pick-up-container">
+                      {singlePost.pickup_type === "drop-off" ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      ) : (
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      )}
+                    </div>
+                  </Tooltip>
                 </Grid>
 
                 <Grid item xs="12">
