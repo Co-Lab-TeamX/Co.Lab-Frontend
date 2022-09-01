@@ -4,24 +4,37 @@ import Button from "@mui/material/Button";
 import Pagination from "@mui/material/Pagination";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 import React, { useContext, useEffect, useState } from "react";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import CreatePost from "../../components/createPost/CreatePost";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import Posts from "../../components/posts/Posts";
 import AppContext from "../../context/appContext.jsx";
 
 function ZoFeed() {
-  const { setPosts, posts, setUser, setIsAuth, } = useContext(AppContext);
+  const { setPosts, posts, setUser, setIsAuth } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
   const [firstFilterToggle, setFirstFilterToggle] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [typeOfPickup, setTypeOfPickup] = useState("all");
+  const [borough, setBorough] = useState("all");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:4000/posts")
       .then((response) => response.json())
-      .then((data) => setPosts(data.data))
+      .then((data) => setPosts(data.data));
     setPostsLength(posts.length);
   }, []);
 
@@ -45,18 +58,31 @@ function ZoFeed() {
       setUser(user);
     }
   }, []);
+  const filterPickupType = (pickupType) => {
+    if (pickupType === "all") {
+      setPosts();
+    }
+    const filteredFeed = posts.filter(
+      (post) => post.pickup_type === pickupType
+    );
+  };
 
-  const navigate = useNavigate();
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const filterCategory = (productCategory) => {
     // Page will now use the filteredPost array while keeping the original posts unchanged
     setFirstFilterToggle(false);
-    console.log(productCategory)
     if (productCategory === "Reset") {
       // will make a fetch call incase the db is updated
       fetch("http://localhost:4000/posts")
         .then((response) => response.json())
-        .then((data) => setPosts(data.data))
+        .then((data) => setPosts(data.data));
       setPostsLength(posts.length);
       setFilteredPosts([...posts]);
       // fetch("https://colab-free-up.herokuapp.com/posts")
@@ -65,7 +91,9 @@ function ZoFeed() {
       // setPostsLength(posts.length);
       // setFilteredPosts([...posts]);
     } else {
-      const filteredFeed = posts.filter(post => post.category === productCategory);
+      const filteredFeed = posts.filter(
+        (post) => post.category === productCategory
+      );
       setPostsLength(filteredPosts.length);
       setFilteredPosts(filteredFeed);
     }
@@ -89,10 +117,20 @@ function ZoFeed() {
       </div>
       <div className="item-feed-name">Item Feed</div>
 
-      <Box className="idk" sx={{ width: 1, display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
-        <Button variant="contained" onClick={(e) => navigate("/createPost")}>Create Listing</Button>
+      <Box
+        className="idk"
+        sx={{
+          width: 1,
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 5,
+        }}
+      >
+        <Button variant="contained" onClick={(e) => navigate("/createPost")}>
+          Create Listing
+        </Button>
       </Box>
-      <div className="pagination">
+      {/* <div className="pagination">
         {postsLength > 9 ? (
           <Pagination
             count={2}
@@ -108,11 +146,11 @@ function ZoFeed() {
             color="primary"
           />
         )}
-      </div>
-      <div className="filters">
+      </div> */}
+      {/* <div className="filters">
         <button
           variant="outlined"
-          className="sub-filters"
+          className="sub-filter-reset"
           onClick={(e) => filterCategory("Reset")}
         >
           Reset
@@ -152,24 +190,70 @@ function ZoFeed() {
         >
           Gaming
         </button>
+      </div> */}
+      {/* Trial */}
+      <div>
+        <Box className="category-container"
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "15ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <TextField id="outlined-select-currency" select label="Borough">
+              <MenuItem value="Borough" label="Borough">
+                All
+              </MenuItem>
+              <MenuItem value="Brooklyn">Brooklyn</MenuItem>
+              <MenuItem value="Queens">Queens</MenuItem>
+              <MenuItem value="Manhattan">Manhattan</MenuItem>
+              <MenuItem value="The Bronx">The Bronx</MenuItem>
+              <MenuItem value="Staten Island">Staten Island</MenuItem>
+            </TextField>
+          </div>
+          <div>
+            <TextField id="outlined-select-currency" select label="PickupType">
+              <MenuItem value="PickupType" label="PickupType">
+                All
+              </MenuItem>
+              <MenuItem value="Staten Island">Immediate Pickup</MenuItem>
+              <MenuItem value="Staten Island">Scheduled Pickup</MenuItem>
+            </TextField>
+          </div>
+          <div>
+            <TextField id="outlined-select-currency" select label="Sort">
+              <MenuItem value="Sort" label="Sort">
+                All
+              </MenuItem>
+              <MenuItem value="one-day-ago">1 Day Ago</MenuItem>
+              <MenuItem value="one-week-ago">1 Week Ago</MenuItem>
+              <MenuItem value="one-Month-ago">1 Month Ago</MenuItem>
+            </TextField>
+          </div>
+          <div className="reset-filters-btn">
+          <Button 
+          sx={{
+          textTransform: 'none',
+            height: "56px",
+            width: "100px",
+        backgroundColor: "white",
+        border: "1px solid #02A7A7",
+        color: "#474747",
+        fontSize: "17px"
+      }}>Reset</Button>
+          </div>
+        </Box>
       </div>
-
+      {/* Trial */}
       {/* FEED */}
       <div className="feed">
         <Grid container spacing={4} className="post-container">
           {/* If no filter button is pressed use the global filter array else use the filtered array */}
           {firstFilterToggle
-            ? (
-              posts.map((post) => (
-                <Posts key={post.id} post={post} />
-              ))
-            )
-            : (
-              filteredPosts.map((post) => (
-                <Posts key={post.id} post={post} />
-              ))
-            )
-          }
+            ? posts.map((post) => <Posts key={post.id} post={post} />)
+            : filteredPosts.map((post) => <Posts key={post.id} post={post} />)}
         </Grid>
       </div>
       {/* END FEED */}

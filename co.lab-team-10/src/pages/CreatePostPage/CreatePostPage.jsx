@@ -265,7 +265,6 @@ export default function CreatePostPage() {
                 labelId="condition-label"
                 id="condition"
                 value={condition}
-                label="Condition"
                 onChange={(e) => setCondition(e.target.value)}
                 style={{ width: 300 }}
               >
@@ -285,7 +284,6 @@ export default function CreatePostPage() {
                 labelId="category-label"
                 id="category"
                 value={category}
-                label="Category"
                 onChange={(e) => setCategory(e.target.value)}
                 style={{ width: 300 }}
               >
@@ -307,7 +305,6 @@ export default function CreatePostPage() {
                 labelId="location-label"
                 id="location"
                 value={location}
-                label="Location"
                 onChange={(e) => setLocation(e.target.value)}
                 style={{ width: 300 }}
               >
