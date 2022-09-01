@@ -1,5 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { CardActionArea, Grid } from "@mui/material";
+import { CardActionArea, Grid, Tooltip } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -66,24 +66,43 @@ function Posts({ post }) {
                 <h3>{post.title}</h3>
                 <h4>{post.location}</h4>
               </div>
-              <div className="card-content-2">
-                <div className="pick-up-container">
-                  {post.pickup_type === 'drop-off'
-                    ? (
-                      <>
-                        <img src={warningIcon} alt="warning-icon" />
-                        <h3>Immediate Pickup</h3>
-                      </>
-                    )
-                    : (
-                      <>
-                        <img src={checkIcon} alt="check-icon" />
-                        <h3>Schedule Pickup</h3>
-                      </>
-                    )}
+              <Tooltip
+                title={post.pickup_type === 'drop-off'
+                  ? 'This item will be left outside the donator\'s residence. Hurry quickly to grab this item, first come first serve!'
+                  : 'This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!'}
+                arrow
+                PopperProps={{
+                  sx: {
+                    "& .MuiTooltip-tooltip": {
+                      border: "solid black 1px",
+                      color: "black",
+                      backgroundColor: 'white',
+                      fontSize: '15px',
+                      fontFamily: 'poppins',
+                      padding: '10px'
+                    }
+                  }
+                }}
+              >
+                <div className="card-content-2">
+                  <div className="pick-up-container">
+                    {post.pickup_type === 'drop-off'
+                      ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      )
+                      : (
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      )}
+                  </div>
+                  <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
                 </div>
-                <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
-              </div>
+              </Tooltip>
 
               <Typography gutterBottom variant="h6" component="div">
                 {/* {post.title} */}
@@ -92,6 +111,7 @@ function Posts({ post }) {
                 {/* {post.location} */}
               </Typography>
             </CardContent>
+
           </CardActionArea>
         </div>
         <div className="delete-btn">
@@ -105,6 +125,7 @@ function Posts({ post }) {
             </IconButton>
           )}
         </div>
+
       </Card>
     </Grid>
   );
