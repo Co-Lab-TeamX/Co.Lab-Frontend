@@ -10,11 +10,54 @@
 .item-feed-name {
   font-family: "Poppins";
   margin-top: -40px;
-  font-size: 40px;
+  font-size: 50px;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
   color: #455a64;
+}
+
+.pickup-type-holder {
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+.pickup-type {
+  display: flex;
+  justify-content: center;
+}
+
+.radio-btn-scheduled {
+  color: #ff725e !important;
+}
+
+.radio-btn-immediate {
+  color: #02a7a7 !important;
+}
+
+.radio-btn-all {
+  color: #455a64 !important;
+}
+
+.sub-filter-reset {
+  background-color: #455a64;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  font-family: 'poppins' !important;
+}
+
+.sub-filter-reset:hover {
+  color: white;
+  font-size: 15px;
 }
 
 .sub-filters {
@@ -57,6 +100,13 @@
   width: 320px !important;
 }
 
+.category-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
 .item-card-grid-container {
   z-index: 0;
   display: flex;
@@ -67,7 +117,8 @@
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
-  margin-top: -20px;
+  margin-top: -10px;
+  align-items: center;
 }
 
 .item-card {
