@@ -29,6 +29,7 @@ function ZoFeed() {
   const [borough, setBorough] = useState("all");
   const [category, setCategory] = useState("Any");
   const [pickupType, setPickupType] = useState("Any");
+  const [categorySelected, setCategorySelected] = useState(false);
 
   const navigate = useNavigate();
 
@@ -60,23 +61,24 @@ function ZoFeed() {
     }
   }, []);
 
-  const open = Boolean(anchorEl);
+  // const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   const filterFeed = (productCategory, productPickupType = pickupType) => {
     setFilterToggle(true);
 
     setCategory(productCategory);
+    setCategorySelected(productCategory)
     setPickupType(productPickupType)
 
-    // Page will now use the filteredPost array while keeping the original posts unchange
+    // Page will now use the filteredPost array while keeping the original posts unchanged
     let filteredFeed = [...posts];
 
     // Filter by category
@@ -126,7 +128,7 @@ function ZoFeed() {
           marginBottom: 5,
         }}
       >
-        <Button variant="contained" onClick={(e) => navigate("/createPost")}>
+        <Button className="create-post-btn" variant="contained" onClick={(e) => navigate("/createPost")}>
           Create Listing
         </Button>
       </Box>
@@ -140,35 +142,35 @@ function ZoFeed() {
         </button>
         <button
           variant="outlined"
-          className="sub-filters"
+          className={categorySelected === "Household" ? 'sub-filter-selected' : 'sub-filters'}
           onClick={(e) => filterFeed("Household", pickupType)}
         >
           Household
         </button>
         <button
           variant="outlined"
-          className="sub-filters"
+          className={categorySelected === "Sporting" ? 'sub-filter-selected' : 'sub-filters'}
           onClick={(e) => filterFeed("Sporting", pickupType)}
         >
           Sporting
         </button>
         <button
           variant="outlined"
-          className="sub-filters"
+          className={categorySelected  === "Tech"? 'sub-filter-selected' : 'sub-filters'}
           onClick={(e) => filterFeed("Tech", pickupType)}
         >
           Tech
         </button>
         <button
           variant="outlined"
-          className="sub-filters"
+          className={categorySelected  === "Clothing" ? 'sub-filter-selected' : 'sub-filters'}
           onClick={(e) => filterFeed("Clothing", pickupType)}
         >
           Clothing
         </button>
         <button
           variant="outlined"
-          className="sub-filters"
+          className={categorySelected === "Gaming"? 'sub-filter-selected' : 'sub-filters'}
           onClick={(e) => filterFeed("Gaming", pickupType)}
         >
           Gaming

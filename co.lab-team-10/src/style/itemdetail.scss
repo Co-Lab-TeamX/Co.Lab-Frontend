@@ -142,6 +142,7 @@
 
   .avatar-container {
     display: flex;
+    align-items: center;
     margin-bottom: 38px;
 
     .poster-profile-pic {
@@ -151,8 +152,6 @@
       cursor: pointer;
       margin-right: 14px;
     }
-
-    // username
 
     h4 {
       font-family: Inter;
