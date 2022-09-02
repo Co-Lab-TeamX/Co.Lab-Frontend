@@ -41,6 +41,10 @@
   color: #455a64 !important;
 }
 
+.create-post-btn {
+  width: 170px !important;
+}
+
 .sub-filter-reset {
   background-color: #455a64;
   border: none;
@@ -53,6 +57,21 @@
   cursor: pointer;
   border-radius: 16px;
   font-family: 'poppins' !important;
+}
+
+.sub-filter-selected {
+  background-color: #02a7a7 !important;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  font-family: 'poppins' !important;
+  font-size: 15px;
 }
 
 .sub-filter-reset:hover {
@@ -103,7 +122,7 @@
 .radio-filters {
   display: flex;
   justify-content: center;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .all-radio-button {
@@ -172,6 +191,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: -8px;
 
     .pick-up-container {
       display: flex;
