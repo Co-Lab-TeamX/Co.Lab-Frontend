@@ -24,11 +24,11 @@ function ZoFeed() {
   const { setPosts, posts, setUser, setIsAuth } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
-  const [firstFilterToggle, setFirstFilterToggle] = useState(true);
-  const [pickupTypeToggle, setPickupTypeToggle] = useState(true);
+  const [filterToggle, setFilterToggle] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [radioBtnPickupType, setRadioBtnPickupType] = useState([...posts]);
   const [borough, setBorough] = useState("all");
+  const [category, setCategory] = useState("Any");
+  const [pickupType, setPickupType] = useState("Any");
 
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ function ZoFeed() {
   }, []);
 
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -70,68 +70,34 @@ function ZoFeed() {
     setAnchorEl(null);
   };
 
-  const filterPickupType = (pickupType) => {
-    setPickupTypeToggle(false);
+  const filterFeed = (productCategory, productPickupType = pickupType) => {
+    setFilterToggle(true);
 
-    if (!firstFilterToggle) {
-      console.log('here')
-      if (pickupType === "all") {
-        fetch("http://localhost:4000/posts")
-          .then((response) => response.json())
-          .then((data) => setPosts(data.data));
-        setPostsLength(posts.length);
-        setFilteredPosts([...posts]);
-        setRadioBtnPickupType([...posts]);
-      } else {
-        const filteredFeed = filteredPosts.filter(
-          (post) => post.pickup_type === pickupType
-        );
-        setRadioBtnPickupType(filteredFeed);
-      }
-    } else {
-      if (pickupType === "all") {
-        fetch("http://localhost:4000/posts")
-          .then((response) => response.json())
-          .then((data) => setPosts(data.data));
-        setPostsLength(posts.length);
-        setFilteredPosts([...posts]);
-        console.log(filteredPosts)
-      } else {
-        const filteredFeed = posts.filter(
-          (post) => post.pickup_type === pickupType
-        );
-        console.log(filteredFeed)
-        setRadioBtnPickupType(filteredFeed);
-      }
-    }
+    setCategory(productCategory);
+    setPickupType(productPickupType)
 
-    
-  };
+    // Page will now use the filteredPost array while keeping the original posts unchange
+    let filteredFeed = [...posts];
 
-  const filterCategory = (productCategory) => {
-
-    // Page will now use the filteredPost array while keeping the original posts unchanged
-    setFirstFilterToggle(false);
-    if (productCategory === "Reset") {
+    // Filter by category
+    if (productCategory === "Any") {
       // will make a fetch call incase the db is updated
       fetch("http://localhost:4000/posts")
         .then((response) => response.json())
         .then((data) => setPosts(data.data));
       setPostsLength(posts.length);
-      setFilteredPosts([...posts]);
-      // fetch("https://colab-free-up.herokuapp.com/posts")
-      //   .then((response) => response.json())
-      //   .then((data) => setPosts(data.data))
-      // setPostsLength(posts.length);
-      // setFilteredPosts([...posts]);
+      filteredFeed = [...posts];
     } else {
-      const filteredFeed = posts.filter(
-        (post) => post.category === productCategory
-      );
-      setPostsLength(filteredPosts.length);
-      setFilteredPosts(filteredFeed);
+      filteredFeed = filteredFeed.filter(post => post.category === productCategory);
     }
+
+    // Filter by pickup type
+    if (productPickupType !== "Any") {
+      filteredFeed = filteredFeed.filter(post => post.pickup_type === productPickupType);
+    }
+    setFilteredPosts(filteredFeed);
   };
+
 
   return (
     <>
@@ -168,71 +134,73 @@ function ZoFeed() {
         <button
           variant="outlined"
           className="sub-filter-reset"
-          onClick={(e) => filterCategory("Reset")}
+          onClick={(e) => filterFeed("Any", pickupType)}
         >
           Any
         </button>
         <button
           variant="outlined"
           className="sub-filters"
-          onClick={(e) => {
-            filterCategory("Household")
-           
-          }}
+          onClick={(e) => filterFeed("Household", pickupType)}
         >
           Household
         </button>
         <button
           variant="outlined"
           className="sub-filters"
-          onClick={(e) => filterCategory("Sporting")}
+          onClick={(e) => filterFeed("Sporting", pickupType)}
         >
           Sporting
         </button>
         <button
           variant="outlined"
           className="sub-filters"
-          onClick={(e) => filterCategory("Tech")}
+          onClick={(e) => filterFeed("Tech", pickupType)}
         >
           Tech
         </button>
         <button
           variant="outlined"
           className="sub-filters"
-          onClick={(e) => filterCategory("Clothing")}
+          onClick={(e) => filterFeed("Clothing", pickupType)}
         >
           Clothing
         </button>
         <button
           variant="outlined"
           className="sub-filters"
-          onClick={(e) => filterCategory("Gaming")}
+          onClick={(e) => filterFeed("Gaming", pickupType)}
         >
           Gaming
         </button>
       </div>
+
       <div className="radio-filters">
-        <FormControl onChange={(e) => filterPickupType(e.target.value)} >
+        <FormControl>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
-            defaultValue="all"
+            defaultValue="Any"
+            onChange={e => setPickupType(e.target.value)}
           >
             <FormControlLabel
-              value="all"
+              value="Any"
               control={<Radio className="all-radio-button" />}
               label="Any"
+              onClick={(e) => filterFeed(category, 'Any')}
             />
             <FormControlLabel
               value="drop-off"
               control={<Radio className="immediate-radio-button" />}
               label="Immediate Pickup"
+              onClick={(e) => filterFeed(category, 'drop-off')}
             />
             <FormControlLabel
               value="arrange-pickup"
               control={<Radio className="scheduled-radio-button" />}
               label="Scheduled Pickup"
+              onClick={(e) => filterFeed(category, 'arrange-pickup')}
             />
           </RadioGroup>
         </FormControl>
@@ -296,14 +264,12 @@ function ZoFeed() {
       {/* FEED */}
       <div className="feed">
         <Grid container spacing={4} className="post-container">
-          {/* If no filter button is pressed use the global filter array else use the filtered array */}
-          {firstFilterToggle
-            ? posts.map((post) => <Posts key={post.id} post={post} />)
-            : filteredPosts.map((post) => <Posts key={post.id} post={post} />)}
-           
-          {pickupTypeToggle
-            ? posts.map((post) => <Posts key={post.id} post={post} />)
-            : radioBtnPickupType.map((post) => <Posts key={post.id} post={post} />)}
+
+          {filterToggle
+            ? filteredPosts.map((post) => <Posts key={post.id} post={post} />)
+            : posts.map((post) => <Posts key={post.id} post={post} />)
+          }
+
         </Grid>
       </div>
       {/* END FEED */}
