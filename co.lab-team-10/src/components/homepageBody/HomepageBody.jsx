@@ -62,22 +62,21 @@ function HomepageBody() {
             <div className="instructions-sub-headers">Search for an item</div>
             <div className="instructions-text">
               Discover items through a wide range of categories including
-              furniture, toys, art, clothing, and home decor
+              furniture, toys, art, clothing and more!
             </div>
           </Grid>
           <Grid item xs="12" md="4" className="instructions-grid-item">
             <img className="instructions-image-2" src={instructionsImg2} />
             <div className="instructions-sub-headers">Message poster</div>
             <div className="instructions-text">
-              Communicate easily with a poster by sending a message to learn
-              more about the item or schedule a time for pickup
+              Send a message to learn more about the item or to schedule a time for pickup
             </div>
           </Grid>
           <Grid item xs="12" md="4" className="instructions-grid-item">
             <img className="instructions-image-3" src={instructionsImg3} />
             <div className="instructions-sub-headers">Pick up item</div>
             <div className="instructions-text">
-              Pick up your free item at your convenience and enjoy!
+              Pick up the free item at your convenience and enjoy!
             </div>
           </Grid>
         </Grid>

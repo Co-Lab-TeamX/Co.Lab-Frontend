@@ -273,7 +273,6 @@ function ItemsDetail() {
                       <h4 className="comment-username">
                         {singlePost.username}
                       </h4>
-                      <Rating name="read-only" value={4} readOnly />
                     </div>
                   </div>
                   <div className="message-poster-btn-container">
