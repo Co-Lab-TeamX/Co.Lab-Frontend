@@ -25,8 +25,9 @@ function ZoFeed() {
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
   const [firstFilterToggle, setFirstFilterToggle] = useState(true);
+  const [pickupTypeToggle, setPickupTypeToggle] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [typeOfPickup, setTypeOfPickup] = useState("all");
+  const [radioBtnPickupType, setRadioBtnPickupType] = useState([...posts]);
   const [borough, setBorough] = useState("all");
 
   const navigate = useNavigate();
@@ -58,24 +59,57 @@ function ZoFeed() {
       setUser(user);
     }
   }, []);
-  const filterPickupType = (pickupType) => {
-    if (pickupType === "all") {
-      setPosts();
-    }
-    const filteredFeed = posts.filter(
-      (post) => post.pickup_type === pickupType
-    );
-  };
 
   const open = Boolean(anchorEl);
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const filterPickupType = (pickupType) => {
+    setPickupTypeToggle(false);
+
+    if (!firstFilterToggle) {
+      console.log('here')
+      if (pickupType === "all") {
+        fetch("http://localhost:4000/posts")
+          .then((response) => response.json())
+          .then((data) => setPosts(data.data));
+        setPostsLength(posts.length);
+        setFilteredPosts([...posts]);
+        setRadioBtnPickupType([...posts]);
+      } else {
+        const filteredFeed = filteredPosts.filter(
+          (post) => post.pickup_type === pickupType
+        );
+        setRadioBtnPickupType(filteredFeed);
+      }
+    } else {
+      if (pickupType === "all") {
+        fetch("http://localhost:4000/posts")
+          .then((response) => response.json())
+          .then((data) => setPosts(data.data));
+        setPostsLength(posts.length);
+        setFilteredPosts([...posts]);
+        console.log(filteredPosts)
+      } else {
+        const filteredFeed = posts.filter(
+          (post) => post.pickup_type === pickupType
+        );
+        console.log(filteredFeed)
+        setRadioBtnPickupType(filteredFeed);
+      }
+    }
+
+    
+  };
+
   const filterCategory = (productCategory) => {
+
     // Page will now use the filteredPost array while keeping the original posts unchanged
     setFirstFilterToggle(false);
     if (productCategory === "Reset") {
@@ -130,35 +164,21 @@ function ZoFeed() {
           Create Listing
         </Button>
       </Box>
-      {/* <div className="pagination">
-        {postsLength > 9 ? (
-          <Pagination
-            count={2}
-            variant="outlined"
-            shape="rounded"
-            color="primary"
-          />
-        ) : (
-          <Pagination
-            count={1}
-            variant="outlined"
-            shape="rounded"
-            color="primary"
-          />
-        )}
-      </div> */}
-      {/* <div className="filters">
+      <div className="filters">
         <button
           variant="outlined"
           className="sub-filter-reset"
           onClick={(e) => filterCategory("Reset")}
         >
-          Reset
+          Any
         </button>
         <button
           variant="outlined"
           className="sub-filters"
-          onClick={(e) => filterCategory("Household")}
+          onClick={(e) => {
+            filterCategory("Household")
+           
+          }}
         >
           Household
         </button>
@@ -190,9 +210,35 @@ function ZoFeed() {
         >
           Gaming
         </button>
-      </div> */}
+      </div>
+      <div className="radio-filters">
+        <FormControl onChange={(e) => filterPickupType(e.target.value)} >
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            defaultValue="all"
+          >
+            <FormControlLabel
+              value="all"
+              control={<Radio className="all-radio-button" />}
+              label="Any"
+            />
+            <FormControlLabel
+              value="drop-off"
+              control={<Radio className="immediate-radio-button" />}
+              label="Immediate Pickup"
+            />
+            <FormControlLabel
+              value="arrange-pickup"
+              control={<Radio className="scheduled-radio-button" />}
+              label="Scheduled Pickup"
+            />
+          </RadioGroup>
+        </FormControl>
+      </div>
       {/* Trial */}
-      <div>
+      {/* <div>
         <Box className="category-container"
           component="form"
           sx={{
@@ -245,7 +291,7 @@ function ZoFeed() {
       }}>Reset</Button>
           </div>
         </Box>
-      </div>
+      </div> */}
       {/* Trial */}
       {/* FEED */}
       <div className="feed">
@@ -254,6 +300,10 @@ function ZoFeed() {
           {firstFilterToggle
             ? posts.map((post) => <Posts key={post.id} post={post} />)
             : filteredPosts.map((post) => <Posts key={post.id} post={post} />)}
+           
+          {pickupTypeToggle
+            ? posts.map((post) => <Posts key={post.id} post={post} />)
+            : radioBtnPickupType.map((post) => <Posts key={post.id} post={post} />)}
         </Grid>
       </div>
       {/* END FEED */}
