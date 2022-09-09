@@ -117,6 +117,7 @@ export default function CreatePostPage() {
 
     try {
       const result = await fetch("http://localhost:4000/posts", {
+        // const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,19 +129,6 @@ export default function CreatePostPage() {
     } catch (err) {
       console.log(err);
     }
-    // try {
-    //   const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newPostData),
-    //   });
-    //   const parsed = await result.json();
-    //   navigate("/feed");
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   useEffect(() => {
