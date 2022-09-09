@@ -88,6 +88,10 @@ function ZoFeed() {
         .then((response) => response.json())
         .then((data) => setPosts(data.data));
       setPostsLength(posts.length);
+      // fetch("https://colab-free-up.herokuapp.com/posts")
+      //   .then((response) => response.json())
+      //   .then((data) => setPosts(data.data));
+      // setPostsLength(posts.length);
       filteredFeed = [...posts];
     } else {
       filteredFeed = filteredFeed.filter(post => post.category === productCategory);

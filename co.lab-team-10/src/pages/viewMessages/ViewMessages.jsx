@@ -24,6 +24,9 @@ function ViewMessages() {
     const result = await fetch(
       `http://localhost:4000/details/messages/${user_id}`
     );
+    // const result = await fetch(
+    //   `https://colab-free-up.herokuapp.com/details/messages/${user_id}`
+    // );
     const parsed = await result.json();
     setUserContacts(parsed);
   };

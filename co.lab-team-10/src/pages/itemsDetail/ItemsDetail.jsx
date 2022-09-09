@@ -38,6 +38,9 @@ function ItemsDetail() {
     const result = await fetch(
       `http://localhost:4000/details/${post_id}/${user.id}`
     );
+    // const result = await fetch(
+    //   `https://colab-free-up.herokuapp.com/details/${post_id}/${user.id}`
+    // );
     const parsed = await result.json();
     setUserContacts(parsed);
   };
