@@ -59,15 +59,7 @@ function Register() {
         email: email,
       };
 
-      // const result = await fetch("https://colab-free-up.herokuapp.com/register", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(userInfo),
-      // });
-
-      const result = await fetch("http://localhost:4000/register", {
+      const result = await fetch("https://colab-free-up.herokuapp.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +80,7 @@ function Register() {
         };
 
         //   async function loginUser() {
-        //     const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+        //     const res = await fetch(`http://localhost:4000/login`, {
         //       method: "POST",
         //       headers: {
         //         "Content-Type": "application/json",
@@ -112,7 +104,7 @@ function Register() {
         //   setPassword("");
         // };
         async function loginUser() {
-          const res = await fetch(`http://localhost:4000/login`, {
+          const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

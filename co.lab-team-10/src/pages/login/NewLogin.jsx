@@ -37,7 +37,7 @@ function NewLogin() {
     };
 
     async function loginUser() {
-      const res = await fetch(`http://localhost:4000/login`, {
+      const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,20 +51,6 @@ function NewLogin() {
         setIsAuth(false);
         return;
       }
-
-      // async function loginUser() {
-      //   const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(loginData),
-      //   });
-      //   const data = await res.json();
-      //   if (!data.token) {
-      //     setIsAuth(false);
-      //     return;
-      //   }
 
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem("user", JSON.stringify(data.user));
