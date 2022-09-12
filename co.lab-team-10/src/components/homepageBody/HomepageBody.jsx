@@ -13,27 +13,23 @@ import instructionsImg3 from "../../images/instructions-img3.png";
 import "./homepageBody.css";
 
 function HomepageBody() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn");
   const navigate = useNavigate();
 
   return (
-    // container
     <div className="body-holder">
       <Grid container className="body-holder-container">
         <Grid container xs="12" className="header-grid">
-          {/* order={{ xs: 3, sm: 2 }} */}
           <Grid item className="intro-text" xs="12" order={{ xs: 1, md: 2 }}>
             Find the perfect item today!
           </Grid>
-          {/* image section */}
-          <Grid item xs="12" order={{ xs: 2, md: 1 }} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid
+            item
+            xs="12"
+            order={{ xs: 2, md: 1 }}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             <img src={pic} alt="Logo" className="main-image" />
           </Grid>
-          {/* end image section */}
-
-          {/* Call to action section*/}
-          {/* needs to be reordered on tablet */}
-          {/* <div className="intro-text">Find the perfect item today!</div> */}
           <Grid
             item
             xs="12"
@@ -50,9 +46,6 @@ function HomepageBody() {
             </Button>
           </Grid>
         </Grid>
-        {/* End call to action section*/}
-
-        {/* How it works section */}
         <Grid item xs="12" className="how-it-works-text">
           How it works
         </Grid>
@@ -69,7 +62,8 @@ function HomepageBody() {
             <img className="instructions-image-2" src={instructionsImg2} />
             <div className="instructions-sub-headers">Message poster</div>
             <div className="instructions-text">
-              Send a message to learn more about the item or to schedule a time for pickup
+              Send a message to learn more about the item or to schedule a time
+              for pickup
             </div>
           </Grid>
           <Grid item xs="12" md="4" className="instructions-grid-item">
@@ -80,15 +74,9 @@ function HomepageBody() {
             </div>
           </Grid>
         </Grid>
-        {/* End of how it works section */}
-
-        {/* Review Section */}
         <Grid item xs="12" className="review-text">
           Reviews
         </Grid>
-
-        {/* Review Card #1 */}
-        {/* <div className="review-cards-wrapper"> */}
         <Grid container className="review-cards-wrapper">
           <Grid
             xs="12"
@@ -110,8 +98,6 @@ function HomepageBody() {
               </CardContent>
             </Card>
           </Grid>
-
-          {/* Review Card #2 */}
           <Grid
             item
             xs="12"
@@ -126,17 +112,13 @@ function HomepageBody() {
                 </div>
                 <div className="review-username">Floyd Smith</div>
                 <div className="review-description">
-                  This website makes it easy to get rid your used items. Just log
-                  in, take a picture, and your done!.
+                  This website makes it easy to get rid your used items. Just
+                  log in, take a picture, and your done!.
                 </div>
               </CardContent>
             </Card>
           </Grid>
         </Grid>
-        {/* </div> */}
-        {/* End Review Section */}
-
-        {/* Call to action #2 */}
         <Grid item xs="12" className="home-signup-btn-container">
           <Button
             variant="contained"
@@ -146,7 +128,6 @@ function HomepageBody() {
             Sign up
           </Button>
         </Grid>
-        {/* End of call to action #2 */}
       </Grid>
     </div>
   );

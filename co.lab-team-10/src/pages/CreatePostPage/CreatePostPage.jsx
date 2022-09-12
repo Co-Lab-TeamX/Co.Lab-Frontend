@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   CardMedia,
   FormControlLabel,
   FormLabel,
@@ -11,26 +10,23 @@ import {
   Radio,
   RadioGroup,
   Select,
-  TextareaAutosize,
   TextField,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import ImageUploading from "react-images-uploading";
-import { BiImageAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 import AppContext from "../../context/appContext";
-import Footer from "../../components/footer/Footer";
 import cameraIcon from "../../images/camera-icon.svg";
-import warningIcon from "../../images/CircleWavyWarning.svg";
 import checkIcon from "../../images/CircleWavyCheck.svg";
+import warningIcon from "../../images/CircleWavyWarning.svg";
 import locationIcon from "../../images/location-icon.svg";
 
 export default function CreatePostPage() {
-  // only getting a user when a new person signs up, using local storage for now until we can solve that problem
-  const { user, setPosts, posts, setIsAuth, setUser } = useContext(AppContext);
-  const userId = JSON.parse(window.localStorage.getItem("user")).id; //
+  const { setIsAuth, setUser } = useContext(AppContext);
+  const userId = JSON.parse(window.localStorage.getItem("user")).id;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("Brooklyn");
@@ -43,9 +39,6 @@ export default function CreatePostPage() {
   const [quantity, setQuantity] = useState("1");
   const [weight, setWeight] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [imgURL, setImgURL] = useState("");
-  const [imageSelected, setImageSelected] = useState(null);
-
   const [images, setImages] = useState([]);
   const [trialImage, setTrialImage] = useState("");
 
@@ -54,7 +47,6 @@ export default function CreatePostPage() {
 
   const navigate = useNavigate();
 
-  // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
 
@@ -73,19 +65,15 @@ export default function CreatePostPage() {
     left: "50%",
     transform: "translate(-50%, -50%)",
     bgcolor: "#fff",
-    borderRadius: '15px',
+    borderRadius: "15px",
     boxShadow: 24,
     p: 4,
   };
 
-
-
-  // Image upload
   const maxNumber = 69;
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
     setTrialImage(imageList[0].data_url);
-    // setImageSelected(true);
   };
 
   const handleSubmit1 = (e) => {
@@ -101,8 +89,6 @@ export default function CreatePostPage() {
       userId,
       title,
       description,
-      // image:
-      //   "https://gmedia.playstation.com/is/image/SIEPDC/ps-plus-cloud-storage-dark-icon-01-en-25sep20?$native--t$",
       upload: trialImage,
       location,
       condition,
@@ -116,7 +102,7 @@ export default function CreatePostPage() {
     };
 
     try {
-      const result = await fetch("http://localhost:4000/posts", {
+      const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,25 +114,11 @@ export default function CreatePostPage() {
     } catch (err) {
       console.log(err);
     }
-    // try {
-    //   const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newPostData),
-    //   });
-    //   const parsed = await result.json();
-    //   navigate("/feed");
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-
 
   return (
     <div>
@@ -164,9 +136,10 @@ export default function CreatePostPage() {
         </Box>
         <form onSubmit={handleSubmit1}>
           <Grid container spacing={3} sx={{ zIndex: 0 }}>
-            {/* Title */}
             <Grid item xs="12">
-              <label className="form-label" htmlFor="title">Item Title</label>
+              <label className="form-label" htmlFor="title">
+                Item Title
+              </label>
               <TextField
                 id="title"
                 required
@@ -175,8 +148,6 @@ export default function CreatePostPage() {
                 placeholder="Enter title"
               ></TextField>
             </Grid>
-
-            {/* Description */}
             <Grid item xs="12">
               <label className="form-label" htmlFor="description">
                 Item Description - Max 1000 characters
@@ -191,18 +162,16 @@ export default function CreatePostPage() {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Grid>
-
-            {/* Upload Photo */}
-            {/* //TODO change z index progress bar is gone.  */}
             <Grid item xs="12" sx={{ zIndex: 0 }}>
-              <label className="form-label" htmlFor="image">Photo</label>
+              <label className="form-label" htmlFor="image">
+                Photo
+              </label>
               <div>
                 <ImageUploading
                   value={images}
                   onChange={onChange}
                   maxNumber={maxNumber}
                   dataURLKey="data_url"
-
                 >
                   {({
                     imageList,
@@ -211,7 +180,6 @@ export default function CreatePostPage() {
                     isDragging,
                     dragProps,
                   }) => (
-
                     <div>
                       {images.length < 1 && (
                         <Button
@@ -222,15 +190,12 @@ export default function CreatePostPage() {
                           onClick={onImageUpload}
                           {...dragProps}
                         >
-
                           <Box className="upload-img-box">
                             <img src={cameraIcon} alt="camera-icon" />
                             <div className="text">Add a Photo</div>
                           </Box>
                         </Button>
                       )}
-
-
                       {imageList.map((image, index) => (
                         <div key={index}>
                           <img
@@ -243,7 +208,6 @@ export default function CreatePostPage() {
                               className="remove-button"
                               onClick={() => {
                                 onImageRemove(index);
-                                // setImageSelected(null);
                               }}
                             >
                               Remove
@@ -256,10 +220,14 @@ export default function CreatePostPage() {
                 </ImageUploading>
               </div>
             </Grid>
-
-            {/* Condition */}
-            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <label className="form-label" id="condition-label">Condition</label>
+            <Grid
+              item
+              xs="12"
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <label className="form-label" id="condition-label">
+                Condition
+              </label>
               <Select
                 required
                 labelId="condition-label"
@@ -274,11 +242,14 @@ export default function CreatePostPage() {
                 <MenuItem value="salvage">Salvage</MenuItem>
               </Select>
             </Grid>
-
-            {/* household, sporting, tech, clothing, gaming */}
-            {/* Category */}
-            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <label className="form-label" id="category-label">Category</label>
+            <Grid
+              item
+              xs="12"
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <label className="form-label" id="category-label">
+                Category
+              </label>
               <Select
                 required
                 labelId="category-label"
@@ -294,12 +265,14 @@ export default function CreatePostPage() {
                 <MenuItem value="gaming">Gaming</MenuItem>
               </Select>
             </Grid>
-
-            {/* video */}
-
-            {/* Location */}
-            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <label className="form-label" id="location-label">Location</label>
+            <Grid
+              item
+              xs="12"
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <label className="form-label" id="location-label">
+                Location
+              </label>
               <Select
                 required
                 labelId="location-label"
@@ -315,33 +288,41 @@ export default function CreatePostPage() {
                 <MenuItem value="Staten Island">Staten Island</MenuItem>
               </Select>
             </Grid>
-
-            {/* Quantity */}
-            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <label className="form-label" htmlFor="quantity">Quantity</label>
+            <Grid
+              item
+              xs="12"
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <label className="form-label" htmlFor="quantity">
+                Quantity
+              </label>
               <TextField
                 id="quantity"
                 type="number"
-
                 value={quantity}
                 InputProps={{ inputProps: { min: 1 } }}
                 onChange={(e) => setQuantity(e.target.value)}
                 style={{ width: 150 }}
               />
             </Grid>
-            {/* Weight */}
-            <Grid item xs="12" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <label className="form-label" htmlFor="weight">Item Weight (lbs)</label>
+            <Grid
+              item
+              xs="12"
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <label className="form-label" htmlFor="weight">
+                Item Weight (lbs)
+              </label>
               <TextField
                 id="weight"
                 onChange={(e) => setWeight(e.target.value)}
                 style={{ width: 150 }}
               ></TextField>
             </Grid>
-
-            {/* Pickup-type */}
             <Grid item xs="12">
-              <label className="form-label" id="pickup-type-label">Pickup Option</label>
+              <label className="form-label" id="pickup-type-label">
+                Pickup Option
+              </label>
               <RadioGroup
                 row
                 aria-labelledby="pickup-type-label"
@@ -371,10 +352,10 @@ export default function CreatePostPage() {
                 </div>
               </RadioGroup>
             </Grid>
-
-            {/* Address */}
             <Grid item xs="12">
-              <label className="form-label" htmlFor="address">Item Address</label>
+              <label className="form-label" htmlFor="address">
+                Item Address
+              </label>
               <Grid container spacing={4}>
                 <Grid item xs="8">
                   <InputLabel htmlFor="street-address">
@@ -397,42 +378,27 @@ export default function CreatePostPage() {
                 </Grid>
               </Grid>
             </Grid>
-
-            {/* <div className="length-widith-height"></div> */}
-
-            {/* Submit Button */}
-            <Grid item xs="12" sx={{ display: 'flex', justifyContent: 'center', marginTop: 5, marginBottom: 7 }}>
-              <Button
-                variant="contained"
-                size='large'
-                type="submit">
+            <Grid
+              item
+              xs="12"
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: 5,
+                marginBottom: 7,
+              }}
+            >
+              <Button variant="contained" size="large" type="submit">
                 Post Listing
               </Button>
             </Grid>
-
-            {/* Modal */}
             <Modal
               open={modalOpen}
               onClose={handleClose}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <Box sx={modalStyle} className='post-modal'>
-
-                {/* {post.pickup_type === 'drop-off'
-                  ? (
-                    <>
-                      <img src={warningIcon} alt="warning-icon" />
-                      <h3>Immediate Pickup</h3>
-                    </>
-                  )
-                  : (
-                    <>
-                      <img src={checkIcon} alt="check-icon" />
-                      <h3>Schedule Pickup</h3>
-                    </>
-                  )} */}
-
+              <Box sx={modalStyle} className="post-modal">
                 <Box sx={{ display: "flex" }}>
                   {images.length >= 1 && (
                     <CardMedia
@@ -442,35 +408,41 @@ export default function CreatePostPage() {
                       alt="Thumbnail"
                     />
                   )}
-                  <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} className='modal-details-box'>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                    className="modal-details-box"
+                  >
                     <div className="modal-title">{title}</div>
                     <div className="modal-pickup-container">
-                      {pickupType === 'drop-off'
-                        ? (
-                          <>
-                            <img src={warningIcon} alt="warning-icon" />
-                            <h3>Immediate Pickup</h3>
-                          </>
-                        ) :
+                      {pickupType === "drop-off" ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      ) : (
                         <>
                           <img src={checkIcon} alt="check-icon" />
                           <h3>Schedule Pickup</h3>
                         </>
-                      }
+                      )}
                     </div>
                     <div className="modal-pickup-container">
                       <img src={locationIcon} alt="location-icon" />
-                      <h3>{streetAddress}, {location} NY</h3>
+                      <h3>
+                        {streetAddress}, {location} NY
+                      </h3>
                     </div>
-
                   </Box>
                 </Box>
-
-                <Box className='modal-button-container'>
+                <Box className="modal-button-container">
                   <Button
                     color="primary"
                     variant="outlined"
-                    size='large'
+                    size="large"
                     onClick={(e) => handleClose()}
                   >
                     Cancel
@@ -478,46 +450,18 @@ export default function CreatePostPage() {
                   <Button
                     color="primary"
                     variant="contained"
-                    size='large'
+                    size="large"
                     onClick={(e) => handleSubmit2(e)}
                   >
                     Publish
                   </Button>
                 </Box>
-
-
-                {/* <h1>Is Your Item's Information correct?</h1>
-
-                <h3>Title: {title}</h3>
-                <h3>description: {description}</h3>
-             
-                {streetAddress && <h3>Address: {streetAddress}</h3>}
-                <h3>Pickup Type: {pickupType}</h3>
-                {weight && <h3>Weight: {weight}</h3>}
-                {quantity && <h3>Quantity: {quantity}</h3>} */}
-
-                {/* <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={(e) => handleSubmit2(e)}
-                >
-                  Submit
-                </Button>
-
-                <Button
-                  color="error"
-                  variant="contained"
-                  onClick={(e) => handleClose()}
-                >
-                  Cancel
-                </Button> */}
               </Box>
             </Modal>
           </Grid>
         </form>
       </Container>
-
       <Footer />
-    </div >
+    </div>
   );
 }

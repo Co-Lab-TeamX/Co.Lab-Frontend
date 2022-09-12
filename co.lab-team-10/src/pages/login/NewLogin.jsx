@@ -1,4 +1,3 @@
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
@@ -11,23 +10,24 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { MdLocationOn } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/appContext";
 import loginPicture from "../../images/signup-pic-freeUp.png";
-import { MdLocationOn } from "react-icons/md";
 import "./newLogin.css";
 
 function NewLogin() {
-  const { setUser, setIsAuth, user } = useContext(AppContext);
-  const navigate = useNavigate();
+  const { setUser, setIsAuth } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      setErrorMessage("Please enter login information.")
+      setErrorMessage("Please enter login information.");
       return;
     }
 
@@ -37,7 +37,7 @@ function NewLogin() {
     };
 
     async function loginUser() {
-      const res = await fetch(`http://localhost:4000/login`, {
+      const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,23 +52,9 @@ function NewLogin() {
         return;
       }
 
-      // async function loginUser() {
-      //   const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(loginData),
-      //   });
-      //   const data = await res.json();
-      //   if (!data.token) {
-      //     setIsAuth(false);
-      //     return;
-      //   }
-
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem("user", JSON.stringify(data.user));
-      window.localStorage.setItem("isLoggedIn", true)
+      window.localStorage.setItem("isLoggedIn", true);
 
       setIsAuth(true);
       setUser(data.user);
@@ -169,9 +155,7 @@ function NewLogin() {
                 onSubmit={handleLogin}
                 sx={{ mt: 1 }}
               >
-                <div className="sign-in-text">
-                  Sign in
-                </div>
+                <div className="sign-in-text">Sign in</div>
                 <TextField
                   margin="normal"
                   required
@@ -200,12 +184,8 @@ function NewLogin() {
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
                 />
-
-                {/* Error Message */}
                 {errorMessage && (
-                  <Box sx={{ marginTop: 1, color: 'red' }}>
-                    {errorMessage}
-                  </Box>
+                  <Box sx={{ marginTop: 1, color: "red" }}>{errorMessage}</Box>
                 )}
 
                 <Button
