@@ -167,7 +167,18 @@ function ItemsDetail() {
               <Grid xs="12" md="3" className="grid-2">
                 <Grid item xs="12" className="item-detail-basic-info">
                   <h2>{singlePost.title}</h2>
-                  <h4>{singlePost.location} NY</h4>
+                  {singlePost.pickup_type === "drop-off"
+                    ? (
+                      <>
+                        <h4>{singlePost.street_address}, {singlePost.location}, NY</h4>
+                      </>
+                    )
+                    : (
+                      <>
+                        <h4>{singlePost.location}, NY</h4>
+                      </>
+                    )
+                  }
                   <Tooltip
                     title={
                       singlePost.pickup_type === "drop-off"
