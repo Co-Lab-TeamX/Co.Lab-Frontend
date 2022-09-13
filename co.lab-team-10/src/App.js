@@ -11,20 +11,12 @@ import Chats from "./pages/chats/Chats"
 import ViewMessages from "./pages/viewMessages/ViewMessages";
 
 function App() {
-  const loggedIn = window.localStorage.getItem("isLoggedIn")
-  const { isAuth, setIsAuth, setUser, user } = useContext(AppContext)
+  const { setIsAuth, setUser } = useContext(AppContext)
 
   const checkAuthenticated = async () => {
     let localToken = window.localStorage.getItem("token");
 
     try {
-      // const res = await fetch(`http://localhost:4000/is-verify`, {
-      //   method: "GET",
-      //   headers: {
-      //     token: localToken,
-      //     "Content-Type": "application/json",
-      //   },
-      // });
       const res = await fetch(`https://colab-free-up.herokuapp.com/is-verify`, {
         method: "GET",
         headers: {

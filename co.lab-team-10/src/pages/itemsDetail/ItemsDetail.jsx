@@ -1,4 +1,4 @@
-import { Container, Grid, Rating, Tooltip } from "@mui/material";
+import { Container, Grid, Tooltip } from "@mui/material";
 import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
@@ -19,16 +19,17 @@ import warningIcon from "../../images/CircleWavyWarning.svg";
 
 function ItemsDetail() {
   const { user, setIsAuth, setUser } = useContext(AppContext);
+  const { post_id } = useParams();
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [singlePost, setSinglePost] = useState({});
   const [open, setOpen] = useState(false);
+  const [userContacts, setUserContacts] = useState([]);
+
+  const navigate = useNavigate();
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [userContacts, setUserContacts] = useState([]);
-  const { post_id } = useParams();
-  const contacts = {}
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUserContacts();
@@ -36,16 +37,12 @@ function ItemsDetail() {
 
   const fetchUserContacts = async () => {
     const result = await fetch(
-      `http://localhost:4000/details/${post_id}/${user.id}`
+      `https://colab-free-up.herokuapp.com/details/${post_id}/${user.id}`
     );
-    // const result = await fetch(
-    //   `https://colab-free-up.herokuapp.com/details/${post_id}/${user.id}`
-    // );
     const parsed = await result.json();
     setUserContacts(parsed);
   };
 
-  // Prevent losing user on refresh
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
 
@@ -60,28 +57,16 @@ function ItemsDetail() {
 
   useEffect(() => {
     if (!post_id) return;
-    fetch(`http://localhost:4000/posts/${post_id}`)
+    fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
       .then((response) => response.json())
       .then((data) => setSinglePost(data.data));
   }, [post_id]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/posts/${post_id}/comments`)
+    fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
       .then((response) => response.json())
       .then((data) => setComments(data.data));
   }, []);
-  // useEffect(() => {
-  //   if (!post_id) return;
-  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setSinglePost(data.data));
-  // }, [post_id]);
-
-  // useEffect(() => {
-  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
-  //     .then((response) => response.json())
-  //     .then((data) => setComments(data.data));
-  // }, []);
 
   const addComment = async (e) => {
     e.preventDefault();
@@ -94,7 +79,7 @@ function ItemsDetail() {
     if (newCommentData.comment_body === "") return;
 
     const result = await fetch(
-      `http://localhost:4000/posts/${post_id}/comments`,
+      `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
       {
         method: "POST",
         headers: {
@@ -103,16 +88,6 @@ function ItemsDetail() {
         body: JSON.stringify(newCommentData),
       }
     );
-    // const result = await fetch(
-    //   `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newCommentData),
-    //   }
-    // );
     const parsed = await result.json();
     parsed.data.username = user.username;
     parsed.data.profile_pic = user.profile_pic;
@@ -120,12 +95,6 @@ function ItemsDetail() {
     setNewComment("");
   };
 
-  // useEffect(() => {
-  //   if (!post_id) return;
-  //   fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setSinglePost(data.data));
-  // }, [post_id]);
   window.onscroll = function () {
     myFunction();
   };
@@ -181,8 +150,6 @@ function ItemsDetail() {
             <Typography color="text.primary">{singlePost.title}</Typography>
           </Breadcrumbs>
         </div>
-
-        {/* main content */}
         <div className="item-detail-main-container">
           <Container className="item-detail-main-container">
             <Grid container className="item-detail-container">
@@ -191,7 +158,6 @@ function ItemsDetail() {
                   className="item-image1"
                   src={singlePost.upload ? singlePost.upload : singlePost.image}
                 />
-                {/* on phone sizes the display is none, tablet is block */}
                 <div className="tablet-description">
                   <h2>Description</h2>
                   <p>{singlePost.description}</p>
@@ -201,24 +167,25 @@ function ItemsDetail() {
               <Grid xs="12" md="3" className="grid-2">
                 <Grid item xs="12" className="item-detail-basic-info">
                   <h2>{singlePost.title}</h2>
-                  {/* { singlePost.location }  */}
                   <h4>{singlePost.location} NY</h4>
                   <Tooltip
-                    title={singlePost.pickup_type === 'drop-off'
-                      ? 'This item will be left outside the donator\'s residence. Hurry quickly to grab this item, first come first serve!'
-                      : 'This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!'}
+                    title={
+                      singlePost.pickup_type === "drop-off"
+                        ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
+                        : "This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!"
+                    }
                     arrow
                     PopperProps={{
                       sx: {
                         "& .MuiTooltip-tooltip": {
                           border: "solid black 1px",
                           color: "black",
-                          backgroundColor: 'white',
-                          fontSize: '15px',
-                          fontFamily: 'poppins',
-                          padding: '10px'
-                        }
-                      }
+                          backgroundColor: "white",
+                          fontSize: "15px",
+                          fontFamily: "poppins",
+                          padding: "10px",
+                        },
+                      },
                     }}
                   >
                     <div className="pick-up-container">
@@ -262,7 +229,6 @@ function ItemsDetail() {
                   </div>
                 </Grid>
 
-                {/* on phone sizes the display is block, tablet is none */}
                 <Grid item xs="12" className="item-contact">
                   <h3>Posted by</h3>
                   <div className="avatar-container">
@@ -334,9 +300,6 @@ function ItemsDetail() {
                         <Button
                           variant="contained"
                           className="message-poster-btn"
-                          // onClick={(e) =>
-                          //   navigate(`/details/messages/${user.id}`)
-                          // }
                           onClick={handleOpen}
                         >
                           View Messages
@@ -358,12 +321,9 @@ function ItemsDetail() {
                   </div>
                 </Grid>
               </Grid>
-
-              {/* bottom section for tablet */}
               <Grid item xs="12">
                 <div className="item-post-comment">
                   <Box>
-                    {/* <img className="postProfileImg" src={singlePost.profile_pic} /> */}
                     <TextField
                       onChange={(e) => setNewComment(e.target.value)}
                       id="comment-input"
@@ -392,7 +352,6 @@ function ItemsDetail() {
                 ) : (
                   <h3 className="recent-comments-text">Recent Comments</h3>
                 )}
-                {/* <h3 className="recent-comments-text">Recent Comments</h3> */}
                 <div className="details-comment">
                   {comments &&
                     comments.map((comment) => (
