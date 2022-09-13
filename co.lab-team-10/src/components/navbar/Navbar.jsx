@@ -16,7 +16,7 @@ import "./navbar.css";
 const pages = ["About", "Help", "Signin", "Signout"];
 
 const Navbar = () => {
-  const { user, setUser, setIsAuth } = useContext(AppContext);
+  const { setIsAuth } = useContext(AppContext);
   const loggedIn = window.localStorage.getItem("isLoggedIn");
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -107,13 +107,15 @@ const Navbar = () => {
               About
             </MenuItem>
             <MenuItem className="nav-link">Help</MenuItem>
-            {!loggedIn && <MenuItem
-              className="nav-link"
-              onClick={(e) => navigate("/register")}
-            >
-              Sign up
-            </MenuItem>}
-            
+            {!loggedIn && (
+              <MenuItem
+                className="nav-link"
+                onClick={(e) => navigate("/register")}
+              >
+                Sign up
+              </MenuItem>
+            )}
+
             <Button variant="contained" className="login-btn" size="small">
               {!loggedIn ? (
                 <MenuItem
