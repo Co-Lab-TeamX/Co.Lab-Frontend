@@ -167,19 +167,19 @@ function ItemsDetail() {
               <Grid xs="12" md="3" className="grid-2">
                 <Grid item xs="12" className="item-detail-basic-info">
                   <h2>{singlePost.title}</h2>
-                  {singlePost.pickup_type === "drop-off"
-                    ? (
-                      <>
-                        <h4>{singlePost.street_address}, {singlePost.location}, NY</h4>
-                      </>
-                    )
-                    : (
-                      <>
-                        <h4>{singlePost.location}, NY</h4>
-                      </>
-                    )
-                  }
+                  {singlePost.pickup_type === "drop-off" ? (
+                    <>
+                      <h4>
+                        {singlePost.street_address}, {singlePost.location}
+                      </h4>
+                    </>
+                  ) : (
+                    <>
+                      <h4>{singlePost.location}</h4>
+                    </>
+                  )}
                   <Tooltip
+                  id={singlePost.pickup_type === "drop-off" ? "drop-off-type" : "pickup-type"}
                     title={
                       singlePost.pickup_type === "drop-off"
                         ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
@@ -322,7 +322,7 @@ function ItemsDetail() {
                         className="message-poster-btn"
                         onClick={(e) =>
                           navigate(
-                            `/chats/${singlePost.id}/${singlePost.user_id}/${user.id}`
+                            `/chats/${singlePost.id}/${user.id}/${singlePost.user_id}`
                           )
                         }
                       >

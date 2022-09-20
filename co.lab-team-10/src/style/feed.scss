@@ -112,6 +112,36 @@
   margin-bottom: 98px;
 }
 
+.count-holder {
+  width: 920px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+
+.item-text {
+  display: flex;
+  justify-content: end;
+}
+
+.item-count {
+  margin-right: 3px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1023px) {
+  .count-holder {
+    display: flex;
+    justify-content: center;
+    width: 100px
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .count-holder {
+    width: 1100px;
+  }
+}
+
 .post-container {
   z-index: 0;
   display: flex;
@@ -122,7 +152,6 @@
 .radio-filters {
   display: flex;
   justify-content: center;
-  padding-bottom: 20px;
 }
 
 .all-radio-button {
@@ -184,6 +213,11 @@
       font-size: 14px;
       font-weight: 400;
       letter-spacing: 0.02em;
+    }
+
+    .drop-off-type {
+      background-color: red !important;
+      color: red !important;
     }
   }
 
