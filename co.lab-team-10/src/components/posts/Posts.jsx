@@ -51,7 +51,135 @@ function Posts({ post }) {
                 <h3>{post.title}</h3>
                 <h4>{post.location}</h4>
               </div>
-              <Tooltip
+              {post.pickup_type === "drop-off" ? (
+                <Tooltip
+                  className={
+                    post.pickup_type === "drop-off"
+                      ? "drop-off-type"
+                      : "pickup-type"
+                  }
+                  title={
+                    post.pickup_type === "drop-off"
+                      ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
+                      : "This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!"
+                  }
+                  arrow
+                  PopperProps={{
+                    sx: {
+                      "& .MuiTooltip-tooltip": {
+                        border: "solid #f76e5b 1px",
+                        color: "#13313f",
+                        backgroundColor: "white",
+                        fontSize: "15px",
+                        fontFamily: "poppins",
+                        padding: "10px",
+                      },
+                    },
+                  }}
+                >
+                  <div className="card-content-2">
+                    <div className="pick-up-container">
+                      {post.pickup_type === "drop-off" ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      ) : (
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      )}
+                    </div>
+                    <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
+                  </div>
+                </Tooltip>
+              ) : (
+                <Tooltip
+                  className={
+                    post.pickup_type === "drop-off"
+                      ? "drop-off-type"
+                      : "pickup-type"
+                  }
+                  title={
+                    post.pickup_type === "drop-off"
+                      ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
+                      : "This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!"
+                  }
+                  arrow
+                  PopperProps={{
+                    sx: {
+                      "& .MuiTooltip-tooltip": {
+                        border: "solid #02a7a7 1px",
+                        color: "#13313f",
+                        backgroundColor: "white",
+                        fontSize: "15px",
+                        fontFamily: "poppins",
+                        padding: "10px",
+                      },
+                    },
+                  }}
+                >
+                  <div className="card-content-2">
+                    <div className="pick-up-container">
+                      {post.pickup_type === "drop-off" ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      ) : (
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      )}
+                    </div>
+                    <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
+                  </div>
+                </Tooltip>
+              )}
+              {/* {post.pickup_type === "drop-off" && (
+                <Tooltip
+                className={post.pickup_type === "drop-off" ? "drop-off-type" : "pickup-type"}
+                  title={
+                    post.pickup_type === "drop-off"
+                      ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
+                      : "This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!"
+                  }
+                  arrow
+                  PopperProps={{
+                    sx: {
+                      "& .MuiTooltip-tooltip": {
+                        border: "solid #f76e5b 1px",
+                        color: "black",
+                        backgroundColor: "white",
+                        fontSize: "15px",
+                        fontFamily: "poppins",
+                        padding: "10px",
+                      },
+                    },
+                  }}
+                >
+                  <div className="card-content-2">
+                    <div className="pick-up-container">
+                      {post.pickup_type === "drop-off" ? (
+                        <>
+                          <img src={warningIcon} alt="warning-icon" />
+                          <h3>Immediate Pickup</h3>
+                        </>
+                      ) : (
+                        <>
+                          <img src={checkIcon} alt="check-icon" />
+                          <h3>Schedule Pickup</h3>
+                        </>
+                      )}
+                    </div>
+                    <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
+                  </div>
+                </Tooltip>
+              )} */}
+              {/* <Tooltip
+              className={post.pickup_type === "drop-off" ? "drop-off-type" : "pickup-type"}
                 title={
                   post.pickup_type === "drop-off"
                     ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
@@ -87,7 +215,7 @@ function Posts({ post }) {
                   </div>
                   <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
                 </div>
-              </Tooltip>
+              </Tooltip> */}
 
               <Typography
                 gutterBottom
