@@ -3,7 +3,7 @@
   height: 150px;
   width: auto;
   background-color: #455a64;
-  font-family: 'poppins';
+  font-family: "poppins";
   color: white;
 }
 
@@ -41,6 +41,7 @@
   font-size: 25px;
   margin-left: 5px;
   margin-right: 4px;
+  margin-top: 2px;
 }
 
 .tiktok-icon {
@@ -74,7 +75,7 @@
 @media only screen and (max-width: 375px) {
   .copyright-text {
     justify-content: center;
-  } 
+  }
 }
 
 @media only screen and (max-width: 585px) {
@@ -85,7 +86,6 @@
   }
 
   .copyright-text {
-    margin-top: 34px;
-  } 
+    margin-top: 32px;
+  }
 }
-
