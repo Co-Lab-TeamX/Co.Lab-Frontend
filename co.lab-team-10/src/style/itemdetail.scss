@@ -19,8 +19,6 @@
 }
 
 .item-grid {
-  // width: 387px;
-
   img {
     width: 387px;
     height: 260px;
@@ -162,7 +160,6 @@
     }
   }
 
-  // place holder for ratings
   h5 {
     margin-bottom: 38px;
   }
@@ -251,11 +248,9 @@
   border-radius: 15px !important;
 }
 
-// Tablet
 @media screen and (min-width: 1024px) {
   .item-detail-container {
     width: 976px !important;
-    // border: 1px solid red;
   }
 
   .item-grid {
@@ -299,7 +294,6 @@
   }
 }
 
-// Laptop
 @media screen and (min-width: 1280px) {
   .item-detail-container {
     width: 1129px !important;

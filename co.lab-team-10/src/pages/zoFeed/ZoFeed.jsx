@@ -23,6 +23,7 @@ function ZoFeed() {
   const [category, setCategory] = useState("Any");
   const [pickupType, setPickupType] = useState("Any");
   const [categorySelected, setCategorySelected] = useState(false);
+  const [itemCount, setItemCount] = useState(posts.length);
 
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ function ZoFeed() {
     fetch("https://colab-free-up.herokuapp.com/posts")
       .then((response) => response.json())
       .then((data) => setPosts(data.data));
+    setItemCount(posts.length);
     setPostsLength(posts.length);
   }, []);
 
@@ -62,10 +64,12 @@ function ZoFeed() {
         .then((data) => setPosts(data.data));
       setPostsLength(posts.length);
       filteredFeed = [...posts];
+      setItemCount(filteredFeed.length);
     } else {
       filteredFeed = filteredFeed.filter(
         (post) => post.category === productCategory
       );
+      setItemCount(filteredFeed.length);
     }
 
     if (productPickupType !== "Any") {
@@ -74,6 +78,7 @@ function ZoFeed() {
       );
     }
     setFilteredPosts(filteredFeed);
+    setItemCount(filteredFeed.length);
   };
 
   return (
@@ -203,6 +208,17 @@ function ZoFeed() {
             />
           </RadioGroup>
         </FormControl>
+      </div>
+      <div className="count-holder">
+        <div className="item-text">
+          {!itemCount ? (
+            <div>Loading Item Count</div>
+          ) : (
+            <>
+              <div className="item-count">{itemCount}</div> items
+            </>
+          )}
+        </div>
       </div>
       <div className="feed">
         <Grid container spacing={4} className="post-container">

@@ -1,0 +1,131 @@
+.pitch-and-image {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .pitch-text {
+    font-size: 20px;
+  }
+  
+  .value-proposition-text {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 50px;
+  }
+  
+  .upcycling-info {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .blurb-three-img,
+  .blurb-two-img,
+  .blurb-one-img {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .blurb-one-actual-img {
+      border-radius: 100px;
+  }
+  
+  .blurb-three-holder,
+  .blurb-two-holder,
+  .blurb-one-holder {
+      width: 250px;
+      display: flex;
+      justify-content: center;
+      margin-left: 20px;
+      margin-top: 15px;
+  }
+  
+  .who-we-are-container {
+      margin-top: 50px;
+  }
+  
+  .who-we-are-text {
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 50px;
+  }
+  
+  .authors-container {
+      display: flex;
+      justify-content: space-evenly;
+  }
+  
+  .author-information-text {
+      width: 200px;
+      margin-top: 15px;
+  }
+  
+  .individual-qanda-columns {
+      margin-left: 30px;
+  }
+  
+  .person-three-img-container {
+      display: flex;
+      justify-content: center;
+  }
+  
+  .author-img {
+      border-radius: 100%;
+  }
+  
+  .faq-text {
+      margin-top: 50px;
+      text-align: center;
+      margin-bottom: 50px;
+  }
+  
+  .answer-section {
+      display: flex;
+      width: 200px;
+  }
+  
+  .question-section {
+      display: flex;
+  }
+  
+  .qanda-holder {
+      display: flex;
+  }
+  
+  .q, 
+  .a {
+      font-weight: 600;
+      margin-right: 5px;
+  }
+  
+  .link-to-more-text {
+      margin-top: 20px;
+      font-size: 15px;
+      text-align: end;
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: 600;
+  }
+  
+  .bottom-space {
+      margin-bottom: 100px;
+  }
+  
+  .author-socials {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .author-links {
+      color: hsl(199deg, 54%, 16%);
+      margin-left: 7px;
+  }
+  
+  .github-section,
+  .linkedIn-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      margin-top: 5px;
+  }

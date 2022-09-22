@@ -1,9 +1,12 @@
+.chats-page-container {
+  min-height: 100vh;
+}
+
 .holder {
   display: flex;
   justify-content: center;
-  margin-bottom: 2px;
-  height: 64vh;
-  margin-top: 146px;
+  margin-bottom: 130px;
+  margin-top: 50px;
 }
 
 .info-holder {
@@ -96,6 +99,11 @@
 
 .time-posted {
   font-size: 10px;
+}
+
+.arrow-up-icon {
+  margin-left: 2px;
+  font-size: 20px;
 }
 
 .sending-message-section {

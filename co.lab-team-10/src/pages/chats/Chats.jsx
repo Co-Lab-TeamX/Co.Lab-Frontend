@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { AiOutlineArrowUp } from "react-icons/ai"
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -66,11 +67,11 @@ function Chats() {
   }
 
   useEffect(() => {
-    if (!receiver_id) return;
+    if (!sender_id) return;
     getReceiverData();
     getSenderData();
     getChatData();
-  }, [receiver_id]);
+  }, [sender_id]);
 
   useEffect(() => {
     socket.on("receive_message", (payload) => {
@@ -101,7 +102,7 @@ function Chats() {
   }
 
   return (
-    <>
+    <div className="chats-page-container">
       <Navbar />
       <div role="presentation" className="breadcrumb-detail">
         <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-detail">
@@ -127,8 +128,8 @@ function Chats() {
       <div className="holder">
         <div className="grid-item2">
           <div className="top-portion">
-            <img className="contact-profile-pic" src={sender.profile_pic} />
-            <div className="chatting-with">Chat with {sender.username}</div>
+            <img className="contact-profile-pic" src={receiver.profile_pic} />
+            <div className="chatting-with">{receiver.username}</div>
           </div>
           <div className="horizontal-row"></div>
           <div className="chat-box">
@@ -140,11 +141,11 @@ function Chats() {
                       <div className="each-message">
                         <div
                           className="message"
-                          id={sender.id !== message.sender_id ? "you" : "other"}
+                          id={sender.id !== message.sender_id ? "other" : "you"}
                         >
                           <div
                             id={
-                              sender.id !== message.sender_id ? "you" : "other"
+                              sender.id !== message.sender_id ? "other" : "you"
                             }
                           >
                             <div className="message-content">
@@ -159,8 +160,8 @@ function Chats() {
                                 ).toRelative()}
                               </p>
                               <p id="author">
-                                {sender.id === message.sender_id ? (
-                                  <div>{sender.username}</div>
+                                {sender.id !== message.sender_id ? (
+                                  <div>{receiver.username}</div>
                                 ) : (
                                   <div>You</div>
                                 )}
@@ -191,7 +192,7 @@ function Chats() {
                   className="send-message-btn"
                   size="small"
                 >
-                  <MenuItem>Send</MenuItem>
+                  <MenuItem>Send<AiOutlineArrowUp className="arrow-up-icon"/></MenuItem>
                 </Button>
               </div>
             </div>
@@ -199,7 +200,7 @@ function Chats() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

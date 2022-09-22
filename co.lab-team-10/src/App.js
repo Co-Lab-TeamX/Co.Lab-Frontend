@@ -9,6 +9,7 @@ import Register from "./pages/register/Register";
 import ZoFeed from "./pages/zoFeed/ZoFeed";
 import Chats from "./pages/chats/Chats"
 import ViewMessages from "./pages/viewMessages/ViewMessages";
+import AboutPage from "./pages/about/About";
 
 function App() {
   const { setIsAuth, setUser } = useContext(AppContext)
@@ -49,6 +50,7 @@ function App() {
         <Route path="/details/:post_id" element={<ItemsDetail />} />
         <Route path="/details/messages/:user_id" element={<ViewMessages />} />
         <Route path="/createPost" element={<CreatePostPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </div>
   );

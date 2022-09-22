@@ -3,12 +3,14 @@
   height: 150px;
   width: auto;
   background-color: #455a64;
+  font-family: "poppins";
+  color: white;
 }
 
 .footer-pin {
   color: white;
-  font-size: 30px !important;
-  margin: 0px !important;
+  font-size: 25px !important;
+  margin-top: 2px !important;
 }
 
 .footer-logo {
@@ -25,29 +27,65 @@
   font-size: 20px;
 }
 
-.footer-socials {
+.extra-text {
+  font-size: 12px;
+}
+
+.support-footer,
+.community-footer,
+.about-footer {
+  margin-right: 40px;
+}
+
+.instagram-icon {
+  font-size: 25px;
+  margin-left: 5px;
+  margin-right: 4px;
+  margin-top: 2px;
+}
+
+.tiktok-icon {
+  font-size: 20px;
+}
+
+.facebook-icon {
+  font-size: 20px;
+}
+
+.socials-container {
   display: flex;
-  justify-content: end;
-  /* border: red solid; */
+  align-items: center;
 }
 
-.footer-social-icon1 {
-  margin-top: -5px !important;
-  margin-left: 10px;
-  font-size: 30px !important;
-  color: white;
+.support-text,
+.follow-us-text,
+.community-text,
+.about-text {
+  font-weight: 600;
 }
 
-.footer-social-icon2 {
-  margin-top: -9px !important;
-  margin-left: 10px;
-  font-size: 40px !important;
+.copyright-text {
   color: white;
+  display: flex;
+  font-size: 12px;
+  margin-top: 15px;
+  align-items: flex-end;
 }
 
-.footer-social-icon3 {
-  margin-top: -5px !important;
-  margin-left: 9px;
-  font-size: 32px !important;
-  color: white;
-} 
+@media only screen and (max-width: 375px) {
+  .copyright-text {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 585px) {
+  .support-footer,
+  .community-footer,
+  .about-footer {
+    display: none;
+  }
+
+  .copyright-text {
+    margin-top: 32px;
+  }
+}
