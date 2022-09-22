@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AboutpageBody from "../../components/aboutpageBody/AboutpageBody";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
-import AboutpageBody from "../../components/aboutpageBody/AboutpageBody";
-
 import "./about.css";
 
 const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   window.onscroll = () => myFunction();
 
   function myFunction() {
@@ -23,7 +26,7 @@ const AboutPage = () => {
       <Navbar />
       <div className="body">
         <AboutpageBody />
-        </div>
+      </div>
       <Footer />
     </div>
   );
