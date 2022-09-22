@@ -3,12 +3,13 @@
   height: 150px;
   width: auto;
   background-color: #455a64;
+  font-family: 'poppins';
 }
 
 .footer-pin {
   color: white;
-  font-size: 30px !important;
-  margin: 0px !important;
+  font-size: 25px !important;
+  margin-top: 2px !important;
 }
 
 .footer-logo {
@@ -51,3 +52,15 @@
   font-size: 32px !important;
   color: white;
 } 
+
+.copyright-text {
+  color: white;
+  display: flex;
+  font-size: 13px;
+}
+
+@media only screen and (max-width: 375px) {
+  .copyright-text {
+    justify-content: center;
+  } 
+}
