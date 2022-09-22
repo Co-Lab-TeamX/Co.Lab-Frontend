@@ -45,6 +45,7 @@ function Footer() {
           <FaTiktok />
         </div>
       </div>
+      <div className="copyright-text">©2022 FreeUp, Inc. All rights reserved.</div>
     </div>
   );
 }
