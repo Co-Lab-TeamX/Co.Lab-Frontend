@@ -103,7 +103,7 @@ const Navbar = () => {
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             className="pages"
           >
-            <MenuItem className="nav-link" onClick={(e) => navigate("/")}>
+            <MenuItem className="nav-link" onClick={(e) => navigate("/about")}>
               About
             </MenuItem>
             <MenuItem className="nav-link">Help</MenuItem>

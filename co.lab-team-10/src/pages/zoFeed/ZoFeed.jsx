@@ -211,10 +211,8 @@ function ZoFeed() {
       </div>
       <div className="count-holder">
         <div className="item-text">
-          {itemCount === 1 ? (
-            <>
-              <div className="item-count">1</div> item
-            </>
+          {!itemCount ? (
+            <div>Loading Item Count</div>
           ) : (
             <>
               <div className="item-count">{itemCount}</div> items
