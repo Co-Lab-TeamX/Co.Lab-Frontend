@@ -6,13 +6,10 @@ const AboutpageBody = () => {
     <div>
       <div className="pitch-and-image">
         <div className="pitch-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-          soluta magnam quaerat atque facilis quae veritatis non ipsam omnis.
-          Quas debitis similique quod, facere dolore odit tenetur delectus
-          cumque possimus!
+        By creating a platform which provides users with information on free goods and how to acquire them, New Yorkers will be able to exchange goods quickly and ensure their sidewalks/front porches are clutter free much sooner. It will provide individuals with a guilt free method of getting rid of perfectly fine used goods as someone else will make use of it instead of the goods going directly to the landfill. Furthermore, it will encourage individuals to continue to seek free items from others in their neighborhood and foster a safe and welcoming community vibe which was otherwise difficult to do in the busy city.
         </div>
         <div className="pitch-img">
-          <img src={pic} height="400px" width="400px" />
+          <img className="pitch-img" src={pic} height="400px" width="400px" />
         </div>
       </div>
       <div className="value-proposition-text">Value Proposition</div>
