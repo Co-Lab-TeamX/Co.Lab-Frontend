@@ -21,6 +21,15 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
+  const signoutLogic = (e) => {
+    e.preventDefault();
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user");
+    window.localStorage.removeItem("isLoggedIn");
+    setIsAuth(false);
+    navigate("/login");
+  };
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -28,8 +37,23 @@ const Navbar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
     setAnchorElNav(null);
+    const navMobileSelection = e.target.textContent;
+    switch (navMobileSelection) {
+      case "About":
+        navigate("/about");
+        break;
+      case "Help":
+        navigate("/");
+        break;
+      case "Signin":
+        signoutLogic(e)
+        break;
+      case "Signout":
+        signoutLogic(e)
+        break;
+    }
   };
 
   const handleCloseUserMenu = () => {
@@ -47,7 +71,7 @@ const Navbar = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={(e) => handleOpenNavMenu(e)}
               color="inherit"
             >
               <GiHamburgerMenu className="hamburger-menu" />
@@ -127,14 +151,7 @@ const Navbar = () => {
               ) : (
                 <MenuItem
                   className="nav-link-sign-out-btn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.localStorage.removeItem("token");
-                    window.localStorage.removeItem("user");
-                    window.localStorage.removeItem("isLoggedIn");
-                    setIsAuth(false);
-                    navigate("/login");
-                  }}
+                  onClick={(e) => signoutLogic(e)}
                 >
                   Log Out
                 </MenuItem>

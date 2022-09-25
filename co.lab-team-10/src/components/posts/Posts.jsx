@@ -33,10 +33,12 @@ function Posts({ post }) {
     }
   };
 
+  const handleClickOnPost = async (e) => user ? navigate(`/details/${post.id}`) : navigate(`/login`) 
+
   return (
     <Grid item xs="12" md="4" className="item-card-grid-container">
       <Card className="item-card">
-        <div onClick={(e) => navigate(`/details/${post.id}`)}>
+        <div onClick={(e) => handleClickOnPost(e)}>
           <CardActionArea>
             <CardMedia
               className="post-images"
@@ -138,85 +140,6 @@ function Posts({ post }) {
                   </div>
                 </Tooltip>
               )}
-              {/* {post.pickup_type === "drop-off" && (
-                <Tooltip
-                className={post.pickup_type === "drop-off" ? "drop-off-type" : "pickup-type"}
-                  title={
-                    post.pickup_type === "drop-off"
-                      ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
-                      : "This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!"
-                  }
-                  arrow
-                  PopperProps={{
-                    sx: {
-                      "& .MuiTooltip-tooltip": {
-                        border: "solid #f76e5b 1px",
-                        color: "black",
-                        backgroundColor: "white",
-                        fontSize: "15px",
-                        fontFamily: "poppins",
-                        padding: "10px",
-                      },
-                    },
-                  }}
-                >
-                  <div className="card-content-2">
-                    <div className="pick-up-container">
-                      {post.pickup_type === "drop-off" ? (
-                        <>
-                          <img src={warningIcon} alt="warning-icon" />
-                          <h3>Immediate Pickup</h3>
-                        </>
-                      ) : (
-                        <>
-                          <img src={checkIcon} alt="check-icon" />
-                          <h3>Schedule Pickup</h3>
-                        </>
-                      )}
-                    </div>
-                    <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
-                  </div>
-                </Tooltip>
-              )} */}
-              {/* <Tooltip
-              className={post.pickup_type === "drop-off" ? "drop-off-type" : "pickup-type"}
-                title={
-                  post.pickup_type === "drop-off"
-                    ? "This item will be left outside the donator's residence. Hurry quickly to grab this item, first come first serve!"
-                    : "This item will need a scheduled pickup time with the donator. Please message the donator for a suitable time!"
-                }
-                arrow
-                PopperProps={{
-                  sx: {
-                    "& .MuiTooltip-tooltip": {
-                      border: "solid black 1px",
-                      color: "black",
-                      backgroundColor: "white",
-                      fontSize: "15px",
-                      fontFamily: "poppins",
-                      padding: "10px",
-                    },
-                  },
-                }}
-              >
-                <div className="card-content-2">
-                  <div className="pick-up-container">
-                    {post.pickup_type === "drop-off" ? (
-                      <>
-                        <img src={warningIcon} alt="warning-icon" />
-                        <h3>Immediate Pickup</h3>
-                      </>
-                    ) : (
-                      <>
-                        <img src={checkIcon} alt="check-icon" />
-                        <h3>Schedule Pickup</h3>
-                      </>
-                    )}
-                  </div>
-                  <h4>{DateTime.fromISO(post.time_posted).toRelative()}</h4>
-                </div>
-              </Tooltip> */}
-
               <Typography
                 gutterBottom
                 variant="h6"
