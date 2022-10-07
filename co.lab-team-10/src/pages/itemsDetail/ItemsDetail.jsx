@@ -125,6 +125,11 @@ function ItemsDetail() {
     borderRadius: 2,
   };
 
+const handleViewProfile = e => {
+  const ID = singlePost.user_id
+  navigate(`/profile/${ID}`)
+}
+
   return (
     <>
       <div className="item-detail-page-container">
@@ -329,6 +334,7 @@ function ItemsDetail() {
                         Message {singlePost.username}
                       </Button>
                     )}
+                    <Button variant="contained" className="message-poster-btn" onClick={(e) => handleViewProfile(e)}>View Profile</Button>
                   </div>
                 </Grid>
               </Grid>
