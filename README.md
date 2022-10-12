@@ -52,4 +52,5 @@ Understand how users feel after successfully acquiring/giving away a used good
 - Understand the time and location hotspots for the exchange of used goods
 
 
-## Figma Hi-fi/Lo-fi https://www.figma.com/file/KYSwXDJzQ0WKQIoCBnkeqn/Team10?node-id=26%3A122
+## Figma Hi-fi/Lo-fi 
+https://www.figma.com/file/KYSwXDJzQ0WKQIoCBnkeqn/Team10?node-id=26%3A122
