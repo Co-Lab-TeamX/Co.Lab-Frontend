@@ -1,8 +1,11 @@
 # Free Goods Website
-### Find free things quickly on the streets of NYC
+### Find free things quickly on the streets of NYC!
+![Intro Page](https://media-exp1.licdn.com/dms/image/D4E2DAQGI_J333bcgUQ/profile-treasury-image-shrink_800_800/0/1663099866797?e=1666202400&v=beta&t=LEejSqbZjgkWg105pJMbnsgMViOnpqIAseoz-NZse2M)
+
 
 ## Project Demo
 https://drive.google.com/open?id=1EOL1AC6a0xZ6qKEa2Ps5SxoKJJUd2wnO
+
 
 
 ## Deployed App  
