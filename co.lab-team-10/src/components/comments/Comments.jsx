@@ -1,6 +1,5 @@
 import { DateTime } from "luxon";
 import React from "react";
-import "./comments.css";
 
 function Comments({ comment }) {
   return (
