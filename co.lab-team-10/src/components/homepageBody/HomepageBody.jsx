@@ -10,7 +10,6 @@ import pic from "../../images/homepagePic.png";
 import instructionsImg1 from "../../images/instructions-img1.png";
 import instructionsImg2 from "../../images/instructions-img2.png";
 import instructionsImg3 from "../../images/instructions-img3.png";
-import "./homepageBody.css";
 
 function HomepageBody() {
   const navigate = useNavigate();
