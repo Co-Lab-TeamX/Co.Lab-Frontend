@@ -1,16 +1,16 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppContext from "./context/appContext";
-import AboutPage from "./pages/about/About";
-import Chats from "./pages/chats/Chats";
-import CreatePostPage from "./pages/CreatePostPage/CreatePostPage";
-import Feed from "./pages/feed/Feed";
-import Homepage from "./pages/homepage/Homepage";
-import ItemsDetail from "./pages/itemsDetail/ItemsDetail";
-import NewLogin from "./pages/login/NewLogin";
-import Profile from "./pages/profile/Profile";
-import Register from "./pages/register/Register";
-import ViewMessages from "./pages/viewMessages/ViewMessages";
+import AboutPage from "./pages/About";
+import Chats from "./pages/Chats";
+import CreatePostPage from "./pages/CreatePostPage";
+import Feed from "./pages/Feed";
+import Homepage from "./pages/Homepage";
+import ItemsDetail from "./pages/ItemsDetail";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Register from "./pages/Register";
+import ViewMessages from "./pages/ViewMessages";
 
 function App() {
   const { setIsAuth, setUser } = useContext(AppContext)
@@ -45,7 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<NewLogin />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/chats/:post_id/:sender_id/:receiver_id" element={<Chats />} />
         <Route path="/details/:post_id" element={<ItemsDetail />} />
