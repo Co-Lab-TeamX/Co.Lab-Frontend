@@ -1,32 +1,48 @@
-import pic from "../images/homepagePic.png";
+import aboutUsPage from "../images/aboutusIntroPage.png";
+import firstPic from "../images/aboutUsPic1.png";
+import secondPic from "../images/aboutUsPic2.png";
+import thirdPic from "../images/aboutUsPic3.png";
+import rishi from "../images/rishi.png";
+import lavina from "../images/lavina.png";
+import jacob from "../images/jacob.png";
+import zo from "../images/zo.png";
 
 const AboutpageBody = () => {
   return (
     <div>
       <div className="pitch-and-image">
-        <div className="pitch-text">
-        By creating a platform which provides users with information on free goods and how to acquire them, New Yorkers will be able to exchange goods quickly and ensure their sidewalks/front porches are clutter free much sooner. It will provide individuals with a guilt free method of getting rid of perfectly fine used goods as someone else will make use of it instead of the goods going directly to the landfill. Furthermore, it will encourage individuals to continue to seek free items from others in their neighborhood and foster a safe and welcoming community vibe which was otherwise difficult to do in the busy city.
+        <div className="pitch-text-holder">
+          <div className="pitch-text">
+            FreeUp facilitates the upcycling of free used goods between New
+            Yorkers to make the process as streamlined as possible
+          </div>
         </div>
         <div className="pitch-img">
-          <img className="pitch-img" src={pic} height="400px" width="400px" />
+          <img
+            className="pitch-img"
+            src={aboutUsPage}
+            height="300px"
+            width="400px"
+          />
         </div>
       </div>
-      <div className="value-proposition-text">Value Proposition</div>
+      <div className="value-proposition-text">The impact</div>
       <div className="upcycling-info">
         <div className="blurb-one">
           <div className="blurb-one-container">
             <div className="blurb-one-img">
               <img
                 className="blurb-one-actual-img"
-                src={pic}
+                src={firstPic}
                 height="200px"
                 width="200px"
               />
             </div>
             <div className="blurb-one-holder">
               <div className="blurb-one-text">
-                Lorem ipsum, dolor sit spernatur fuga quasi aperiam! Lorem
-                ipsum, dolor
+                Less than 20% of all charitable donations to Goodwill and The
+                Salvation Army are sold. Charities receive far too many
+                donations to sell them all
               </div>
             </div>
           </div>
@@ -36,14 +52,15 @@ const AboutpageBody = () => {
             <div className="blurb-two-img">
               <img
                 className="blurb-one-actual-img"
-                src={pic}
+                src={secondPic}
                 height="200px"
                 width="200px"
               />
             </div>
             <div className="blurb-two-holder">
               <div className="blurb-two-text">
-                Lorem ipsum, dolor sit spernatur fuga quasi aperiam! Lorem ipsum
+                22% of 30-59 year olds regularly upcycled followed by 60 yrs up
+                and 18-29 respectively
               </div>
             </div>
           </div>
@@ -53,15 +70,15 @@ const AboutpageBody = () => {
             <div className="blurb-three-img">
               <img
                 className="blurb-one-actual-img"
-                src={pic}
+                src={thirdPic}
                 height="200px"
                 width="200px"
               />
             </div>
             <div className="blurb-three-holder">
               <div className="blurb-three-text">
-                Lorem ipsum, dolor sit spernatur fuga quasi aperiam! Lorem
-                ipsum, dolor
+                Facilitating the exchange of free used goods between New Yorkers
+                FreeUP keeps the sidewalks clean and fosters a sense community
               </div>
             </div>
           </div>
@@ -75,41 +92,25 @@ const AboutpageBody = () => {
               <div className="person-three-img-container">
                 <img
                   className="author-img"
-                  src="https://t3.ftcdn.net/jpg/05/17/87/74/360_F_517877468_8dx0lFR66R6LIgCOUYJWxun1b3Muv272.jpg"
+                  src={rishi}
                   height="100px"
                   width="100px"
                 />
               </div>
-              <div className="author-information-text">
-                I am the product manager on the team FreeUp
-              </div>
-              <div className="author-socials">
-                <div className="github-section">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    height="34px"
-                    width="34px"
-                  />
-                  <a
-                    className="author-links"
-                    href="https://github.com/ZohaibManzoor00"
-                  >
-                    Github
-                  </a>
-                </div>
-                <div className="linkedIn-section">
+              <div className="author-information-text">Rishi Shah</div>
+              <div className="author-role">Product Manager</div>
+              <div className="author-social">
+                <a
+                  target="_blank"
+                  className="author-links"
+                  href="https://www.linkedin.com/in/rishi-shah-0317/"
+                >
                   <img
                     src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
                     height="34px"
                     width="34px"
                   />
-                  <a
-                    className="author-links"
-                    href="https://www.linkedin.com/in/zohaibmanzoor/"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -118,39 +119,39 @@ const AboutpageBody = () => {
               <div className="person-three-img-container">
                 <img
                   className="author-img"
-                  src="https://t3.ftcdn.net/jpg/05/17/87/74/360_F_517877468_8dx0lFR66R6LIgCOUYJWxun1b3Muv272.jpg"
+                  src={jacob}
                   height="100px"
-                  width="100px"
+                  width="120px"
                 />
               </div>
-              <div className="author-information-text">
-                I am a developer on the team of FreeUp
-              </div>
-              <div className="author-socials">
+              <div className="author-information-text">Jacob Nathanson</div>
+              <div className="author-role">Software Developer</div>
+              <div className="author-social">
                 <div className="github-section">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    height="34px"
-                    width="34px"
-                  />
                   <a
+                    target="_blank"
                     className="author-links"
                     href="https://github.com/ZohaibManzoor00"
                   >
-                    Github
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                      height="34px"
+                      width="34px"
+                    />
                   </a>
                 </div>
                 <div className="linkedIn-section">
-                  <img
-                    src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
-                    height="34px"
-                    width="34px"
-                  />
                   <a
+                    target="_blank"
                     className="author-links"
-                    href="https://www.linkedin.com/in/zohaibmanzoor/"
+                    href="https://www.linkedin.com/in/j-nathanson/"
                   >
-                    LinkedIn
+                    {" "}
+                    <img
+                      src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
+                      height="34px"
+                      width="34px"
+                    />
                   </a>
                 </div>
               </div>
@@ -161,39 +162,38 @@ const AboutpageBody = () => {
               <div className="person-three-img-container">
                 <img
                   className="author-img"
-                  src="https://t3.ftcdn.net/jpg/05/17/87/74/360_F_517877468_8dx0lFR66R6LIgCOUYJWxun1b3Muv272.jpg"
+                  src={zo}
                   height="100px"
-                  width="100px"
+                  width="120px"
                 />
               </div>
-              <div className="author-information-text">
-                I am a designer on the team FreeUp
-              </div>
-              <div className="author-socials">
+              <div className="author-information-text">Zohaib Manzoor</div>
+              <div className="author-role">Software Developer</div>
+              <div className="author-social">
                 <div className="github-section">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    height="34px"
-                    width="34px"
-                  />
                   <a
+                    target="_blank"
                     className="author-links"
                     href="https://github.com/ZohaibManzoor00"
                   >
-                    Github
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                      height="34px"
+                      width="34px"
+                    />
                   </a>
                 </div>
                 <div className="linkedIn-section">
-                  <img
-                    src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
-                    height="34px"
-                    width="34px"
-                  />
                   <a
+                    target="_blank"
                     className="author-links"
                     href="https://www.linkedin.com/in/zohaibmanzoor/"
                   >
-                    LinkedIn
+                    <img
+                      src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
+                      height="34px"
+                      width="34px"
+                    />
                   </a>
                 </div>
               </div>
@@ -204,39 +204,26 @@ const AboutpageBody = () => {
               <div className="person-three-img-container">
                 <img
                   className="author-img"
-                  src="https://t3.ftcdn.net/jpg/05/17/87/74/360_F_517877468_8dx0lFR66R6LIgCOUYJWxun1b3Muv272.jpg"
+                  src={lavina}
                   height="100px"
-                  width="100px"
+                  width="150x"
                 />
               </div>
-              <div className="author-information-text">
-                I am also a developer on the team FreeUp
-              </div>
-              <div className="author-socials">
-                <div className="github-section">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    height="34px"
-                    width="34px"
-                  />
-                  <a
-                    className="author-links"
-                    href="https://github.com/ZohaibManzoor00"
-                  >
-                    Github
-                  </a>
-                </div>
+              <div className="author-information-text">Lavina Green</div>
+              <div className="author-role">Product Designer</div>
+              <div className="author-social">
                 <div className="linkedIn-section">
-                  <img
-                    src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
-                    height="34px"
-                    width="34px"
-                  />
                   <a
+                    target="_blank"
                     className="author-links"
-                    href="https://www.linkedin.com/in/zohaibmanzoor/"
+                    href="https://www.linkedin.com/in/lavina-green-b3313b14/"
                   >
-                    LinkedIn
+                    {" "}
+                    <img
+                      src="https://seeklogo.com/images/L/linkedin-icon-logo-05B2880899-seeklogo.com.png"
+                      height="34px"
+                      width="34px"
+                    />
                   </a>
                 </div>
               </div>
