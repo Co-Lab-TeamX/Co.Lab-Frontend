@@ -108,12 +108,6 @@ export default function CreatePostPage() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
-  let stringLength = trialImage.length - 'data:image/png;base64,'.length;
-  let sizeInBytes = 4 * Math.ceil((stringLength / 3)) * 0.5624896334383812;
-  var sizeInKb = sizeInBytes / 1000;
-  console.log(sizeInKb);
-
-
   return (
     <div>
       <Navbar />
