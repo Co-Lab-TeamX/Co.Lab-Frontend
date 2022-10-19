@@ -1,15 +1,23 @@
-@import './colors.scss';
-@import './fonts.scss';
-@import './homepage.scss';
-@import './itemDetail.scss';
-@import './login.scss';
-@import './register.scss';
-@import './navigation.scss';
-@import './itemCategories.scss';
-@import './footer.scss';
-@import './feed.scss';
-@import './createPost.scss';
+// Utils
+@import './utils/colors.scss';
+@import './utils/fonts.scss';
 
+// Components
+@import './components/Footer.scss';
+@import './components/AboutPageBody.scss';
+@import './components/Navbar.scss';
+
+// Pages
+@import './pages/About.scss';
+@import './pages/Homepage.scss';
+@import './pages/ItemDetail.scss';
+@import './pages/Login.scss';
+@import './pages/Register.scss';
+@import './pages/Feed.scss';
+@import './pages/CreatePostPage.scss';
+@import './pages/Chats.scss';
+@import './pages/Profile.scss';
+@import './pages/ViewMessages.scss';
 
 * {
     box-sizing: border-box;
