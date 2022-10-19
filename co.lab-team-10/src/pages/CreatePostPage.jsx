@@ -108,7 +108,7 @@ export default function CreatePostPage() {
   }, []);
 
   return (
-    <div>a
+    <div>
       <Navbar />
       <Button
         className="back-to-listing"
