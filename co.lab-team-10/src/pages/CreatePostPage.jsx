@@ -24,7 +24,7 @@ export default function CreatePostPage() {
   const [state, setState] = useState("NY");
   const [zipCode, setZipCode] = useState("");
   const [quantity, setQuantity] = useState("1");
-  const [weight, setWeight] = useState("");
+  const [weight, setWeight] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [images, setImages] = useState([]);
   const [trialImage, setTrialImage] = useState("");
@@ -90,6 +90,7 @@ export default function CreatePostPage() {
 
     try {
       const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
+        // const result = await fetch("http://localhost:4000/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,6 +107,12 @@ export default function CreatePostPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  let stringLength = trialImage.length - 'data:image/png;base64,'.length;
+  let sizeInBytes = 4 * Math.ceil((stringLength / 3)) * 0.5624896334383812;
+  var sizeInKb = sizeInBytes / 1000;
+  console.log(sizeInKb);
+
 
   return (
     <div>
@@ -302,6 +309,7 @@ export default function CreatePostPage() {
               </label>
               <TextField
                 id="weight"
+                type="number"
                 onChange={(e) => setWeight(e.target.value)}
                 style={{ width: 150 }}
               ></TextField>
