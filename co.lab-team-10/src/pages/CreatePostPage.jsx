@@ -310,6 +310,7 @@ export default function CreatePostPage() {
               <TextField
                 id="weight"
                 type="number"
+                min="0"
                 onChange={(e) => setWeight(e.target.value)}
                 style={{ width: 150 }}
               ></TextField>
