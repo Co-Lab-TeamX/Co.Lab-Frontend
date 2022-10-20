@@ -131,7 +131,7 @@ const AboutpageBody = () => {
                   <a
                     target="_blank"
                     className="author-links"
-                    href="https://github.com/ZohaibManzoor00"
+                    href="https://github.com/j-nathanson"
                   >
                     <img
                       src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
