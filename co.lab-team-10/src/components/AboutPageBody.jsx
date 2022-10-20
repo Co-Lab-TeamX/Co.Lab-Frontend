@@ -42,7 +42,7 @@ const AboutpageBody = () => {
               <div className="blurb-one-text">
                 Less than 20% of all charitable donations to Goodwill and The
                 Salvation Army are sold. Charities receive far too many
-                donations to sell them all
+                donations to sell them all.
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ const AboutpageBody = () => {
             <div className="blurb-two-holder">
               <div className="blurb-two-text">
                 22% of 30-59 year olds regularly upcycled followed by 60 yrs up
-                and 18-29 respectively
+                and 18-29 respectively.
               </div>
             </div>
           </div>
@@ -77,8 +77,8 @@ const AboutpageBody = () => {
             </div>
             <div className="blurb-three-holder">
               <div className="blurb-three-text">
-                Facilitating the exchange of free used goods between New Yorkers
-                FreeUP keeps the sidewalks clean and fosters a sense community
+                The exchange of free used goods between New Yorkers keeps the
+                sidewalks clean and fosters a sense community.
               </div>
             </div>
           </div>
@@ -232,87 +232,59 @@ const AboutpageBody = () => {
         </div>
       </div>
       <div className="faq-container">
-        <div className="faq-text">FAQ</div>
+        <div className="faq-text">Frequently Asked Questions</div>
         <div className="qanda-holder">
           <div className="individual-qanda-columns">
             <div className="question-section">
-              <div className="q">Q:</div>
               <div className="question-holder">
                 <div className="question-text">
-                  Lorem ipsum doloet earum architecto ipsa qu!
+                How do I sign up?
                 </div>
               </div>
             </div>
             <div className="answer-section">
-              <div className="a">A:</div>
               <div className="answer-holder">
                 <div className="answer-text">
-                  Lorem ipsum dolor sit sandae repellat. Omnis, magni
-                  exercitationem?
+                To sign up, click on the Sign Up button. There you will select your password and enter your user information.
                 </div>
               </div>
             </div>
           </div>
           <div className="individual-qanda-columns">
             <div className="question-section">
-              <div className="q">Q:</div>
               <div className="question-holder">
                 <div className="question-text">
-                  Lorem ipsum doloet earum architecto ipsa qu!
+                How do I change my email? 
                 </div>
               </div>
             </div>
             <div className="answer-section">
-              <div className="a">A:</div>
               <div className="answer-holder">
                 <div className="answer-text">
-                  Lorem ipsum dolor sit sandae repellat. Omnis, magni
-                  exercitationem?
+                On FreeUp.com, navigate to Your account and select Account settings. Scroll down to the Email section and fill out your new email in the Change your email form. Select Change Email and Hit Submit! 
                 </div>
               </div>
             </div>
           </div>
           <div className="individual-qanda-columns">
             <div className="question-section">
-              <div className="q">Q:</div>
               <div className="question-holder">
                 <div className="question-text">
-                  Lorem ipsum doloet earum architecto ipsa qu!
+                Is my information private?
                 </div>
               </div>
             </div>
             <div className="answer-section">
-              <div className="a">A:</div>
               <div className="answer-holder">
                 <div className="answer-text">
-                  Lorem ipsum dolor sit sandae repellat. Omnis, magni
-                  exercitationem?
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="individual-qanda-columns">
-            <div className="question-section">
-              <div className="q">Q:</div>
-              <div className="question-holder">
-                <div className="question-text">
-                  Lorem ipsum doloet earum architecto ipsa qu!
-                </div>
-              </div>
-            </div>
-            <div className="answer-section">
-              <div className="a">A:</div>
-              <div className="answer-holder">
-                <div className="answer-text">
-                  Lorem ipsum dolor sit sandae repellat. Omnis, magni
-                  exercitationem?
+                Yes, your personal and health information is completely private. We take confidentiality very seriously! 
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="link-to-more-text">Link to more</div>
+      <div className="link-to-more-text">Read More</div>
       <div className="bottom-space"></div>
     </div>
   );
