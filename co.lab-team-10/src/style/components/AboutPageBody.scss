@@ -1,17 +1,19 @@
 .pitch-and-image {
     margin-top: 100px;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .pitch-text-holder {
-    width: 100%;
+    width: 33.7rem;
 }
 
 .pitch-text {
-    font-size: 25px;
+    font-size: 22px;
     margin-right: 40px;
-    width: 500px;
+    margin-top: 50px;
+    color: #133240;
+    margin-left: 80px;
 }
 
 .value-proposition-text {
@@ -34,6 +36,14 @@
 	margin-left: 50px;
 	margin-right: 50px;
 }
+
+.blurb-three-text, 
+.blurb-two-text, 
+.blurb-one-text {
+    color: hsl(199deg, 54%, 16%);
+    text-align: center;
+}
+
 
 .blurb-three-img,
 .blurb-two-img,
@@ -86,6 +96,8 @@
     margin-top: 15px;
     text-align: center;
     font-weight: 600;
+    color: #02A7A7;
+    font-size: 20px;
 }
 
 .github-section {
@@ -94,6 +106,7 @@
 
 .author-role {
     text-align: center;
+    color: #133240;
 }
 
 .individual-qanda-columns {
@@ -126,22 +139,27 @@
 
 .answer-section {
     display: flex;
-    width: 200px;
+    max-width: 300px;
 }
 
 .question-section {
-    width: 200px;
+    max-width: 300px;
     display: flex;
+}
+
+.question-text {
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.answer-text {
+    font-size: 15px;
+    color: #133240
 }
 
 .qanda-holder {
     display: flex;
-}
-
-.q,
-.a {
-    font-weight: 600;
-    margin-right: 5px;
+    justify-content: space-evenly;
 }
 
 .link-to-more-text {
@@ -150,7 +168,7 @@
     text-align: end;
     cursor: pointer;
     text-decoration: underline;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .bottom-space {
@@ -209,8 +227,8 @@
     }
 
     .pitch-text {
+        margin-left: 25px; 
         margin-right: 0;
-        margin-top: 20px;
     }
 }
 
@@ -233,35 +251,69 @@
         justify-content: center;
     }
 
-    .img-and-info {
-        margin-bottom: 20px;
-    }
-
     .individual-qanda-columns {
         margin-left: 0;
-    }
-
-    .img-and-info {
-        padding-bottom: 1rem;
     }
 
     .faq-text {
         margin-top: 30px
     }
-}
 
-@media (max-width: 810px) {
-    .upcycling-info {
-        flex-direction: column;
+    .pitch-text {
+        text-align: center;
+        margin: 0;
+        width: 325px;
+        font-size: 20px;
+    }
+
+    .blurb-one-container {
         margin-top: -20px;
     }
 
+    .blurb-three-container,
+    .blurb-two-container,
+    .blurb-one-container {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    
     .blurb-three-holder,
     .blurb-two-holder,
     .blurb-one-holder {
-        width: auto;
-        padding-left: 4rem;
-        padding-right: 4rem;
-        padding-bottom: 3rem;
+        margin-left: 0;
     }
+
+    .who-we-are-text {
+        margin-bottom: -20px;
+    }
+
+    .person-three-img-container {
+        margin-top: 30px;
+    }
+
+    .faq-text {
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+
+    .individual-qanda-columns {
+        margin-top: 20px;
+    }
+
 }
+
+// @media (max-width: 810px) {
+//     .upcycling-info {
+//         flex-direction: column;
+//         margin-top: -20px;
+//     }
+
+//     .blurb-three-holder,
+//     .blurb-two-holder,
+//     .blurb-one-holder {
+//         width: auto;
+//         padding-left: 4rem;
+//         padding-right: 4rem;
+//         padding-bottom: 3rem;
+//     }
+// }
