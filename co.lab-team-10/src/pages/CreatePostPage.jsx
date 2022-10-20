@@ -10,6 +10,7 @@ import cameraIcon from "../images/camera-icon.svg";
 import checkIcon from "../images/CircleWavyCheck.svg";
 import warningIcon from "../images/CircleWavyWarning.svg";
 import locationIcon from "../images/location-icon.svg";
+import Resizer from "react-image-file-resizer";
 
 export default function CreatePostPage() {
   const { setIsAuth, setUser } = useContext(AppContext);
@@ -28,11 +29,21 @@ export default function CreatePostPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [images, setImages] = useState([]);
   const [trialImage, setTrialImage] = useState("");
+  const navigate = useNavigate();
+
+  const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "#fff",
+    borderRadius: "15px",
+    boxShadow: 24,
+    p: 4,
+  };
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const loggedIn = window.localStorage.getItem("isLoggedIn");
@@ -46,22 +57,33 @@ export default function CreatePostPage() {
     }
   }, []);
 
-  const modalStyle = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "#fff",
-    borderRadius: "15px",
-    boxShadow: 24,
-    p: 4,
+  // Resize image on change handler
+  const onChange = async (imageList) => {
+    try {
+      setImages(imageList);
+      const file = imageList[0].file;
+      const image = await resizeFile(file);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const maxNumber = 69;
-  const onChange = (imageList, addUpdateIndex) => {
-    setImages(imageList);
-    setTrialImage(imageList[0].data_url);
-  };
+  // Resize image function
+  const resizeFile = (file) =>
+    new Promise(() => {
+      Resizer.imageFileResizer(
+        file,
+        612,
+        400,
+        "JPEG",
+        80,
+        0,
+        (uri) => {
+          setTrialImage(uri)
+        },
+        "base64"
+      );
+    });
 
   const handleSubmit1 = (e) => {
     e.preventDefault();
@@ -90,7 +112,6 @@ export default function CreatePostPage() {
 
     try {
       const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
-        // const result = await fetch("http://localhost:4000/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -108,12 +129,6 @@ export default function CreatePostPage() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
-  let stringLength = trialImage.length - 'data:image/png;base64,'.length;
-  let sizeInBytes = 4 * Math.ceil((stringLength / 3)) * 0.5624896334383812;
-  var sizeInKb = sizeInBytes / 1000;
-  console.log(sizeInKb);
-
-
   return (
     <div>
       <Navbar />
@@ -125,21 +140,6 @@ export default function CreatePostPage() {
         &lt; Back to listings
       </Button>
       <Container>
-        <div className="notice-area">
-          <div className="notice-container">
-            <div className="notice-intro-text">
-              Notice
-              <span className="notice-icon">‼️</span>
-            </div>
-            <div className="notice-body-text">
-              Due to storage issues with larger images we recommend downloading and testing with 
-              {" "} 
-              <a className="stock-image-link" target="_blank" href="https://media.istockphoto.com/photos/box-of-toys-on-the-floor-teddy-bear-in-boxvintage-tone-charitable-picture-id1017309510?k=20&m=1017309510&s=612x612&w=0&h=hlrEqEYcyrYjEqlkmJhugTepGVtzjkGohyPdnD5uK3o=">this</a>
-              {" "} 
-              image 😁
-            </div>
-          </div>
-        </div>
         <Box className="post-page-header" sx={{ marginTop: 10 }}>
           Post Item
         </Box>
@@ -179,7 +179,7 @@ export default function CreatePostPage() {
                 <ImageUploading
                   value={images}
                   onChange={onChange}
-                  maxNumber={maxNumber}
+                  maxNumber={5}
                   dataURLKey="data_url"
                 >
                   {({
