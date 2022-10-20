@@ -125,6 +125,21 @@ export default function CreatePostPage() {
         &lt; Back to listings
       </Button>
       <Container>
+        <div className="notice-area">
+          <div className="notice-container">
+            <div className="notice-intro-text">
+              Notice
+              <span className="notice-icon">‼️</span>
+            </div>
+            <div className="notice-body-text">
+              Due to storage issues with larger images we recommend downloading and testing with 
+              {" "} 
+              <a className="stock-image-link" target="_blank" href="https://media.istockphoto.com/photos/box-of-toys-on-the-floor-teddy-bear-in-boxvintage-tone-charitable-picture-id1017309510?k=20&m=1017309510&s=612x612&w=0&h=hlrEqEYcyrYjEqlkmJhugTepGVtzjkGohyPdnD5uK3o=">this</a>
+              {" "} 
+              image 😁
+            </div>
+          </div>
+        </div>
         <Box className="post-page-header" sx={{ marginTop: 10 }}>
           Post Item
         </Box>
