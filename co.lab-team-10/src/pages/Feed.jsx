@@ -16,7 +16,7 @@ import Posts from "../components/Posts";
 import AppContext from "../context/appContext.jsx";
 
 function Feed() {
-  const { setPosts, posts, setUser, setIsAuth } = useContext(AppContext);
+  const { setPosts, posts, setUser, setIsAuth, isAuth } = useContext(AppContext);
   const [postsLength, setPostsLength] = useState(0);
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
   const [filterToggle, setFilterToggle] = useState(false);
@@ -81,6 +81,10 @@ function Feed() {
     setItemCount(filteredFeed.length);
   };
 
+  const handleCreateClick = () => {
+    isAuth ? navigate("/createPost") : navigate("/login");
+  }
+
   return (
     <>
       <Navbar />
@@ -111,7 +115,7 @@ function Feed() {
         <Button
           className="create-post-btn"
           variant="contained"
-          onClick={(e) => navigate("/createPost")}
+          onClick={handleCreateClick}
         >
           Create Listing
         </Button>
