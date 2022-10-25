@@ -13,12 +13,12 @@ function Homepage() {
   };
 
   function myFunction() {
-    var winScroll =
+    const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
-    var height =
+    const height =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
+    const scrolled = (winScroll / height) * 100;
     document.getElementById("myBar").style.width = scrolled + "%";
   }
 
