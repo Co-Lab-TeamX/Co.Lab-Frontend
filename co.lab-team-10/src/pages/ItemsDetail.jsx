@@ -278,7 +278,7 @@ function ItemsDetail() {
                                       className="message-grid-holder"
                                       onClick={(e) =>
                                         navigate(
-                                          `/chats/${singlePost.id}/${contact.user_id}/${user.id}`
+                                          `/chats/${singlePost.id}/${user.id}/${contact.user_id}`
                                         )
                                       }
                                     >
