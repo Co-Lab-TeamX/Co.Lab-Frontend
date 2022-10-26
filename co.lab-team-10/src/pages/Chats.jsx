@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { AiOutlineArrowUp } from "react-icons/ai"
+import { AiOutlineArrowUp } from "react-icons/ai";
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -74,7 +74,6 @@ function Chats() {
 
   useEffect(() => {
     socket.on("receive_message", (payload) => {
-      console.log("payload", payload);
       getChatData();
     });
   }, [socket]);
@@ -191,7 +190,10 @@ function Chats() {
                   className="send-message-btn"
                   size="small"
                 >
-                  <MenuItem>Send<AiOutlineArrowUp className="arrow-up-icon" /></MenuItem>
+                  <MenuItem>
+                    Send
+                    <AiOutlineArrowUp className="arrow-up-icon" />
+                  </MenuItem>
                 </Button>
               </div>
             </div>
