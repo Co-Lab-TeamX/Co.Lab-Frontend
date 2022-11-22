@@ -36,7 +36,8 @@ function NewLogin() {
     };
 
     async function loginUser() {
-      const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+      // const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+      const res = await fetch(`https://freeup.up.railway.app/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

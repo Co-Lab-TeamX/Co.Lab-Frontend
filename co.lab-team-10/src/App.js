@@ -19,7 +19,8 @@ function App() {
     let localToken = window.localStorage.getItem("token");
 
     try {
-      const res = await fetch(`https://colab-free-up.herokuapp.com/is-verify`, {
+      // const res = await fetch(`https://colab-free-up.herokuapp.com/is-verify`, {
+      const res = await fetch(`https://freeup.up.railway.app/is-verify`, {
         method: "GET",
         headers: {
           token: localToken,

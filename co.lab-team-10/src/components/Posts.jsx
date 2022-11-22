@@ -20,7 +20,8 @@ function Posts({ post }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`https://colab-free-up.herokuapp.com/posts/${post.id}`, {
+      // await fetch(`https://colab-free-up.herokuapp.com/posts/${post.id}`, {
+      await fetch(`https://freeup.up.railway.app/posts/${post.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +34,7 @@ function Posts({ post }) {
     }
   };
 
-  const handleClickOnPost = async (e) => user ? navigate(`/details/${post.id}`) : navigate(`/login`) 
+  const handleClickOnPost = async (e) => user ? navigate(`/details/${post.id}`) : navigate(`/login`)
 
   return (
     <Grid item xs="12" md="4" className="item-card-grid-container">

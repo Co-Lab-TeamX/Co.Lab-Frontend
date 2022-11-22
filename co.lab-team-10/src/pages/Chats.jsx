@@ -12,7 +12,8 @@ import io from "socket.io-client";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-const socket = io.connect("https://colab-free-up.herokuapp.com");
+// const socket = io.connect("https://colab-free-up.herokuapp.com");
+const socket = io.connect("https://freeup.up.railway.app");
 
 function Chats() {
   const { sender_id, receiver_id, post_id } = useParams();
@@ -42,24 +43,33 @@ function Chats() {
   }
 
   async function getChatData() {
+    // const response = await fetch(
+    //   `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`
+    // );
     const response = await fetch(
-      `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`
+      `https://freeup.up.railway.app/chats/${post_id}/${sender_id}/${receiver_id}`
     );
     const data = await response.json();
     setMessages(data);
   }
 
   async function getReceiverData() {
+    // const response = await fetch(
+    //   `https://colab-free-up.herokuapp.com/users/${receiver_id}`
+    // );
     const response = await fetch(
-      `https://colab-free-up.herokuapp.com/users/${receiver_id}`
+      `https://freeup.up.railway.app/users/${receiver_id}`
     );
     const data = await response.json();
     setReceiver(data.data[0]);
   }
 
   async function getSenderData() {
+    // const response = await fetch(
+    //   `https://colab-free-up.herokuapp.com/users/${sender_id}`
+    // );
     const response = await fetch(
-      `https://colab-free-up.herokuapp.com/users/${sender_id}`
+      `https://freeup.up.railway.app/users/${sender_id}`
     );
     const data = await response.json();
     setSender(data.data[0]);
@@ -82,8 +92,11 @@ function Chats() {
     if (newMessage.length === 0) return;
 
     async function postChat() {
+      // const response = await fetch(
+      //   `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`,
+      //   {
       const response = await fetch(
-        `https://colab-free-up.herokuapp.com/chats/${post_id}/${sender_id}/${receiver_id}`,
+        `https://freeup.up.railway.app/chats/${post_id}/${sender_id}/${receiver_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

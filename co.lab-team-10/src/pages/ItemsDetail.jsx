@@ -36,8 +36,11 @@ function ItemsDetail() {
   }, []);
 
   const fetchUserContacts = async () => {
+    // const result = await fetch(
+    //   `https://colab-free-up.herokuapp.com/details/${post_id}/${user.id}`
+    // );
     const result = await fetch(
-      `https://colab-free-up.herokuapp.com/details/${post_id}/${user.id}`
+      `https://freeup.up.railway.app/details/${post_id}/${user.id}`
     );
     const parsed = await result.json();
     setUserContacts(parsed);
@@ -57,13 +60,15 @@ function ItemsDetail() {
 
   useEffect(() => {
     if (!post_id) return;
-    fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+    // fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}`)
+    fetch(`https://freeup.up.railway.app/posts/${post_id}`)
       .then((response) => response.json())
       .then((data) => setSinglePost(data.data));
   }, [post_id]);
 
   useEffect(() => {
-    fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
+    // fetch(`https://colab-free-up.herokuapp.com/posts/${post_id}/comments`)
+    fetch(`https://freeup.up.railway.app/posts/${post_id}/comments`)
       .then((response) => response.json())
       .then((data) => setComments(data.data));
   }, []);
@@ -78,8 +83,11 @@ function ItemsDetail() {
 
     if (newCommentData.comment_body === "") return;
 
+    // const result = await fetch(
+    //   `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
+    //   {
     const result = await fetch(
-      `https://colab-free-up.herokuapp.com/posts/${post_id}/comments`,
+      `https://freeup.up.railway.app/posts/${post_id}/comments`,
       {
         method: "POST",
         headers: {

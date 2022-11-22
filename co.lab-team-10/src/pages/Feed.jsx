@@ -28,7 +28,8 @@ function Feed() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://colab-free-up.herokuapp.com/posts")
+    // fetch("https://colab-free-up.herokuapp.com/posts")
+    fetch("https://freeup.up.railway.app/posts")
       .then((response) => response.json())
       .then((data) => setPosts(data.data));
     setItemCount(posts.length);
@@ -59,7 +60,8 @@ function Feed() {
     let filteredFeed = [...posts];
 
     if (productCategory === "Any") {
-      fetch("https://colab-free-up.herokuapp.com/posts")
+      // fetch("https://colab-free-up.herokuapp.com/posts")
+      fetch("https://freeup.up.railway.app/posts")
         .then((response) => response.json())
         .then((data) => setPosts(data.data));
       setPostsLength(posts.length);

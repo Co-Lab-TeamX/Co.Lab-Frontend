@@ -16,7 +16,8 @@ const Profile = () => {
   const { profile_id } = useParams();
 
   useEffect(() => {
-    fetch(`https://colab-free-up.herokuapp.com/users/${profile_id}`)
+    // fetch(`https://colab-free-up.herokuapp.com/users/${profile_id}`)
+    fetch(`https://freeup.up.railway.app/users/${profile_id}`)
       .then((res) => res.json())
       .then((data) => setUserProfileInfo(data.data[0]));
   }, []);
