@@ -111,7 +111,8 @@ export default function CreatePostPage() {
     };
 
     try {
-      const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
+      // const result = await fetch("https://colab-free-up.herokuapp.com/posts", {
+      const result = await fetch("https://freeup.up.railway.app/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -57,8 +57,11 @@ function Register() {
         email: email,
       };
 
+      // const result = await fetch(
+      //   "https://colab-free-up.herokuapp.com/register",
+      //   {
       const result = await fetch(
-        "https://colab-free-up.herokuapp.com/register",
+        "https://freeup.up.railway.app/register",
         {
           method: "POST",
           headers: {
@@ -81,7 +84,8 @@ function Register() {
         };
 
         async function loginUser() {
-          const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+          // const res = await fetch(`https://colab-free-up.herokuapp.com/login`, {
+          const res = await fetch(`https://freeup.up.railway.app/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
